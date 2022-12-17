@@ -2,13 +2,31 @@
 
 .contentContainer {
   height: 70vh;
+  width: 100%;
   background: #f9f9f9;
-  text-align: center;
   font-family: "Poppins", sans-serif;
-  margin-left: 20px;
-  margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .pageTitle {
-  margin-top: 1rem;
+  margin: 2rem;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input {
+  width: 13rem;
+  margin-bottom: 1.3rem;
+}
+
+.errorMessage {
+  color: red;
 }

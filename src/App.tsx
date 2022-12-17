@@ -32,7 +32,7 @@ const App = () => {
       <Route path="sdms-definition" element={<SDMSDefinition />} />
       <Route path="who-definition" element={<WHODefinition />} />
       <Route path="my-medical-record" element={<MyMedicalRecord />} />
-      <Route path="who-patients" element={<MyPatients />} />
+      <Route path="my-patients" element={<MyPatients />} />
       <Route path="log-in" element={<LogIn />} />
       <Route path="sign-in" element={<SignIn />} />
     </Routes>

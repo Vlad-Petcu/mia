@@ -11,7 +11,7 @@ const Navbar: FC = () => {
     setShowNav(!showNav);
   };
 
-  const isDoctor = false;
+  const isDoctor = true;
 
   return (
     <nav className="navbar">

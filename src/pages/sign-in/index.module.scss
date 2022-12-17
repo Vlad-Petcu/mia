@@ -12,6 +12,8 @@
 
 .pageTitle {
   margin: 2rem;
+  font-size: 2rem;
+  font-weight: 500;
 }
 
 .formContainer {
@@ -20,38 +22,11 @@
   align-items: center;
 }
 
-.emailContainer, .passwordContainer {
-  margin-bottom: 1.3rem;
-}
-
-.emailLabel {
-  display: inline;
-  margin-left: 1.8rem;
-  margin-right: 1rem;
-}
-
-.passwordLabel {
-  display: inline-block;
-  margin-right: 1rem;
-}
-
 .input {
   width: 13rem;
-  opacity: 1;
+  margin-bottom: 1.3rem;
 }
 
 .errorMessage {
   color: red;
 }
-
-// .submitButton {
-//   background-color: white;
-//   color: black;
-//   border-color: black;
-// }
-
-// .submitButton:hover {
-//   background-color: white;
-//   color: black;
-//   border-color: #e3c770;
-// }

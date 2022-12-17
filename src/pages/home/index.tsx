@@ -3,7 +3,7 @@ import "../../App.css";
 import Footer from "../../components/footer";
 import Header from "../../components/header";
 import Navbar from "../../components/navbar";
-// import homeImage from "../../images/home.webp";
+import homeImage from "../../imgaes/home.webp";
 import styles from "./index.module.scss";
 
 const Home: FC = () => {
@@ -12,24 +12,27 @@ const Home: FC = () => {
       <Header />
       <Navbar />
       <div className={styles.contentContainer}>
-        <h1 className={styles.pageTitle}>
-          Maya is your best solution for renting different types of rooms!
-        </h1>
-        <p>
-          All your company/institution renting room problems can be solve by
-          'Maya'.
+        <p className={styles.pageTitle}>
+          Mia is a healthcare application meant to help people who decide to
+          check if they have a possible diagnosis of metabolic syndrome.
         </p>
         <p>
-          As an open source project we offer the possibility for all entities to
-          use our software for free. Our simplistic design will get the chance
-          to all category of users to use the application with or without any
-          knowledge regarding computers or it!
+          Mia offers 8 definitions of the metabolic syndrome which you can check
+          by adding your own data and see if you are diagnosed with the
+          metabolic syndrome.
         </p>
-        {/* <img
-          className={styles.homeImage}
-          src={homeImage}
-          alt="Not for you!"
-        ></img> */}
+        <p>
+          Also apart from the checking itself which can be done without creating
+          an account, if you chose to create an account you will gain the
+          possibility to save your results or to send them to your doctor.
+        </p>
+        <div className={styles.imageContainer}>
+          <img
+            className={styles.homeImage}
+            src={homeImage}
+            alt="Not for you!"
+          ></img>
+        </div>
       </div>
       <Footer />
     </>
