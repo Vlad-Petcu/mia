@@ -3,12 +3,13 @@
 .header {
   background: #4299E1;
   height: 10vh;
+  line-height: 10vh;
   font-size: 2rem;
   font-family: "Poppins", sans-serif;
   text-align: center;
-  line-height: 5rem;
 }
 
 .header h1 a {
   color: white;
+  text-decoration: none;
 }

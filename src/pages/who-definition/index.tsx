@@ -1,4 +1,4 @@
-import { Button, Input } from "@chakra-ui/react";
+import { Button, Input } from "antd";
 import { ChangeEvent, FC, useState } from "react";
 import Footer from "../../components/footer";
 import Header from "../../components/header";
@@ -46,7 +46,7 @@ const WHODefinition: FC = () => {
         </div>
         <div className={styles.formContainer}>
           <div>
-            <p>Arterial Pressure:</p>
+            <div className={styles.label}>Arterial Pressure:</div>
             <Input
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setArterialPressure(e.target.value)
@@ -55,7 +55,7 @@ const WHODefinition: FC = () => {
             />
           </div>
           <div>
-            <p>Plasma Triglyceride:</p>
+            <div className={styles.label}>Plasma Triglyceride:</div>
             <Input
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setPlasmaTriglyceride(e.target.value)
@@ -64,7 +64,7 @@ const WHODefinition: FC = () => {
             />
           </div>
           <div>
-            <p>Central Obesity:</p>
+            <div className={styles.label}>Central Obesity:</div>
             <Input
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setCentralObesity(e.target.value)
@@ -73,7 +73,7 @@ const WHODefinition: FC = () => {
             />
           </div>
           <div>
-            <p>Microalbuminuria:</p>
+            <div className={styles.label}>Microalbuminuria:</div>
             <Input
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setMicroalbuminuria(e.target.value)

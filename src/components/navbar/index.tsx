@@ -1,5 +1,5 @@
-import { IconButton } from "@chakra-ui/react";
-import { HamburgerIcon } from "@chakra-ui/icons";
+import { MenuOutlined } from "@ant-design/icons";
+import { Button } from "antd";
 import { FC, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./index.css";
@@ -18,10 +18,9 @@ const Navbar: FC = () => {
       <div className="container">
         <div className="menu-icon" onClick={handleShowNavbar}>
           <h1>
-            <IconButton
+            <Button
               aria-label={"Open Menu"}
-              colorScheme="blue"
-              icon={<HamburgerIcon />}
+              icon={<MenuOutlined />}
             />
           </h1>
         </div>

@@ -1,19 +1,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
 .contentContainer {
-  height: 80%;
+  height: 75vh;
   width: 100%;
   background: #f9f9f9;
   font-family: "Poppins", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-y: scroll;
 }
 
 .pageTitle {
-  margin: 2rem;
+  margin-top: 2rem;
   font-size: 2rem;
   font-weight: 500;
+  display: flex;
+  justify-content: center;
 }
 
 .formContainer {
@@ -30,4 +33,8 @@
 .errorMessage {
   margin-bottom: 1.3rem;
   color: red;
+}
+
+.submitButton {
+  margin-bottom: 1rem;
 }

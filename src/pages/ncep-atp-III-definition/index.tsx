@@ -1,4 +1,4 @@
-import { Button, Input } from "@chakra-ui/react";
+import { Button, Input } from "antd";
 import { ChangeEvent, FC, useState } from "react";
 import Footer from "../../components/footer";
 import Header from "../../components/header";
@@ -47,7 +47,7 @@ const NCEPATPIIIDefinition: FC = () => {
       <Navbar />
       <div className={styles.contentContainer}>
         <div className={styles.pageTitle}>
-          <p>EGSIRD Definition</p>
+          <p>NCEP ATP III Definition</p>
         </div>
         <div className={styles.formContainer}>
           <div>

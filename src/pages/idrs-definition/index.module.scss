@@ -1,15 +1,66 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
 .contentContainer {
-  height: 70vh;
+  height: 75vh;
+  width: 100%;
   background: #f9f9f9;
-  text-align: center;
   font-family: "Poppins", sans-serif;
-  padding-left: 20px;
-  padding-right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
 }
 
 .pageTitle {
-  padding-top: 1rem;
+  margin-top: 2rem;
+  font-size: 2rem;
+  font-weight: 500;
 }
 
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input {
+  width: 13rem;
+  margin-bottom: 1.3rem;
+}
+
+.errorMessage {
+  margin-bottom: 1.3rem;
+  color: red;
+}
+
+.firstRatioContainer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  margin-left: 3rem;
+}
+
+.secondRatioContainer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  margin-right: 3.5rem;
+}
+
+.firstRatioTitle {
+  margin-left: 3rem;
+  margin-bottom: 0.2rem;
+}
+
+.secondRatioTitle {
+  margin-bottom: 0.2rem;
+}
+
+
+.submitButton {
+  margin-bottom: 1rem;
+}
+
+.label {
+  margin-bottom: 0.2rem;
+}
