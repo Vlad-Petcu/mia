@@ -33,6 +33,11 @@
   color: red;
 }
 
+.ratio {
+  display: flex;
+  flex-direction: row;
+}
+
 .firstRatioContainer {
   display: flex;
   flex-direction: column;
@@ -54,6 +59,13 @@
 
 .secondRatioTitle {
   margin-bottom: 0.2rem;
+}
+
+.thirdRatioContainer {
+  @extend .firstRatioContainer;
+  flex-direction: row;
+  margin-right: 1.5rem;
+  margin-left: 1.2rem;
 }
 
 

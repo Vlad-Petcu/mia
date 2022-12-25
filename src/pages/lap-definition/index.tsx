@@ -12,16 +12,16 @@ const LAPDefinition: FC = () => {
   const [errorMessage, setErrorMessage] = useState<string>("");
 
   const isFormValid = () => {
+    if (gender.length === 0) {
+      setErrorMessage("You must chose one gender!");
+      return false;
+    }
     if (triglyceridesLevel.length === 0) {
       setErrorMessage("Triglycerides Level input is not valid!");
       return false;
     }
     if (waistCircumference.length === 0) {
       setErrorMessage("Waist size input is not valid!");
-      return false;
-    }
-    if (gender.length === 0) {
-      setErrorMessage("You must chose one of the options!");
       return false;
     }
     return true;
@@ -40,7 +40,7 @@ const LAPDefinition: FC = () => {
           <p>LAP Definition</p>
         </div>
         <div className={styles.formContainer}>
-          <div>
+          <div className={styles.ratio}>
             <div className={styles.firstRatioTitle}>Gender:</div>
             <Radio.Group
               onChange={(e: RadioChangeEvent) => setGender(e.target.value)}

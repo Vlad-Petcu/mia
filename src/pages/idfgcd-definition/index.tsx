@@ -1,4 +1,4 @@
-import { Button, Input } from "antd";
+import { Button, Input, Radio, RadioChangeEvent } from "antd";
 import { ChangeEvent, FC, useState } from "react";
 import Footer from "../../components/footer";
 import Header from "../../components/header";
@@ -6,6 +6,7 @@ import Navbar from "../../components/navbar";
 import styles from "./index.module.scss";
 
 const IDFGDCDefinition: FC = () => {
+  const [gender, setGender] = useState<string>("");
   const [tryglycerides, setTryglycerides] = useState<string>("");
   const [HDL, setHDL] = useState<string>("");
   const [bloodPresure, setBloodPresure] = useState<string>("");
@@ -13,6 +14,10 @@ const IDFGDCDefinition: FC = () => {
   const [errorMessage, setErrorMessage] = useState<string>("");
 
   const isFormValid = () => {
+    if (gender.length === 0) {
+      setErrorMessage("You must chose one gender!");
+      return false;
+    }
     if (tryglycerides.length === 0) {
       setErrorMessage("Abdominal Obesity input is not valid!");
       return false;
@@ -45,8 +50,39 @@ const IDFGDCDefinition: FC = () => {
           <p>IDFGCD Definition</p>
         </div>
         <div className={styles.formContainer}>
+          <div className={styles.ratio}>
+            <div className={styles.firstRatioTitle}>Gender:</div>
+            <Radio.Group
+              onChange={(e: RadioChangeEvent) => setGender(e.target.value)}
+              className={styles.firstRatioContainer}
+            >
+              <Radio className={styles.ratio} value={"1"}>
+                Male
+              </Radio>
+              <Radio className={styles.ratio} value={"2"}>
+                Female
+              </Radio>
+            </Radio.Group>
+          </div>
+          <div className={styles.secondRatioContainer}>
+            <div className={styles.firstRatioTitle}>Location:</div>
+            <Radio.Group
+              onChange={(e: RadioChangeEvent) => setGender(e.target.value)}
+              className={styles.firstRatioContainer}
+            >
+              <Radio className={styles.ratio} value={"1"}>
+                Europe
+              </Radio>
+              <Radio className={styles.ratio} value={"2"}>
+                USA
+              </Radio>
+              <Radio className={styles.ratio} value={"2"}>
+                Rest of the world
+              </Radio>
+            </Radio.Group>
+          </div>
           <div>
-            <p>Tryglycerides:</p>
+            <div>Tryglycerides:</div>
             <Input
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setTryglycerides(e.target.value)
@@ -55,7 +91,7 @@ const IDFGDCDefinition: FC = () => {
             />
           </div>
           <div>
-            <p>HDL:</p>
+            <div>HDL:</div>
             <Input
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setHDL(e.target.value)
@@ -64,7 +100,7 @@ const IDFGDCDefinition: FC = () => {
             />
           </div>
           <div>
-            <p>Blood Presure:</p>
+            <div>Blood Presure:</div>
             <Input
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setBloodPresure(e.target.value)
@@ -73,7 +109,7 @@ const IDFGDCDefinition: FC = () => {
             />
           </div>
           <div>
-            <p>FPG:</p>
+            <div>FPG:</div>
             <Input
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setFPG(e.target.value)

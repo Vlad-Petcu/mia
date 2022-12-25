@@ -1,4 +1,4 @@
-import { Button, Input } from "antd";
+import { Button, Input, Radio, RadioChangeEvent } from "antd";
 import { ChangeEvent, FC, useState } from "react";
 import Footer from "../../components/footer";
 import Header from "../../components/header";
@@ -6,6 +6,7 @@ import Navbar from "../../components/navbar";
 import styles from "./index.module.scss";
 
 const NCEPATPIIIDefinition: FC = () => {
+  const [gender, setGender] = useState<string>("");
   const [waistCircumference, setWaistCircumference] = useState<string>("");
   const [hypertriglyceridemia, setHypertriglyceridemia] = useState<string>("");
   const [HDLC, setHDLC] = useState<string>("");
@@ -14,6 +15,10 @@ const NCEPATPIIIDefinition: FC = () => {
   const [errorMessage, setErrorMessage] = useState<string>("");
 
   const isFormValid = () => {
+    if (gender.length === 0) {
+      setErrorMessage("You must chose one gender!");
+      return false;
+    }
     if (waistCircumference.length === 0) {
       setErrorMessage("Abdominal Obesity input is not valid!");
       return false;
@@ -50,8 +55,22 @@ const NCEPATPIIIDefinition: FC = () => {
           <p>NCEP ATP III Definition</p>
         </div>
         <div className={styles.formContainer}>
+          <div className={styles.ratio}>
+            <div className={styles.firstRatioTitle}>Gender:</div>
+            <Radio.Group
+              onChange={(e: RadioChangeEvent) => setGender(e.target.value)}
+              className={styles.firstRatioContainer}
+            >
+              <Radio className={styles.ratio} value={"1"}>
+                Male
+              </Radio>
+              <Radio className={styles.ratio} value={"2"}>
+                Female
+              </Radio>
+            </Radio.Group>
+          </div>
           <div>
-            <p>Waist Circumference:</p>
+            <div>Waist Circumference:</div>
             <Input
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setWaistCircumference(e.target.value)
@@ -60,7 +79,7 @@ const NCEPATPIIIDefinition: FC = () => {
             />
           </div>
           <div>
-            <p>Hypertriglyceridemia:</p>
+            <div>Hypertriglyceridemia:</div>
             <Input
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setHypertriglyceridemia(e.target.value)
@@ -69,7 +88,7 @@ const NCEPATPIIIDefinition: FC = () => {
             />
           </div>
           <div>
-            <p>HDLC:</p>
+            <div>HDLC:</div>
             <Input
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setHDLC(e.target.value)
@@ -78,7 +97,7 @@ const NCEPATPIIIDefinition: FC = () => {
             />
           </div>
           <div>
-            <p>Plasma Glucose:</p>
+            <div>Blood Pressure:</div>
             <Input
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setBloodPressure(e.target.value)
@@ -87,7 +106,7 @@ const NCEPATPIIIDefinition: FC = () => {
             />
           </div>
           <div>
-            <p>Fasting Glucose:</p>
+            <div>Fasting Glucose:</div>
             <Input
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setFastingGlucose(e.target.value)

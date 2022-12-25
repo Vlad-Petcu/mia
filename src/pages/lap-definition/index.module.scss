@@ -33,11 +33,17 @@
   color: red;
 }
 
+.ratio {
+  display: flex;
+  flex-direction: row;
+}
+
 .firstRatioContainer {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   margin-bottom: 1rem;
-  margin-right: 7.5rem;
+  margin-right: -1.5rem;
+  margin-left: 1.5rem;
 }
 
 .firstRatioTitle {

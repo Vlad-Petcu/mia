@@ -6,6 +6,7 @@ import Navbar from "../../components/navbar";
 import styles from "./index.module.scss";
 
 const IDRSDefinition: FC = () => {
+  const [gender, setGender] = useState<string>("");
   const [age, setAge] = useState<string>("");
   const [waistSize, setWaistSize] = useState<string>("");
   const [physicalActivity, setPhysicalActivity] = useState<string>("");
@@ -13,6 +14,10 @@ const IDRSDefinition: FC = () => {
   const [errorMessage, setErrorMessage] = useState<string>("");
 
   const isFormValid = () => {
+    if (gender.length === 0) {
+      setErrorMessage("You must chose one gender!");
+      return false;
+    }
     if (age.length === 0) {
       setErrorMessage("Age input is not valid!");
       return false;
@@ -45,6 +50,20 @@ const IDRSDefinition: FC = () => {
           <p>IDRS Definition</p>
         </div>
         <div className={styles.formContainer}>
+          <div className={styles.ratio}>
+            <div className={styles.firstRatioTitle}>Gender:</div>
+            <Radio.Group
+              onChange={(e: RadioChangeEvent) => setGender(e.target.value)}
+              className={styles.thirdRatioContainer}
+            >
+              <Radio className={styles.ratio} value={"1"}>
+                Male
+              </Radio>
+              <Radio className={styles.ratio} value={"2"}>
+                Female
+              </Radio>
+            </Radio.Group>
+          </div>
           <div>
             <div className={styles.label}>Age:</div>
             <Input

@@ -1,13 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
 .contentContainer {
-  height: 70vh;
+  height: 75vh;
   width: 100%;
   background: #f9f9f9;
   font-family: "Poppins", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-y: scroll;
 }
 
 .pageTitle {
@@ -34,4 +35,52 @@
 
 .label {
   margin-bottom: 0.2rem;
+}
+
+.submitButton {
+  margin-bottom: 1rem;
+}
+
+.ratio {
+  display: flex;
+  flex-direction: row;
+}
+
+.firstRatioContainer {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1rem;
+  margin-left: 1.2rem;
+  margin-right: -1.5rem;
+}
+
+.firstRatioTitle {
+  margin-bottom: 0.2rem;
+}
+
+.checkboxContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 0.2rem;
+}
+
+.glucoseIntoleranceContainer {
+  @extend .checkboxContainer;
+  margin-right: 1rem;
+}
+
+.diabetesMellitusContainer {
+  @extend .checkboxContainer;
+  margin-right: 2.5rem;
+}
+
+.insulinResistanceContainer {
+  @extend .checkboxContainer;
+  margin-right: 2rem;
+}
+
+.checkbox {
+  margin-left: 1rem;
+  margin-bottom: 1.2rem;
 }

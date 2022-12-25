@@ -8,6 +8,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-y: scroll;
 }
 
 .pageTitle {
@@ -30,4 +31,29 @@
 .errorMessage {
   margin-bottom: 1.3rem;
   color: red;
+}
+
+.submitButton {
+  margin-bottom: 1rem;
+}
+
+.label {
+  margin-bottom: 0.2rem;
+}
+
+.ratio {
+  display: flex;
+  flex-direction: row;
+}
+
+.firstRatioContainer {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1rem;
+  margin-left: 1.2rem;
+  margin-right: -1.5rem;
+}
+
+.firstRatioTitle {
+  margin-bottom: 0.2rem;
 }
