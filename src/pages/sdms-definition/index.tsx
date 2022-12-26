@@ -6,18 +6,17 @@ import Navbar from "../../components/navbar";
 import styles from "./index.module.scss";
 
 const SDMSDefinition: FC = () => {
-
   const [height, setHeight] = useState<string>("");
-  const [waistSize, setWaistSize] = useState<string>("");
+  const [waistCircumference, setWaistCircumference] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
 
   const isFormValid = () => {
     if (height.length === 0) {
-      setErrorMessage("Abdominal Obesity input is not valid!");
+      setErrorMessage("Height input is not valid!");
       return false;
     }
-    if (waistSize.length === 0) {
-      setErrorMessage("HDL input is not valid!");
+    if (waistCircumference.length === 0) {
+      setErrorMessage("Waist Circumference is not valid!");
       return false;
     }
     return true;
@@ -37,7 +36,7 @@ const SDMSDefinition: FC = () => {
         </div>
         <div className={styles.formContainer}>
           <div>
-            <p>Height:</p>
+            <div className={styles.label}>Height:</div>
             <Input
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setHeight(e.target.value)
@@ -46,10 +45,10 @@ const SDMSDefinition: FC = () => {
             />
           </div>
           <div>
-            <p>Waist Size:</p>
+            <div className={styles.label}>Waist Circumference:</div>
             <Input
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setWaistSize(e.target.value)
+                setWaistCircumference(e.target.value)
               }
               className={styles.input}
             />

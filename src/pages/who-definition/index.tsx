@@ -79,15 +79,24 @@ const WHODefinition: FC = () => {
           </div>
           <div className={styles.glucoseIntoleranceContainer}>
             <p>Glucose Intolerance:</p>
-            <Checkbox onChange={() => setGlucoseIntolerance(!glucoseIntolerance)} className={styles.checkbox}></Checkbox>
+            <Checkbox
+              onChange={() => setGlucoseIntolerance(!glucoseIntolerance)}
+              className={styles.checkbox}
+            ></Checkbox>
           </div>
           <div className={styles.diabetesMellitusContainer}>
             <p>Diabetes Mellitus:</p>
-            <Checkbox onChange={() => setDiabetesMellitus(!diabetesMellitus)} className={styles.checkbox}></Checkbox>
+            <Checkbox
+              onChange={() => setDiabetesMellitus(!diabetesMellitus)}
+              className={styles.checkbox}
+            ></Checkbox>
           </div>
           <div className={styles.insulinResistanceContainer}>
             <p>Insulin Resistance:</p>
-            <Checkbox onChange={() => setInsulinResistance(!insulinResistance)} className={styles.checkbox}></Checkbox>
+            <Checkbox
+              onChange={() => setInsulinResistance(!insulinResistance)}
+              className={styles.checkbox}
+            ></Checkbox>
           </div>
           <div>
             <div className={styles.label}>Arterial Pressure:</div>

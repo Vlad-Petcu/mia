@@ -8,7 +8,7 @@ import styles from "./index.module.scss";
 const IDFGDCDefinition: FC = () => {
   const [gender, setGender] = useState<string>("");
   const [tryglycerides, setTryglycerides] = useState<string>("");
-  const [HDL, setHDL] = useState<string>("");
+  const [HDLC, setHDLC] = useState<string>("");
   const [bloodPresure, setBloodPresure] = useState<string>("");
   const [FPG, setFPG] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
@@ -22,7 +22,7 @@ const IDFGDCDefinition: FC = () => {
       setErrorMessage("Abdominal Obesity input is not valid!");
       return false;
     }
-    if (HDL.length === 0) {
+    if (HDLC.length === 0) {
       setErrorMessage("HDL input is not valid!");
       return false;
     }
@@ -82,7 +82,7 @@ const IDFGDCDefinition: FC = () => {
             </Radio.Group>
           </div>
           <div>
-            <div>Tryglycerides:</div>
+            <div className={styles.label}>Tryglycerides:</div>
             <Input
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setTryglycerides(e.target.value)
@@ -91,16 +91,16 @@ const IDFGDCDefinition: FC = () => {
             />
           </div>
           <div>
-            <div>HDL:</div>
+            <div className={styles.label}>HDLC:</div>
             <Input
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setHDL(e.target.value)
+                setHDLC(e.target.value)
               }
               className={styles.input}
             />
           </div>
           <div>
-            <div>Blood Presure:</div>
+            <div className={styles.label}>Blood Presure:</div>
             <Input
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setBloodPresure(e.target.value)
@@ -109,7 +109,7 @@ const IDFGDCDefinition: FC = () => {
             />
           </div>
           <div>
-            <div>FPG:</div>
+            <div className={styles.label}>FPG:</div>
             <Input
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setFPG(e.target.value)

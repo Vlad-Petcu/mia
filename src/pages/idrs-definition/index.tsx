@@ -8,7 +8,7 @@ import styles from "./index.module.scss";
 const IDRSDefinition: FC = () => {
   const [gender, setGender] = useState<string>("");
   const [age, setAge] = useState<string>("");
-  const [waistSize, setWaistSize] = useState<string>("");
+  const [waistCircumference, setWaistCircumference] = useState<string>("");
   const [physicalActivity, setPhysicalActivity] = useState<string>("");
   const [familyHistory, setFamilyHistory] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
@@ -22,7 +22,7 @@ const IDRSDefinition: FC = () => {
       setErrorMessage("Age input is not valid!");
       return false;
     }
-    if (waistSize.length === 0) {
+    if (waistCircumference.length === 0) {
       setErrorMessage("Waist size input is not valid!");
       return false;
     }
@@ -74,10 +74,10 @@ const IDRSDefinition: FC = () => {
             />
           </div>
           <div>
-            <div className={styles.label}>Waist Size:</div>
+            <div className={styles.label}>Waist Circumference:</div>
             <Input
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setWaistSize(e.target.value)
+                setWaistCircumference(e.target.value)
               }
               className={styles.input}
             />
