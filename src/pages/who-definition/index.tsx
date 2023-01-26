@@ -90,11 +90,11 @@ const WHODefinition: FC = () => {
     }
     if (isPatientDiagnosed()) {
       setResultMessage(
-        'According to the "WHO Definition" your results suggests that you may be diagnosed with metabolic syndrome'
+        'According to the "WHO Definition" your results suggests that you may be diagnosed with metabolic syndrome.'
       );
     } else {
       setResultMessage(
-        'According to the "WHO Definition" your results suggests that you are not in danger to be diagnosed with metabolic syndrome'
+        'According to the "WHO Definition" your results suggests that you are not in danger to be diagnosed with metabolic syndrome.'
       );
     }
   };
@@ -198,7 +198,7 @@ const WHODefinition: FC = () => {
             />
           </div>
           <p className={styles.errorMessage}>{errorMessage}</p>
-          <p className={styles.errorMessage}>{resultMessage}</p>
+          <p className={styles.resultMessage}>{resultMessage}</p>
           <div>
             <Button
               className={styles.submitButton}
