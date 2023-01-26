@@ -1,4 +1,4 @@
-import { Button, Input, Radio, RadioChangeEvent } from "antd";
+import { Button, Checkbox, Input, Radio, RadioChangeEvent } from "antd";
 import { ChangeEvent, FC, useState } from "react";
 import Footer from "../../components/footer";
 import Header from "../../components/header";
@@ -11,8 +11,9 @@ const EGSIRDDefinition: FC = () => {
   const [waistCircumference, setWaistCircumference] = useState<string>("");
   const [hypertension, setHypertension] = useState<string>("");
   const [triglyceridesLevel, setTriglyceridesLevel] = useState<string>("");
-  const [plasmaGlucose, setPlasmaGlucose] = useState<string>("");
+  const [impairedFastingGlucose, setImpairedFastingGlucose] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const [resultMessage, setResultMessage] = useState<string>("");
 
   const isFormValid = () => {
     if (gender.length === 0) {
@@ -35,15 +36,52 @@ const EGSIRDDefinition: FC = () => {
       setErrorMessage("Triglycerides input is not valid!");
       return false;
     }
-    if (plasmaGlucose.length === 0) {
-      setErrorMessage("Plasma Glucose input is not valid!");
-      return false;
-    }
     return true;
   };
 
+  const isPatientDiagnosed = () => {
+    let overLimitResultCounter = 0;
+    let waistCircumferenceLimit;
+    if (gender === "Male") {
+      waistCircumferenceLimit = 94;
+    } else {
+      waistCircumferenceLimit = 80;
+    }
+    if (Number(plasmaInsulin) <= 75) {
+      return false;
+    }
+    if (Number(waistCircumference) >= waistCircumferenceLimit) {
+      overLimitResultCounter++;
+    }
+    if (Number(hypertension) >= 140) {
+      overLimitResultCounter++;
+    }
+    if (Number(triglyceridesLevel) >= 150) {
+      overLimitResultCounter++;
+    }
+    if (impairedFastingGlucose) {
+      overLimitResultCounter++;
+    }
+    if (overLimitResultCounter >= 2) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   const handleSubmit = async () => {
-    isFormValid();
+    if (!isFormValid()) {
+      return;
+    }
+    if (isPatientDiagnosed()) {
+      setResultMessage(
+        'According to the "WHO Definition" your results suggests that you may be diagnosed with metabolic syndrome'
+      );
+    } else {
+      setResultMessage(
+        'According to the "WHO Definition" your results suggests that you are not in danger to be diagnosed with metabolic syndrome'
+      );
+    }
   };
 
   return (
@@ -61,10 +99,10 @@ const EGSIRDDefinition: FC = () => {
               onChange={(e: RadioChangeEvent) => setGender(e.target.value)}
               className={styles.firstRatioContainer}
             >
-              <Radio className={styles.ratio} value={"1"}>
+              <Radio className={styles.ratio} value={"Male"}>
                 Male
               </Radio>
-              <Radio className={styles.ratio} value={"2"}>
+              <Radio className={styles.ratio} value={"Female"}>
                 Female
               </Radio>
             </Radio.Group>
@@ -105,16 +143,15 @@ const EGSIRDDefinition: FC = () => {
               className={styles.input}
             />
           </div>
-          <div>
-            <div className={styles.label}>Plasma Glucose:</div>
-            <Input
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setPlasmaGlucose(e.target.value)
-              }
-              className={styles.input}
-            />
+          <div className={styles.checkboxContainer}>
+            <p>Impaired fasting glucose:</p>
+            <Checkbox
+              onChange={() => setImpairedFastingGlucose(!impairedFastingGlucose)}
+              className={styles.checkbox}
+            ></Checkbox>
           </div>
           <p className={styles.errorMessage}>{errorMessage}</p>
+          <p className={styles.errorMessage}>{resultMessage}</p>
           <div>
             <Button
               className={styles.submitButton}

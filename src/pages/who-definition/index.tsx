@@ -17,6 +17,7 @@ const WHODefinition: FC = () => {
   const [albumin, setAlbumin] = useState<string>("");
   const [creatine, setCreatine] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const [resultMessage, setResultMessage] = useState<string>("");
 
   const isFormValid = () => {
     if (gender.length === 0) {
@@ -50,8 +51,52 @@ const WHODefinition: FC = () => {
     return true;
   };
 
+  const isPatientDiagnosed = () => {
+    let overLimitResultCounter = 0;
+    let waistCircumferenceLimit;
+    if (gender === "Male") {
+      waistCircumferenceLimit = 0.9;
+    } else {
+      waistCircumferenceLimit = 0.85;
+    }
+    if ((glucoseIntolerance && diabetesMellitus) || insulinResistance) {
+      return false;
+    }
+    if (Number(arterialPressure) >= 140) {
+      overLimitResultCounter++;
+    }
+    if (Number(triglycerideLevel) >= 150) {
+      overLimitResultCounter++;
+    }
+    if (
+      Number(waistCircumference) / Number(hipCircumference) >=
+      waistCircumferenceLimit
+    ) {
+      overLimitResultCounter++;
+    }
+    if (Number(albumin) / Number(creatine) >= 30) {
+      overLimitResultCounter++;
+    }
+    if (overLimitResultCounter >= 2) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   const handleSubmit = async () => {
-    isFormValid();
+    if (!isFormValid()) {
+      return;
+    }
+    if (isPatientDiagnosed()) {
+      setResultMessage(
+        'According to the "WHO Definition" your results suggests that you may be diagnosed with metabolic syndrome'
+      );
+    } else {
+      setResultMessage(
+        'According to the "WHO Definition" your results suggests that you are not in danger to be diagnosed with metabolic syndrome'
+      );
+    }
   };
 
   return (
@@ -69,10 +114,10 @@ const WHODefinition: FC = () => {
               onChange={(e: RadioChangeEvent) => setGender(e.target.value)}
               className={styles.firstRatioContainer}
             >
-              <Radio className={styles.ratio} value={"1"}>
+              <Radio className={styles.ratio} value={"Male"}>
                 Male
               </Radio>
-              <Radio className={styles.ratio} value={"2"}>
+              <Radio className={styles.ratio} value={"Female"}>
                 Female
               </Radio>
             </Radio.Group>
@@ -153,6 +198,7 @@ const WHODefinition: FC = () => {
             />
           </div>
           <p className={styles.errorMessage}>{errorMessage}</p>
+          <p className={styles.errorMessage}>{resultMessage}</p>
           <div>
             <Button
               className={styles.submitButton}

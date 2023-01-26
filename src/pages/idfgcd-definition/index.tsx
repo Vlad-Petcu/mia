@@ -76,7 +76,7 @@ const IDFGDCDefinition: FC = () => {
               <Radio className={styles.ratio} value={"2"}>
                 USA
               </Radio>
-              <Radio className={styles.ratio} value={"2"}>
+              <Radio className={styles.ratio} value={"3"}>
                 Rest of the world
               </Radio>
             </Radio.Group>
