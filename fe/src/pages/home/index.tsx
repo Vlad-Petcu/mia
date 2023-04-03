@@ -1,4 +1,5 @@
-import { FC } from "react";
+import axios from "axios";
+import { FC, useEffect } from "react";
 import "../../App.css";
 import Footer from "../../components/footer";
 import Header from "../../components/header";
@@ -7,6 +8,16 @@ import homeImage from "../../imgaes/home.webp";
 import styles from "./index.module.scss";
 
 const Home: FC = () => {
+
+  const getUsers = async () => {
+    const response = await axios.get('http://localhost:3000/users');
+    console.log(response.data);
+  };
+  
+  useEffect(() => {
+    getUsers();
+  }, [])
+
   return (
     <>
       <Header />
