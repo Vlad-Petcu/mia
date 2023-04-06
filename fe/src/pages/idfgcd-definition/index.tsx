@@ -7,6 +7,7 @@ import styles from "./index.module.scss";
 
 const IDFGDCDefinition: FC = () => {
   const [gender, setGender] = useState<string>("");
+  const [location, setLocation] = useState<string>("");
   const [tryglycerides, setTryglycerides] = useState<string>("");
   const [HDLC, setHDLC] = useState<string>("");
   const [bloodPresure, setBloodPresure] = useState<string>("");
@@ -16,6 +17,10 @@ const IDFGDCDefinition: FC = () => {
   const isFormValid = () => {
     if (gender.length === 0) {
       setErrorMessage("You must chose one gender!");
+      return false;
+    }
+    if (location.length === 0) {
+      setErrorMessage("You must chose one location!");
       return false;
     }
     if (tryglycerides.length === 0) {
@@ -67,7 +72,7 @@ const IDFGDCDefinition: FC = () => {
           <div className={styles.secondRatioContainer}>
             <div className={styles.firstRatioTitle}>Location:</div>
             <Radio.Group
-              onChange={(e: RadioChangeEvent) => setGender(e.target.value)}
+              onChange={(e: RadioChangeEvent) => setLocation(e.target.value)}
               className={styles.firstRatioContainer}
             >
               <Radio className={styles.ratio} value={"1"}>
