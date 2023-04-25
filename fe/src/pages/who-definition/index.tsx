@@ -4,6 +4,7 @@ import Footer from "../../components/footer";
 import Header from "../../components/header";
 import Navbar from "../../components/navbar";
 import styles from "./index.module.scss";
+import axios from "axios";
 
 const WHODefinition: FC = () => {
   const [gender, setGender] = useState<string>("");
@@ -16,6 +17,7 @@ const WHODefinition: FC = () => {
   const [hipCircumference, setHipCircumference] = useState<string>("");
   const [albumin, setAlbumin] = useState<string>("");
   const [creatine, setCreatine] = useState<string>("");
+  const [result, setResult] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [resultMessage, setResultMessage] = useState<string>("");
 
@@ -84,6 +86,24 @@ const WHODefinition: FC = () => {
     }
   };
 
+  const createWHODefinition = async () => {
+    const response = await axios.post("http://localhost:3000/who", {
+      gender,
+      glucoseIntolerance,
+      diabetesMellitus,
+      insulinResistance,
+      arterialPressure,
+      triglycerideLevel,
+      waistCircumference,
+      hipCircumference,
+      albumin,
+      creatine,
+      result,
+      userId: 0
+    });
+    console.log(response.data);
+  };
+
   const handleSubmit = async () => {
     if (!isFormValid()) {
       return;
@@ -92,11 +112,14 @@ const WHODefinition: FC = () => {
       setResultMessage(
         'According to the "WHO Definition" your results suggests that you may be diagnosed with metabolic syndrome.'
       );
+      setResult(true);
     } else {
       setResultMessage(
         'According to the "WHO Definition" your results suggests that you are not in danger to be diagnosed with metabolic syndrome.'
       );
+      setResult(false);
     }
+    createWHODefinition();
   };
 
   return (

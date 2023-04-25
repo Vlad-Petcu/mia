@@ -242,13 +242,15 @@ const createWHODefinition = (request, response) => {
     arterialPressure,
     triglycerideLevel,
     waistCircumference,
+    hipCircumference,
     albumin,
     creatine,
     userId,
+    result,
   } = request.body;
 
   pool.query(
-    "INSERT INTO who_definition (gender, glucose_intolerance, diabetes_mellitus, insulin_resistance, arterial_pressure, triglyceride_level, waist_circumference, albumin, creatine, user_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *",
+    "INSERT INTO who_definition (gender, glucose_intolerance, diabetes_mellitus, insulin_resistance, arterial_pressure, triglyceride_level, waist_circumference, hip_circumference, albumin, creatine, user_id, result) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *",
     [
       gender,
       glucoseIntolerance,
@@ -257,9 +259,11 @@ const createWHODefinition = (request, response) => {
       arterialPressure,
       triglycerideLevel,
       waistCircumference,
+      hipCircumference,
       albumin,
       creatine,
       userId,
+      result,
     ],
     (error, results) => {
       if (error) {

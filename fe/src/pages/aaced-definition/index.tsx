@@ -18,22 +18,66 @@ const AACEDDefinition: FC = () => {
     useState<boolean>(false);
   const [endothelialDysfunction, setEndothelialDysfunction] =
     useState<boolean>(false);
+    const [result, setResult] = useState<boolean>(false);
+    const [resultMessage, setResultMessage] = useState<string>("");
 
-    const createAAACEDDefinition = async () => {
-      const response = await axios.post("http://localhost:3000/aaced", {
-        glucoseIntolerance,
-        abnormalUricAcidMetabolism,
-        dyslipidemia,
-        hemodynamicChanges,
-        prothromboticFactors,
-        markersOfInflammation,
-        endothelialDysfunction,
-        userId: 0
-      });
-      console.log(response.data);
-    };
+  const isPatientDiagnosed = () => {
+    let overLimitResultCounter = 0;
+    if (glucoseIntolerance) {
+      overLimitResultCounter++;
+    }
+    if (abnormalUricAcidMetabolism) {
+      overLimitResultCounter++;
+    }
+    if (dyslipidemia) {
+      overLimitResultCounter++;
+    }
+    if (hemodynamicChanges) {
+      overLimitResultCounter++;
+    }
+    if (prothromboticFactors) {
+      overLimitResultCounter++;
+    }
+    if (markersOfInflammation) {
+      overLimitResultCounter++;
+    }
+    if (endothelialDysfunction) {
+      overLimitResultCounter++;
+    }
+    if (overLimitResultCounter === 7) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const createAAACEDDefinition = async () => {
+    const response = await axios.post("http://localhost:3000/aaced", {
+      glucoseIntolerance,
+      abnormalUricAcidMetabolism,
+      dyslipidemia,
+      hemodynamicChanges,
+      prothromboticFactors,
+      markersOfInflammation,
+      endothelialDysfunction,
+      userId: 0,
+      result,
+    });
+    console.log(response.data);
+  };
 
   const handleSubmit = async () => {
+    if (isPatientDiagnosed()) {
+      setResultMessage(
+        'According to the "AACED Definition" your results suggests that you may be diagnosed with metabolic syndrome.'
+      );
+      setResult(true);
+    } else {
+      setResultMessage(
+        'According to the "AACED Definition" your results suggests that you are not in danger to be diagnosed with metabolic syndrome.'
+      );
+      setResult(false);
+    }
     createAAACEDDefinition();
   };
 
@@ -99,6 +143,7 @@ const AACEDDefinition: FC = () => {
               className={styles.checkbox}
             ></Checkbox>
           </div>
+          <p className={styles.resultMessage}>{resultMessage}</p>
           <div>
             <Button
               className={styles.submitButton}
