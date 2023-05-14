@@ -11,7 +11,8 @@ const NCEPATPIIIDefinition: FC = () => {
   const [waistCircumference, setWaistCircumference] = useState<string>("");
   const [hypertriglyceridemia, setHypertriglyceridemia] = useState<string>("");
   const [HDLC, setHDLC] = useState<string>("");
-  const [bloodPressure, setBloodPressure] = useState<string>("");
+  const [systolicTension, setSystolicTension] = useState<string>("");
+  const [diastolicTension, setDiastolicTension] = useState<string>("");
   const [fastingGlucose, setFastingGlucose] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [resultMessage, setResultMessage] = useState<string>("");
@@ -33,8 +34,12 @@ const NCEPATPIIIDefinition: FC = () => {
       setErrorMessage("HDLC input is not valid!");
       return false;
     }
-    if (bloodPressure.length === 0) {
-      setErrorMessage("Blood Pressure input is not valid!");
+    if (systolicTension.length === 0) {
+      setErrorMessage("Systolic Tension input is not valid!");
+      return false;
+    }
+    if (diastolicTension.length === 0) {
+      setErrorMessage("Diastolic Tension input is not valid!");
       return false;
     }
     if (fastingGlucose.length === 0) {
@@ -67,7 +72,10 @@ const NCEPATPIIIDefinition: FC = () => {
     if (Number(HDLC) < HDLCLimit) {
       overLimitResultCounter++;
     }
-    if (Number(bloodPressure) > 130) {
+    if (Number(systolicTension) >= 130) {
+      overLimitResultCounter++;
+    }
+    if (Number(diastolicTension) >= 85) {
       overLimitResultCounter++;
     }
     if (Number(fastingGlucose) > 110) {
@@ -86,7 +94,8 @@ const NCEPATPIIIDefinition: FC = () => {
       waistCircumference,
       hypertriglyceridemia,
       HDLC,
-      bloodPressure,
+      systolicTension,
+      diastolicTension,
       fastingGlucose,
       result,
       userId: 0,
@@ -187,11 +196,21 @@ const NCEPATPIIIDefinition: FC = () => {
             />
           </div>
           <div>
-            <div>Blood Pressure:</div>
+            <div className={styles.label}>Systolic Tension:</div>
             <Input
-              placeholder="mmHg"
+              placeholder="mm of Hg"
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setBloodPressure(e.target.value)
+                setSystolicTension(e.target.value)
+              }
+              className={styles.input}
+            />
+          </div>
+          <div>
+            <div className={styles.label}>Diastolic Tension:</div>
+            <Input
+              placeholder="mm of Hg"
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setDiastolicTension(e.target.value)
               }
               className={styles.input}
             />

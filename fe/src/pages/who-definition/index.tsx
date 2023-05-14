@@ -11,7 +11,8 @@ const WHODefinition: FC = () => {
   const [glucoseIntolerance, setGlucoseIntolerance] = useState<boolean>(false);
   const [diabetesMellitus, setDiabetesMellitus] = useState<boolean>(false);
   const [insulinResistance, setInsulinResistance] = useState<boolean>(false);
-  const [arterialPressure, setArterialPressure] = useState<string>("");
+  const [systolicTension, setSystolicTension] = useState<string>("");
+  const [diastolicTension, setDiastolicTension] = useState<string>("");
   const [triglycerideLevel, setTriglycerideLevel] = useState<string>("");
   const [waistCircumference, setWaistCircumference] = useState<string>("");
   const [hipCircumference, setHipCircumference] = useState<string>("");
@@ -25,8 +26,12 @@ const WHODefinition: FC = () => {
       setErrorMessage("You must chose one gender!");
       return false;
     }
-    if (arterialPressure.length === 0) {
-      setErrorMessage("Arterial Pressure input is not valid!");
+    if (systolicTension.length === 0) {
+      setErrorMessage("Systolic Tension input is not valid!");
+      return false;
+    }
+    if (diastolicTension.length === 0) {
+      setErrorMessage("Diastolic Tension input is not valid!");
       return false;
     }
     if (triglycerideLevel.length === 0) {
@@ -68,7 +73,10 @@ const WHODefinition: FC = () => {
     ) {
       return false;
     }
-    if (Number(arterialPressure) >= 140) {
+    if (Number(systolicTension) >= 140) {
+      overLimitResultCounter++;
+    }
+    if (Number(diastolicTension) >= 90) {
       overLimitResultCounter++;
     }
     if (Number(triglycerideLevel) >= 150) {
@@ -96,7 +104,8 @@ const WHODefinition: FC = () => {
       glucoseIntolerance,
       diabetesMellitus,
       insulinResistance,
-      arterialPressure,
+      systolicTension,
+      diastolicTension,
       triglycerideLevel,
       waistCircumference,
       hipCircumference,
@@ -178,17 +187,27 @@ const WHODefinition: FC = () => {
             ></Checkbox>
           </div>
           <div>
-            <div className={styles.label}>Arterial Pressure:</div>
+            <div className={styles.label}>Systolic Tension:</div>
             <Input
               placeholder="mm of Hg"
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setArterialPressure(e.target.value)
+                setSystolicTension(e.target.value)
               }
               className={styles.input}
             />
           </div>
           <div>
-            <div className={styles.label}>Plasma Triglyceride Level:</div>
+            <div className={styles.label}>Diastolic Tension:</div>
+            <Input
+              placeholder="mm of Hg"
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setDiastolicTension(e.target.value)
+              }
+              className={styles.input}
+            />
+          </div>
+          <div>
+            <div className={styles.label}>Triglyceride Level:</div>
             <Input
               placeholder="mm/dl"
               onChange={(e: ChangeEvent<HTMLInputElement>) =>

@@ -109,21 +109,23 @@ const createEGSIRDDefinition = (request, response) => {
     gender,
     plasmaInsulin,
     waistCircumference,
-    hypertension,
-    triglyceridesLevel,
+    systolicTension,
+    diastolicTension,
+    triglycerideLevel,
     impairedFastingGlucose,
     userId,
     result,
   } = request.body;
 
   pool.query(
-    "INSERT INTO egsird_definition (gender, plasma_insulin, waist_circumference, hypertension, triglycerides, impaired_fasting_glucose, user_id, result) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",
+    "INSERT INTO egsird_definition (gender, plasma_insulin, waist_circumference, systolic_tension, diastolic_tension, triglyceride_level, impaired_fasting_glucose, user_id, result) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *",
     [
       gender,
       plasmaInsulin,
       waistCircumference,
-      hypertension,
-      triglyceridesLevel,
+      systolicTension,
+      diastolicTension,
+      triglycerideLevel,
       impairedFastingGlucose,
       userId,
       result,
@@ -138,12 +140,31 @@ const createEGSIRDDefinition = (request, response) => {
 };
 
 const createIDFGCDDefinition = (request, response) => {
-  const { gender, location, tryglycerides, HDLC, bloodPressure, FPG, userId, result } =
-    request.body;
+  const {
+    gender,
+    location,
+    tryglycerides,
+    HDLC,
+    systolicTension,
+    diastolicTension,
+    FPG,
+    userId,
+    result,
+  } = request.body;
 
   pool.query(
-    "INSERT INTO idfgcd_definition (gender, location, tryglycerides, hdlc, blood_presure, fpg, user_id, result) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",
-    [gender, location, tryglycerides, HDLC, bloodPressure, FPG, userId, result],
+    "INSERT INTO idfgcd_definition (gender, location, tryglycerides, hdlc, systolic_tension, diastolic_tension, fpg, user_id, result) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *",
+    [
+      gender,
+      location,
+      tryglycerides,
+      HDLC,
+      systolicTension,
+      diastolicTension,
+      FPG,
+      userId,
+      result,
+    ],
     (error, results) => {
       if (error) {
         throw error;
@@ -166,7 +187,15 @@ const createIDRSDefinition = (request, response) => {
 
   pool.query(
     "INSERT INTO idrs_definition (gender, age, waist_circumference, physical_activity, family_history, user_id, result) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *",
-    [gender, age, waistCircumference, physicalActivity, familyHistory, userId, result],
+    [
+      gender,
+      age,
+      waistCircumference,
+      physicalActivity,
+      familyHistory,
+      userId,
+      result,
+    ],
     (error, results) => {
       if (error) {
         throw error;
@@ -177,12 +206,12 @@ const createIDRSDefinition = (request, response) => {
 };
 
 const createLAPDefinition = (request, response) => {
-  const { gender, triglyceridesLevel, waistCircumference, userId, result } =
+  const { gender, triglycerideLevel, waistCircumference, userId, result } =
     request.body;
 
   pool.query(
-    "INSERT INTO lap_definition (gender, triglycerides_level, waist_circumference, user_id, result) VALUES ($1, $2, $3, $4, $5) RETURNING *",
-    [gender, triglyceridesLevel, waistCircumference, userId, result],
+    "INSERT INTO lap_definition (gender, triglyceride_level, waist_circumference, user_id, result) VALUES ($1, $2, $3, $4, $5) RETURNING *",
+    [gender, triglycerideLevel, waistCircumference, userId, result],
     (error, results) => {
       if (error) {
         throw error;
@@ -198,20 +227,22 @@ const createNCEPATPIIIDefinition = (request, response) => {
     waistCircumference,
     hypertriglyceridemia,
     HDLC,
-    bloodPressure,
+    systolicTension,
+    diastolicTension,
     fastingGlucose,
     userId,
     result,
   } = request.body;
 
   pool.query(
-    "INSERT INTO ncep_atp_iii_definition (gender, waist_circumference, hypertriglyceridemia, hdlc, blood_pressure, fasting_glucose, user_id, result) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",
+    "INSERT INTO ncep_atp_iii_definition (gender, waist_circumference, hypertriglyceridemia, hdlc, systolic_tension, diastolic_tension, fasting_glucose, user_id, result) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *",
     [
       gender,
       waistCircumference,
       hypertriglyceridemia,
       HDLC,
-      bloodPressure,
+      systolicTension,
+      diastolicTension,
       fastingGlucose,
       userId,
       result,
@@ -246,7 +277,8 @@ const createWHODefinition = (request, response) => {
     glucoseIntolerance,
     diabetesMellitus,
     insulinResistance,
-    arterialPressure,
+    systolicTension,
+    diastolicTension,
     triglycerideLevel,
     waistCircumference,
     hipCircumference,
@@ -257,13 +289,14 @@ const createWHODefinition = (request, response) => {
   } = request.body;
 
   pool.query(
-    "INSERT INTO who_definition (gender, glucose_intolerance, diabetes_mellitus, insulin_resistance, arterial_pressure, triglyceride_level, waist_circumference, hip_circumference, albumin, creatine, user_id, result) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *",
+    "INSERT INTO who_definition (gender, glucose_intolerance, diabetes_mellitus, insulin_resistance, systolic_tension, diastolic_tension, triglyceride_level, waist_circumference, hip_circumference, albumin, creatine, user_id, result) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *",
     [
       gender,
       glucoseIntolerance,
       diabetesMellitus,
       insulinResistance,
-      arterialPressure,
+      systolicTension,
+      diastolicTension,
       triglycerideLevel,
       waistCircumference,
       hipCircumference,
@@ -284,89 +317,121 @@ const createWHODefinition = (request, response) => {
 const getAACEDByUserId = (request, response) => {
   const id = parseInt(request.params.id);
 
-  pool.query("SELECT * FROM aaced_definition WHERE user_Id = $1", [id], (error, results) => {
-    if (error) {
-      throw error;
+  pool.query(
+    "SELECT * FROM aaced_definition WHERE user_Id = $1",
+    [id],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).json(results.rows);
     }
-    response.status(200).json(results.rows);
-  });
+  );
 };
 
 const getEGSIRDByUserId = (request, response) => {
   const id = parseInt(request.params.id);
 
-  pool.query("SELECT * FROM egsird_definition WHERE user_Id = $1", [id], (error, results) => {
-    if (error) {
-      throw error;
+  pool.query(
+    "SELECT * FROM egsird_definition WHERE user_Id = $1",
+    [id],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).json(results.rows);
     }
-    response.status(200).json(results.rows);
-  });
+  );
 };
 
 const getIDFGCDByUserId = (request, response) => {
   const id = parseInt(request.params.id);
 
-  pool.query("SELECT * FROM idfgcd_definition WHERE user_Id = $1", [id], (error, results) => {
-    if (error) {
-      throw error;
+  pool.query(
+    "SELECT * FROM idfgcd_definition WHERE user_Id = $1",
+    [id],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).json(results.rows);
     }
-    response.status(200).json(results.rows);
-  });
+  );
 };
 
 const getIDRSByUserId = (request, response) => {
   const id = parseInt(request.params.id);
 
-  pool.query("SELECT * FROM idrs_definition WHERE user_Id = $1", [id], (error, results) => {
-    if (error) {
-      throw error;
+  pool.query(
+    "SELECT * FROM idrs_definition WHERE user_Id = $1",
+    [id],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).json(results.rows);
     }
-    response.status(200).json(results.rows);
-  });
+  );
 };
 
 const getLAPByUserId = (request, response) => {
   const id = parseInt(request.params.id);
 
-  pool.query("SELECT * FROM lap_definition WHERE user_Id = $1", [id], (error, results) => {
-    if (error) {
-      throw error;
+  pool.query(
+    "SELECT * FROM lap_definition WHERE user_Id = $1",
+    [id],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).json(results.rows);
     }
-    response.status(200).json(results.rows);
-  });
+  );
 };
 
 const getNCEPATPIIIByUserId = (request, response) => {
   const id = parseInt(request.params.id);
 
-  pool.query("SELECT * FROM ncep_atp_iii_definition WHERE user_Id = $1", [id], (error, results) => {
-    if (error) {
-      throw error;
+  pool.query(
+    "SELECT * FROM ncep_atp_iii_definition WHERE user_Id = $1",
+    [id],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).json(results.rows);
     }
-    response.status(200).json(results.rows);
-  });
+  );
 };
 
 const getSDMSByUserId = (request, response) => {
   const id = parseInt(request.params.id);
 
-  pool.query("SELECT * FROM sdms_definition WHERE user_Id = $1", [id], (error, results) => {
-    if (error) {
-      throw error;
+  pool.query(
+    "SELECT * FROM sdms_definition WHERE user_Id = $1",
+    [id],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).json(results.rows);
     }
-    response.status(200).json(results.rows);
-  });
+  );
 };
 
 const getWHOByUserId = (request, response) => {
   const id = parseInt(request.params.id);
 
-  pool.query("SELECT * FROM who_definition WHERE user_Id = $1", [id], (error, results) => {
-    if (error) {
-      throw error;
+  pool.query(
+    "SELECT * FROM who_definition WHERE user_Id = $1",
+    [id],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).json(results.rows);
     }
-    response.status(200).json(results.rows);
-  });
+  );
 };
 
 module.exports = {

@@ -8,7 +8,7 @@ import axios from "axios";
 
 const LAPDefinition: FC = () => {
   const [gender, setGender] = useState<string>("");
-  const [triglyceridesLevel, setTriglyceridesLevel] = useState<string>("");
+  const [triglycerideLevel, setTriglyceridesLevel] = useState<string>("");
   const [waistCircumference, setWaistCircumference] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [resultMessage, setResultMessage] = useState<string>("");
@@ -18,7 +18,7 @@ const LAPDefinition: FC = () => {
       setErrorMessage("You must chose one gender!");
       return false;
     }
-    if (triglyceridesLevel.length === 0) {
+    if (triglycerideLevel.length === 0) {
       setErrorMessage("Triglycerides Level input is not valid!");
       return false;
     }
@@ -34,13 +34,13 @@ const LAPDefinition: FC = () => {
     let overLimit = false;
     if (
       gender === "Male" &&
-      (Number(waistCircumference) - 65) * Number(triglyceridesLevel) > 60
+      (Number(waistCircumference) - 65) * Number(triglycerideLevel) > 60
     ) {
       overLimit = true;
     }
     if (
       gender === "Female" &&
-      (Number(waistCircumference) - 65) * Number(triglyceridesLevel) > 32
+      (Number(waistCircumference) - 65) * Number(triglycerideLevel) > 32
     ) {
       overLimit = true;
     }
@@ -50,7 +50,7 @@ const LAPDefinition: FC = () => {
   const createLAPDefinition = async (result: boolean) => {
     await axios.post("http://localhost:3000/lap", {
       gender,
-      triglyceridesLevel,
+      triglycerideLevel,
       waistCircumference,
       result,
       userId: 0,
@@ -122,7 +122,7 @@ const LAPDefinition: FC = () => {
             />
           </div>
           <div>
-            <div className={styles.label}>Triglycerides Level:</div>
+            <div className={styles.label}>Triglyceride Level:</div>
             <Input
               placeholder="mg/dl"
               onChange={(e: ChangeEvent<HTMLInputElement>) =>

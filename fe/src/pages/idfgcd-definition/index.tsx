@@ -12,7 +12,8 @@ const IDFGDCDefinition: FC = () => {
   const [waistCircumference, setWaistCircumference] = useState<string>("");
   const [tryglycerides, setTryglycerides] = useState<string>("");
   const [HDLC, setHDLC] = useState<string>("");
-  const [bloodPressure, setBloodPresure] = useState<string>("");
+  const [systolicTension, setSystolicTension] = useState<string>("");
+  const [diastolicTension, setDiastolicTension] = useState<string>("");
   const [FPG, setFPG] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [resultMessage, setResultMessage] = useState<string>("");
@@ -34,8 +35,12 @@ const IDFGDCDefinition: FC = () => {
       setErrorMessage("HDL input is not valid!");
       return false;
     }
-    if (bloodPressure.length === 0) {
-      setErrorMessage("Blood Presure input is not valid!");
+    if (systolicTension.length === 0) {
+      setErrorMessage("Systolic Tension input is not valid!");
+      return false;
+    }
+    if (diastolicTension.length === 0) {
+      setErrorMessage("Diastolic Tension input is not valid!");
       return false;
     }
     if (FPG.length === 0) {
@@ -63,7 +68,10 @@ const IDFGDCDefinition: FC = () => {
     if (Number(HDLC) < 40) {
       overLimitResultCounter++;
     }
-    if (Number(bloodPressure) >= 130) {
+    if (Number(systolicTension) >= 130) {
+      overLimitResultCounter++;
+    }
+    if (Number(diastolicTension) >= 85) {
       overLimitResultCounter++;
     }
     if (Number(FPG) >= 100) {
@@ -82,7 +90,8 @@ const IDFGDCDefinition: FC = () => {
       location,
       tryglycerides,
       HDLC,
-      bloodPressure,
+      systolicTension,
+      diastolicTension,
       FPG,
       result,
       userId: 0,
@@ -169,7 +178,7 @@ const IDFGDCDefinition: FC = () => {
             />
           </div>
           <div>
-            <div className={styles.label}>Tryglycerides:</div>
+            <div className={styles.label}>Triglyceride Level:</div>
             <Input
               placeholder="mg/dl"
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -189,11 +198,21 @@ const IDFGDCDefinition: FC = () => {
             />
           </div>
           <div>
-            <div className={styles.label}>Blood Pressure:</div>
+            <div className={styles.label}>Systolic Tension:</div>
             <Input
-              placeholder="mmHg"
+              placeholder="mm of Hg"
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setBloodPresure(e.target.value)
+                setSystolicTension(e.target.value)
+              }
+              className={styles.input}
+            />
+          </div>
+          <div>
+            <div className={styles.label}>Diastolic Tension:</div>
+            <Input
+              placeholder="mm of Hg"
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setDiastolicTension(e.target.value)
               }
               className={styles.input}
             />

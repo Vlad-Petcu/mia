@@ -10,8 +10,9 @@ const EGSIRDDefinition: FC = () => {
   const [gender, setGender] = useState<string>("");
   const [plasmaInsulin, setPlasmaInsulin] = useState<string>("");
   const [waistCircumference, setWaistCircumference] = useState<string>("");
-  const [hypertension, setHypertension] = useState<string>("");
-  const [triglyceridesLevel, setTriglyceridesLevel] = useState<string>("");
+  const [systolicTension, setSystolicTension] = useState<string>("");
+  const [diastolicTension, setDiastolicTension] = useState<string>("");
+  const [triglycerideLevel, setTriglycerideLevel] = useState<string>("");
   const [impairedFastingGlucose, setImpairedFastingGlucose] =
     useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
@@ -30,11 +31,15 @@ const EGSIRDDefinition: FC = () => {
       setErrorMessage("Waist Circumference input is not valid!");
       return false;
     }
-    if (hypertension.length === 0) {
-      setErrorMessage("Hypertension input is not valid!");
+    if (systolicTension.length === 0) {
+      setErrorMessage("Systolic Tension input is not valid!");
       return false;
     }
-    if (triglyceridesLevel.length === 0) {
+    if (diastolicTension.length === 0) {
+      setErrorMessage("Diastolic Tension input is not valid!");
+      return false;
+    }
+    if (triglycerideLevel.length === 0) {
       setErrorMessage("Triglycerides input is not valid!");
       return false;
     }
@@ -56,10 +61,13 @@ const EGSIRDDefinition: FC = () => {
     if (Number(waistCircumference) >= waistCircumferenceLimit) {
       overLimitResultCounter++;
     }
-    if (Number(hypertension) >= 140) {
+    if (Number(systolicTension) >= 140) {
       overLimitResultCounter++;
     }
-    if (Number(triglyceridesLevel) >= 150) {
+    if (Number(diastolicTension) >= 90) {
+      overLimitResultCounter++;
+    }
+    if (Number(triglycerideLevel) >= 150) {
       overLimitResultCounter++;
     }
     if (impairedFastingGlucose) {
@@ -73,12 +81,13 @@ const EGSIRDDefinition: FC = () => {
   };
 
   const createEGSIRDDefinition = async (result: boolean) => {
-    const response = await axios.post("http://localhost:3000/egsird", {
+    await axios.post("http://localhost:3000/egsird", {
       gender,
       plasmaInsulin,
       waistCircumference,
-      hypertension,
-      triglyceridesLevel,
+      systolicTension,
+      diastolicTension,
+      triglycerideLevel,
       impairedFastingGlucose,
       result,
       userId: 0,
@@ -114,9 +123,10 @@ const EGSIRDDefinition: FC = () => {
           <p>
             The European Group for Study of Insulin Resistance (EGIR) proposed a
             modification of the WHO definition, using the term insulin
-            resistance syndrome rather than MS. According to the EIGR
-            definition the diagnostic criteria included elevated plasma insulin
-            (bigger then 75th percentile) plus two other factors from among the following:
+            resistance syndrome rather than MS. According to the EIGR definition
+            the diagnostic criteria included elevated plasma insulin (bigger
+            then 75th percentile) plus two other factors from among the
+            following:
           </p>
         </div>
         <div className={styles.formContainer}>
@@ -155,21 +165,31 @@ const EGSIRDDefinition: FC = () => {
             />
           </div>
           <div>
-            <div className={styles.label}>Hypertension:</div>
+            <div className={styles.label}>Systolic Tension:</div>
             <Input
-              placeholder="mm og Hg"
+              placeholder="mm of Hg"
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setHypertension(e.target.value)
+                setSystolicTension(e.target.value)
               }
               className={styles.input}
             />
           </div>
           <div>
-            <div className={styles.label}>Triglycerides Level:</div>
+            <div className={styles.label}>Diastolic Tension:</div>
+            <Input
+              placeholder="mm of Hg"
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setDiastolicTension(e.target.value)
+              }
+              className={styles.input}
+            />
+          </div>
+          <div>
+            <div className={styles.label}>Triglyceride Level:</div>
             <Input
               placeholder="mg/dl"
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setTriglyceridesLevel(e.target.value)
+                setTriglycerideLevel(e.target.value)
               }
               className={styles.input}
             />
