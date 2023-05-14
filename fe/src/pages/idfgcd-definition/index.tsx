@@ -77,7 +77,7 @@ const IDFGDCDefinition: FC = () => {
   };
 
   const createIDFGCDDefinition = async (result: boolean) => {
-    const response = await axios.post("http://localhost:3000/idfgcd", {
+    await axios.post("http://localhost:3000/idfgcd", {
       gender,
       location,
       tryglycerides,
@@ -113,6 +113,18 @@ const IDFGDCDefinition: FC = () => {
       <div className={styles.contentContainer}>
         <div className={styles.pageTitle}>
           <p>IDFGCD Definition</p>
+        </div>
+        <div className={styles.description}>
+          <p>
+            Against the backdrop of all these controversies related to
+            diagnostic criteria and the lack of consensus regarding WC cutoffs,
+            the International Diabetes Federation (IDF) released a global
+            consensus definition for MS, along with race- and gender-specific WC
+            cutoffs. This definition identified central obesity as an essential
+            component of MS and defined MS as central obesity (based on race-
+            and gender-specific WC cutoffs) plus any two of the following four
+            parameters:
+          </p>
         </div>
         <div className={styles.formContainer}>
           <div className={styles.ratio}>
@@ -196,8 +208,12 @@ const IDFGDCDefinition: FC = () => {
               className={styles.input}
             />
           </div>
-          <p className={styles.errorMessage}>{errorMessage}</p>
-          <p className={styles.resultMessage}>{resultMessage}</p>
+          {errorMessage && (
+            <p className={styles.errorMessage}>{errorMessage}</p>
+          )}
+          {resultMessage && (
+            <p className={styles.resultMessage}>{resultMessage}</p>
+          )}
           <div>
             <Button
               className={styles.submitButton}

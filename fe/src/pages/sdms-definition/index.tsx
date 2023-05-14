@@ -34,7 +34,7 @@ const SDMSDefinition: FC = () => {
   };
 
   const createSDMSDefinition = async (result: boolean) => {
-    const response = await axios.post("http://localhost:3000/sdms", {
+    await axios.post("http://localhost:3000/sdms", {
       height,
       waistCircumference,
       result,
@@ -67,6 +67,23 @@ const SDMSDefinition: FC = () => {
         <div className={styles.pageTitle}>
           <p>SDMS Definition</p>
         </div>
+        <div className={styles.description}>
+          <p>
+            In view of all the above evidence, we have proposed that WC be
+            replaced by ICO in all definitions of MS. With the use of ICO,
+            the need for various race- and gender-specific cutoffs for WC can be
+            obviated. Although a number of studies have proposed ICO cutoffs
+            ranging between 0.45 and 0.55, we propose the use of a simple cutoff
+            of 0.5 across both genders and all races. MS is a screening tool,
+            and we believe that it should be used to identify people at high
+            risk of metabolic complications and cardiovascular disease so that
+            further detailed investigations can be performed. This definition
+            translates into a very simple message to the community If your
+            waist size is more than half of your height, you should consult your
+            doctor. Thus, all patients with ICO lower then 0.5 should be
+            evaluated for high blood pressure, prediabetes, and dyslipidemia.
+          </p>
+        </div>
         <div className={styles.formContainer}>
           <div>
             <div className={styles.label}>Height:</div>
@@ -88,8 +105,12 @@ const SDMSDefinition: FC = () => {
               className={styles.input}
             />
           </div>
-          <p className={styles.errorMessage}>{errorMessage}</p>
-          <p className={styles.resultMessage}>{resultMessage}</p>
+          {errorMessage && (
+            <p className={styles.errorMessage}>{errorMessage}</p>
+          )}
+          {resultMessage && (
+            <p className={styles.resultMessage}>{resultMessage}</p>
+          )}
           <div>
             <Button
               className={styles.submitButton}

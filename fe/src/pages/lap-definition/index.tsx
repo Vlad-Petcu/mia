@@ -48,7 +48,7 @@ const LAPDefinition: FC = () => {
   };
 
   const createLAPDefinition = async (result: boolean) => {
-    const response = await axios.post("http://localhost:3000/lap", {
+    await axios.post("http://localhost:3000/lap", {
       gender,
       triglyceridesLevel,
       waistCircumference,
@@ -82,6 +82,20 @@ const LAPDefinition: FC = () => {
         <div className={styles.pageTitle}>
           <p>LAP Definition</p>
         </div>
+        <div className={styles.description}>
+          <p>
+            In view of the role of central obesity and dyslipidemia in
+            atherosclerotic process, an alternative continuous index of lipid
+            overaccumulation, the lipid accumulation product (LAP), has been
+            proposed. LAP is computed using WC and fasting triglycerides level
+            (in mmol/l): (WC - 65) x TG (men) and (WC - 58) x TG (women).[46]
+            This parameter has been found to be better than BMI for predicting
+            diabetes and has also been suggested for use in the identification
+            MS. It has been shown to be a good predictor of cardiovascular
+            disease though one study has shown that it may not be better than
+            ICO or WHR for predicting cardiovascular disease.
+          </p>
+        </div>
         <div className={styles.formContainer}>
           <div className={styles.ratio}>
             <div className={styles.firstRatioTitle}>Gender:</div>
@@ -110,15 +124,19 @@ const LAPDefinition: FC = () => {
           <div>
             <div className={styles.label}>Triglycerides Level:</div>
             <Input
-            placeholder="mg/dl"
+              placeholder="mg/dl"
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setTriglyceridesLevel(e.target.value)
               }
               className={styles.input}
             />
           </div>
-          <p className={styles.errorMessage}>{errorMessage}</p>
-          <p className={styles.resultMessage}>{resultMessage}</p>
+          {errorMessage && (
+            <p className={styles.errorMessage}>{errorMessage}</p>
+          )}
+          {resultMessage && (
+            <p className={styles.resultMessage}>{resultMessage}</p>
+          )}
           <div>
             <Button
               className={styles.submitButton}

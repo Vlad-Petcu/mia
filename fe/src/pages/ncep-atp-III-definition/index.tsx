@@ -81,7 +81,7 @@ const NCEPATPIIIDefinition: FC = () => {
   };
 
   const createNCEPATPIIIDefinition = async (result: boolean) => {
-    const response = await axios.post("http://localhost:3000/ncepatpiii", {
+    await axios.post("http://localhost:3000/ncepatpiii", {
       gender,
       waistCircumference,
       hypertriglyceridemia,
@@ -118,6 +118,28 @@ const NCEPATPIIIDefinition: FC = () => {
       <div className={styles.contentContainer}>
         <div className={styles.pageTitle}>
           <p>NCEP ATP III Definition</p>
+        </div>
+        <div className={styles.description}>
+          <p>
+            This definition differs from the WHO definition on several fronts.
+            The NCEP ATP III did not believe that insulin resistance is
+            mandatory for the development of MS and hence suggested the term MS
+            instead of the previously used term insulin resistance syndrome.
+            This definition recognizes central obesity as the culprit and hence
+            body mass index (BMI,) which is a parameter for generalized obesity,
+            has not been included in this definition. Central obesity has been
+            quantified using WC instead of the WHR used by WHO. This definition
+            considers low HDL and high triglycerides as separate components
+            (both of them being individually atherogenic) rather than viewing
+            dyslipidemia as a single component. The cutoff points used for BP
+            and HDL are stringent as compared to those suggested in the WHO
+            definition, but by avoiding the need for clamp techniques and
+            measurement of microalbuminuria, the NCEP ATP III definition is much
+            more practically applicable. The NCEP ATP III considers the
+            proinflamatory state and prothrombotic state as components of MS
+            though these have not been included among the criteria necessary to
+            define MS.
+          </p>
         </div>
         <div className={styles.formContainer}>
           <div className={styles.ratio}>
@@ -177,15 +199,19 @@ const NCEPATPIIIDefinition: FC = () => {
           <div>
             <div>Fasting Glucose:</div>
             <Input
-              placeholder="mg/dl" 
+              placeholder="mg/dl"
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setFastingGlucose(e.target.value)
               }
               className={styles.input}
             />
           </div>
-          <p className={styles.errorMessage}>{errorMessage}</p>
-          <p className={styles.resultMessage}>{resultMessage}</p>
+          {errorMessage && (
+            <p className={styles.errorMessage}>{errorMessage}</p>
+          )}
+          {resultMessage && (
+            <p className={styles.resultMessage}>{resultMessage}</p>
+          )}
           <div>
             <Button
               className={styles.submitButton}

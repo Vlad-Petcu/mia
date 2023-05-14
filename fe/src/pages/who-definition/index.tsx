@@ -91,7 +91,7 @@ const WHODefinition: FC = () => {
   };
 
   const createWHODefinition = async (result: boolean) => {
-    const response = await axios.post("http://localhost:3000/who", {
+    await axios.post("http://localhost:3000/who", {
       gender,
       glucoseIntolerance,
       diabetesMellitus,
@@ -131,6 +131,15 @@ const WHODefinition: FC = () => {
       <div className={styles.contentContainer}>
         <div className={styles.pageTitle}>
           <p>WHO Definition</p>
+        </div>
+        <div className={styles.description}>
+          <p>
+            WHO, in 1999, suggested a working definition of metabolic syndrome
+            (MS), which was to be improved in due course of time. WHO defined MS
+            as glucose intolerence, impaired glucose tolerance (IGT) or diabetes
+            mellitus (DM), and/or insulin resistance, together with two or more
+            of the other components listed below.
+          </p>
         </div>
         <div className={styles.formContainer}>
           <div className={styles.ratio}>
@@ -228,8 +237,12 @@ const WHODefinition: FC = () => {
               className={styles.input}
             />
           </div>
-          <p className={styles.errorMessage}>{errorMessage}</p>
-          <p className={styles.resultMessage}>{resultMessage}</p>
+          {errorMessage && (
+            <p className={styles.errorMessage}>{errorMessage}</p>
+          )}
+          {resultMessage && (
+            <p className={styles.resultMessage}>{resultMessage}</p>
+          )}
           <div>
             <Button
               className={styles.submitButton}

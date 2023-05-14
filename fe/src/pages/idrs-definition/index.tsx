@@ -88,7 +88,7 @@ const IDRSDefinition: FC = () => {
   };
 
   const createIDRSDefinition = async (result: boolean) => {
-    const response = await axios.post("http://localhost:3000/idrs", {
+    await axios.post("http://localhost:3000/idrs", {
       gender,
       age,
       waistCircumference,
@@ -123,6 +123,16 @@ const IDRSDefinition: FC = () => {
       <div className={styles.contentContainer}>
         <div className={styles.pageTitle}>
           <p>IDRS Definition</p>
+        </div>
+        <div className={styles.description}>
+          <p>
+            Identification of MS can be made more clinical by including clinical
+            parameters like age, family history, personal history, etc., as
+            parameters to define MS. Indian diabetes risk score (IDRS) is one
+            such parameter comprising simple clinical information like age, WC,
+            family history of diabetes, and physical activity. IDRS ≥ 60 been
+            found to be useful In predicting MS and cardiovascular disease.
+          </p>
         </div>
         <div className={styles.formContainer}>
           <div className={styles.ratio}>
@@ -197,8 +207,12 @@ const IDRSDefinition: FC = () => {
               </Radio>
             </Radio.Group>
           </div>
-          <p className={styles.errorMessage}>{errorMessage}</p>
-          <p className={styles.resultMessage}>{resultMessage}</p>
+          {errorMessage && (
+            <p className={styles.errorMessage}>{errorMessage}</p>
+          )}
+          {resultMessage && (
+            <p className={styles.resultMessage}>{resultMessage}</p>
+          )}
           <div>
             <Button
               className={styles.submitButton}

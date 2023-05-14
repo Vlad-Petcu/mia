@@ -18,7 +18,7 @@ const AACEDDefinition: FC = () => {
     useState<boolean>(false);
   const [endothelialDysfunction, setEndothelialDysfunction] =
     useState<boolean>(false);
-    const [resultMessage, setResultMessage] = useState<string>("");
+  const [resultMessage, setResultMessage] = useState<string>("");
 
   const isPatientDiagnosed = () => {
     let overLimitResultCounter = 0;
@@ -51,7 +51,7 @@ const AACEDDefinition: FC = () => {
   };
 
   const createAAACEDDefinition = async (result: boolean) => {
-    const response = await axios.post("http://localhost:3000/aaced", {
+    await axios.post("http://localhost:3000/aaced", {
       glucoseIntolerance,
       abnormalUricAcidMetabolism,
       dyslipidemia,
@@ -85,6 +85,21 @@ const AACEDDefinition: FC = () => {
       <div className={styles.contentContainer}>
         <div className={styles.pageTitle}>
           <p>AACED Definition</p>
+        </div>
+        <div className={styles.description}>
+          <p>
+            The American Association of Clinical Endocrinologists (AACE)
+            preferred using the term insulin resistance syndrome over MS. The
+            major criteria they considered were IGT, elevated triglycerides,
+            reduced HDL-C, elevated BP, and obesity. They did not specify any
+            particular number of criteria for diagnosis, rather they left it to
+            clinical judgment. They suggested that factors like family history
+            of atherosclerotic cardiovascular disease or type 2 DM, polycystic
+            ovary syndrome, and hyperuricemia be considered while exercising
+            clinical judgement. Patients with type 2 DM were excluded from the
+            definition of insulin resistance syndrome. The various components
+            suggested by the AACE are as follows:
+          </p>
         </div>
         <div className={styles.formContainer}>
           <div className={styles.checkboxContainer}>
@@ -140,7 +155,9 @@ const AACEDDefinition: FC = () => {
               className={styles.checkbox}
             ></Checkbox>
           </div>
-          <p className={styles.resultMessage}>{resultMessage}</p>
+          {resultMessage && (
+            <p className={styles.resultMessage}>{resultMessage}</p>
+          )}
           <div>
             <Button
               className={styles.submitButton}

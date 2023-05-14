@@ -110,6 +110,15 @@ const EGSIRDDefinition: FC = () => {
         <div className={styles.pageTitle}>
           <p>EGSIRD Definition</p>
         </div>
+        <div className={styles.description}>
+          <p>
+            The European Group for Study of Insulin Resistance (EGIR) proposed a
+            modification of the WHO definition, using the term insulin
+            resistance syndrome rather than MS. According to the EIGR
+            definition the diagnostic criteria included elevated plasma insulin
+            (bigger then 75th percentile) plus two other factors from among the following:
+          </p>
+        </div>
         <div className={styles.formContainer}>
           <div className={styles.ratio}>
             <div className={styles.firstRatioTitle}>Gender:</div>
@@ -174,8 +183,12 @@ const EGSIRDDefinition: FC = () => {
               className={styles.checkbox}
             ></Checkbox>
           </div>
-          <p className={styles.errorMessage}>{errorMessage}</p>
-          <p className={styles.resultMessage}>{resultMessage}</p>
+          {errorMessage && (
+            <p className={styles.errorMessage}>{errorMessage}</p>
+          )}
+          {resultMessage && (
+            <p className={styles.resultMessage}>{resultMessage}</p>
+          )}
           <div>
             <Button
               className={styles.submitButton}
