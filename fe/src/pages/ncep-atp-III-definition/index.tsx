@@ -4,6 +4,7 @@ import Footer from "../../components/footer";
 import Header from "../../components/header";
 import Navbar from "../../components/navbar";
 import styles from "./index.module.scss";
+import axios from "axios";
 
 const NCEPATPIIIDefinition: FC = () => {
   const [gender, setGender] = useState<string>("");
@@ -13,6 +14,7 @@ const NCEPATPIIIDefinition: FC = () => {
   const [bloodPressure, setBloodPressure] = useState<string>("");
   const [fastingGlucose, setFastingGlucose] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const [resultMessage, setResultMessage] = useState<string>("");
 
   const isFormValid = () => {
     if (gender.length === 0) {
@@ -42,8 +44,71 @@ const NCEPATPIIIDefinition: FC = () => {
     return true;
   };
 
+  const isPatientDiagnosed = () => {
+    let overLimitResultCounter = 0;
+    let waistCircumferenceLimit;
+    let HDLCLimit;
+    if (gender === "Male") {
+      waistCircumferenceLimit = 102;
+      HDLCLimit = 40;
+    } else {
+      waistCircumferenceLimit = 88;
+      HDLCLimit = 50;
+    }
+    if (Number(hypertriglyceridemia) >= 150) {
+      overLimitResultCounter++;
+    }
+    if (Number(HDLC) < 150) {
+      overLimitResultCounter++;
+    }
+    if (Number(waistCircumference) > waistCircumferenceLimit) {
+      overLimitResultCounter++;
+    }
+    if (Number(HDLC) < HDLCLimit) {
+      overLimitResultCounter++;
+    }
+    if (Number(bloodPressure) > 130) {
+      overLimitResultCounter++;
+    }
+    if (Number(fastingGlucose) > 110) {
+      overLimitResultCounter++;
+    }
+    if (overLimitResultCounter >= 3) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const createNCEPATPIIIDefinition = async (result: boolean) => {
+    const response = await axios.post("http://localhost:3000/ncepatpiii", {
+      gender,
+      waistCircumference,
+      hypertriglyceridemia,
+      HDLC,
+      bloodPressure,
+      fastingGlucose,
+      result,
+      userId: 0,
+    });
+  };
+
   const handleSubmit = async () => {
-    isFormValid();
+    if (!isFormValid()) {
+      return;
+    }
+
+    if (isPatientDiagnosed()) {
+      setResultMessage(
+        'According to the "WHO Definition" your results suggests that you may be diagnosed with metabolic syndrome.'
+      );
+      createNCEPATPIIIDefinition(true);
+    } else {
+      setResultMessage(
+        'According to the "WHO Definition" your results suggests that you are not in danger to be diagnosed with metabolic syndrome.'
+      );
+      createNCEPATPIIIDefinition(false);
+    }
   };
 
   return (
@@ -61,10 +126,10 @@ const NCEPATPIIIDefinition: FC = () => {
               onChange={(e: RadioChangeEvent) => setGender(e.target.value)}
               className={styles.firstRatioContainer}
             >
-              <Radio className={styles.ratio} value={"1"}>
+              <Radio className={styles.ratio} value={"Male"}>
                 Male
               </Radio>
-              <Radio className={styles.ratio} value={"2"}>
+              <Radio className={styles.ratio} value={"Female"}>
                 Female
               </Radio>
             </Radio.Group>
@@ -72,6 +137,7 @@ const NCEPATPIIIDefinition: FC = () => {
           <div>
             <div>Waist Circumference:</div>
             <Input
+              placeholder="cm"
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setWaistCircumference(e.target.value)
               }
@@ -81,6 +147,7 @@ const NCEPATPIIIDefinition: FC = () => {
           <div>
             <div>Hypertriglyceridemia:</div>
             <Input
+              placeholder="mg/dl"
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setHypertriglyceridemia(e.target.value)
               }
@@ -90,6 +157,7 @@ const NCEPATPIIIDefinition: FC = () => {
           <div>
             <div>HDLC:</div>
             <Input
+              placeholder="mg/dl"
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setHDLC(e.target.value)
               }
@@ -99,6 +167,7 @@ const NCEPATPIIIDefinition: FC = () => {
           <div>
             <div>Blood Pressure:</div>
             <Input
+              placeholder="mmHg"
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setBloodPressure(e.target.value)
               }
@@ -108,6 +177,7 @@ const NCEPATPIIIDefinition: FC = () => {
           <div>
             <div>Fasting Glucose:</div>
             <Input
+              placeholder="mg/dl" 
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setFastingGlucose(e.target.value)
               }
@@ -115,6 +185,7 @@ const NCEPATPIIIDefinition: FC = () => {
             />
           </div>
           <p className={styles.errorMessage}>{errorMessage}</p>
+          <p className={styles.resultMessage}>{resultMessage}</p>
           <div>
             <Button
               className={styles.submitButton}

@@ -384,7 +384,7 @@ app.post("/ncepatpiii", db.createNCEPATPIIIDefinition);
  *      400:
  *        description: Bad request
  */
-app.post("/smds", db.createSDMSDefinition);
+app.post("/sdms", db.createSDMSDefinition);
 
 /**
  * @openapi

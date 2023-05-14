@@ -1,9 +1,10 @@
-import { Button, Checkbox, Input, Radio, RadioChangeEvent } from "antd";
+import { Button, Input, Radio, RadioChangeEvent } from "antd";
 import { ChangeEvent, FC, useState } from "react";
 import Footer from "../../components/footer";
 import Header from "../../components/header";
 import Navbar from "../../components/navbar";
 import styles from "./index.module.scss";
+import axios from "axios";
 
 const IDRSDefinition: FC = () => {
   const [gender, setGender] = useState<string>("");
@@ -12,6 +13,7 @@ const IDRSDefinition: FC = () => {
   const [physicalActivity, setPhysicalActivity] = useState<string>("");
   const [familyHistory, setFamilyHistory] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const [resultMessage, setResultMessage] = useState<string>("");
 
   const isFormValid = () => {
     if (gender.length === 0) {
@@ -34,11 +36,84 @@ const IDRSDefinition: FC = () => {
       setErrorMessage("You must chose one of the options for each question!");
       return false;
     }
+    setErrorMessage("");
     return true;
   };
 
+  const isPatientDiagnosed = () => {
+    let totalScore = 0;
+    if (Number(age) >= 35 && Number(age) <= 49) {
+      totalScore = totalScore + 20;
+    }
+    if (Number(age) >= 50) {
+      totalScore = totalScore + 30;
+    }
+    if (
+      gender === "Female" &&
+      Number(waistCircumference) >= 80 &&
+      Number(waistCircumference) <= 89
+    ) {
+      totalScore = totalScore + 10;
+    }
+    if (gender === "Female" && Number(waistCircumference) >= 90) {
+      totalScore = totalScore + 20;
+    }
+    if (
+      gender === "Male" &&
+      Number(waistCircumference) >= 90 &&
+      Number(waistCircumference) <= 99
+    ) {
+      totalScore = totalScore + 10;
+    }
+    if (gender === "Male" && Number(waistCircumference) >= 100) {
+      totalScore = totalScore + 20;
+    }
+    if (physicalActivity === "2") {
+      totalScore = totalScore + 20;
+    }
+    if (physicalActivity === "3") {
+      totalScore = totalScore + 30;
+    }
+    if (familyHistory === "2") {
+      totalScore = totalScore + 10;
+    }
+    if (familyHistory === "3") {
+      totalScore = totalScore + 20;
+    }
+    if (totalScore >= 60) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const createIDRSDefinition = async (result: boolean) => {
+    const response = await axios.post("http://localhost:3000/idrs", {
+      gender,
+      age,
+      waistCircumference,
+      physicalActivity,
+      familyHistory,
+      result,
+      userId: 0,
+    });
+  };
+
   const handleSubmit = async () => {
-    isFormValid();
+    if (!isFormValid()) {
+      return;
+    }
+    if (isPatientDiagnosed()) {
+      setResultMessage(
+        'According to the "IDRS Definition" your results suggests that you may be diagnosed with metabolic syndrome.'
+      );
+      createIDRSDefinition(true);
+    } else {
+      setResultMessage(
+        'According to the "IDRS Definition" your results suggests that you are not in danger to be diagnosed with metabolic syndrome.'
+      );
+      createIDRSDefinition(false);
+    }
   };
 
   return (
@@ -56,10 +131,10 @@ const IDRSDefinition: FC = () => {
               onChange={(e: RadioChangeEvent) => setGender(e.target.value)}
               className={styles.thirdRatioContainer}
             >
-              <Radio className={styles.ratio} value={"1"}>
+              <Radio className={styles.ratio} value={"Male"}>
                 Male
               </Radio>
-              <Radio className={styles.ratio} value={"2"}>
+              <Radio className={styles.ratio} value={"Female"}>
                 Female
               </Radio>
             </Radio.Group>
@@ -67,6 +142,7 @@ const IDRSDefinition: FC = () => {
           <div>
             <div className={styles.label}>Age:</div>
             <Input
+              placeholder="year"
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setAge(e.target.value)
               }
@@ -76,6 +152,7 @@ const IDRSDefinition: FC = () => {
           <div>
             <div className={styles.label}>Waist Circumference:</div>
             <Input
+              placeholder="cm"
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setWaistCircumference(e.target.value)
               }
@@ -121,6 +198,7 @@ const IDRSDefinition: FC = () => {
             </Radio.Group>
           </div>
           <p className={styles.errorMessage}>{errorMessage}</p>
+          <p className={styles.resultMessage}>{resultMessage}</p>
           <div>
             <Button
               className={styles.submitButton}

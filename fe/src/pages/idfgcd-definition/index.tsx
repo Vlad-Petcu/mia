@@ -4,15 +4,18 @@ import Footer from "../../components/footer";
 import Header from "../../components/header";
 import Navbar from "../../components/navbar";
 import styles from "./index.module.scss";
+import axios from "axios";
 
 const IDFGDCDefinition: FC = () => {
   const [gender, setGender] = useState<string>("");
   const [location, setLocation] = useState<string>("");
+  const [waistCircumference, setWaistCircumference] = useState<string>("");
   const [tryglycerides, setTryglycerides] = useState<string>("");
   const [HDLC, setHDLC] = useState<string>("");
-  const [bloodPresure, setBloodPresure] = useState<string>("");
+  const [bloodPressure, setBloodPresure] = useState<string>("");
   const [FPG, setFPG] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const [resultMessage, setResultMessage] = useState<string>("");
 
   const isFormValid = () => {
     if (gender.length === 0) {
@@ -31,7 +34,7 @@ const IDFGDCDefinition: FC = () => {
       setErrorMessage("HDL input is not valid!");
       return false;
     }
-    if (bloodPresure.length === 0) {
+    if (bloodPressure.length === 0) {
       setErrorMessage("Blood Presure input is not valid!");
       return false;
     }
@@ -39,11 +42,68 @@ const IDFGDCDefinition: FC = () => {
       setErrorMessage("FPG input is not valid!");
       return false;
     }
+    setErrorMessage("");
     return true;
   };
 
+  const isPatientDiagnosed = () => {
+    let overLimitResultCounter = 0;
+    let waistCircumferenceLimit;
+    if (gender === "Male") {
+      waistCircumferenceLimit = 90;
+    } else {
+      waistCircumferenceLimit = 80;
+    }
+    if (Number(waistCircumference) >= waistCircumferenceLimit) {
+      overLimitResultCounter++;
+    }
+    if (Number(tryglycerides) >= 150) {
+      overLimitResultCounter++;
+    }
+    if (Number(HDLC) < 40) {
+      overLimitResultCounter++;
+    }
+    if (Number(bloodPressure) >= 130) {
+      overLimitResultCounter++;
+    }
+    if (Number(FPG) >= 100) {
+      overLimitResultCounter++;
+    }
+    if (overLimitResultCounter >= 3) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const createIDFGCDDefinition = async (result: boolean) => {
+    const response = await axios.post("http://localhost:3000/idfgcd", {
+      gender,
+      location,
+      tryglycerides,
+      HDLC,
+      bloodPressure,
+      FPG,
+      result,
+      userId: 0,
+    });
+  };
+
   const handleSubmit = async () => {
-    isFormValid();
+    if (!isFormValid()) {
+      return;
+    }
+    if (isPatientDiagnosed()) {
+      setResultMessage(
+        'According to the "IDFGCD Definition" your results suggests that you may be diagnosed with metabolic syndrome.'
+      );
+      createIDFGCDDefinition(true);
+    } else {
+      setResultMessage(
+        'According to the "IDFGCD Definition" your results suggests that you are not in danger to be diagnosed with metabolic syndrome.'
+      );
+      createIDFGCDDefinition(false);
+    }
   };
 
   return (
@@ -87,8 +147,19 @@ const IDFGDCDefinition: FC = () => {
             </Radio.Group>
           </div>
           <div>
+            <div className={styles.label}>Waist Circumference:</div>
+            <Input
+              placeholder="cm"
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setWaistCircumference(e.target.value)
+              }
+              className={styles.input}
+            />
+          </div>
+          <div>
             <div className={styles.label}>Tryglycerides:</div>
             <Input
+              placeholder="mg/dl"
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setTryglycerides(e.target.value)
               }
@@ -98,6 +169,7 @@ const IDFGDCDefinition: FC = () => {
           <div>
             <div className={styles.label}>HDLC:</div>
             <Input
+              placeholder="mg/dl"
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setHDLC(e.target.value)
               }
@@ -105,8 +177,9 @@ const IDFGDCDefinition: FC = () => {
             />
           </div>
           <div>
-            <div className={styles.label}>Blood Presure:</div>
+            <div className={styles.label}>Blood Pressure:</div>
             <Input
+              placeholder="mmHg"
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setBloodPresure(e.target.value)
               }
@@ -116,6 +189,7 @@ const IDFGDCDefinition: FC = () => {
           <div>
             <div className={styles.label}>FPG:</div>
             <Input
+              placeholder="mg/dl"
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setFPG(e.target.value)
               }
@@ -123,6 +197,7 @@ const IDFGDCDefinition: FC = () => {
             />
           </div>
           <p className={styles.errorMessage}>{errorMessage}</p>
+          <p className={styles.resultMessage}>{resultMessage}</p>
           <div>
             <Button
               className={styles.submitButton}

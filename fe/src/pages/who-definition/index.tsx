@@ -17,7 +17,6 @@ const WHODefinition: FC = () => {
   const [hipCircumference, setHipCircumference] = useState<string>("");
   const [albumin, setAlbumin] = useState<string>("");
   const [creatine, setCreatine] = useState<string>("");
-  const [result, setResult] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [resultMessage, setResultMessage] = useState<string>("");
 
@@ -50,6 +49,7 @@ const WHODefinition: FC = () => {
       setErrorMessage("Creatine input is not valid!");
       return false;
     }
+    setErrorMessage("");
     return true;
   };
 
@@ -61,7 +61,11 @@ const WHODefinition: FC = () => {
     } else {
       waistCircumferenceLimit = 0.85;
     }
-    if ((glucoseIntolerance && diabetesMellitus) || insulinResistance) {
+    if (
+      glucoseIntolerance === false &&
+      diabetesMellitus === false &&
+      insulinResistance === false
+    ) {
       return false;
     }
     if (Number(arterialPressure) >= 140) {
@@ -86,7 +90,7 @@ const WHODefinition: FC = () => {
     }
   };
 
-  const createWHODefinition = async () => {
+  const createWHODefinition = async (result: boolean) => {
     const response = await axios.post("http://localhost:3000/who", {
       gender,
       glucoseIntolerance,
@@ -99,9 +103,8 @@ const WHODefinition: FC = () => {
       albumin,
       creatine,
       result,
-      userId: 0
+      userId: 0,
     });
-    console.log(response.data);
   };
 
   const handleSubmit = async () => {
@@ -112,14 +115,13 @@ const WHODefinition: FC = () => {
       setResultMessage(
         'According to the "WHO Definition" your results suggests that you may be diagnosed with metabolic syndrome.'
       );
-      setResult(true);
+      createWHODefinition(true);
     } else {
       setResultMessage(
         'According to the "WHO Definition" your results suggests that you are not in danger to be diagnosed with metabolic syndrome.'
       );
-      setResult(false);
+      createWHODefinition(false);
     }
-    createWHODefinition();
   };
 
   return (
@@ -169,6 +171,7 @@ const WHODefinition: FC = () => {
           <div>
             <div className={styles.label}>Arterial Pressure:</div>
             <Input
+              placeholder="mm of Hg"
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setArterialPressure(e.target.value)
               }
@@ -178,6 +181,7 @@ const WHODefinition: FC = () => {
           <div>
             <div className={styles.label}>Plasma Triglyceride Level:</div>
             <Input
+              placeholder="mm/dl"
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setTriglycerideLevel(e.target.value)
               }
@@ -187,6 +191,7 @@ const WHODefinition: FC = () => {
           <div>
             <div className={styles.label}>Waist Circumference:</div>
             <Input
+              placeholder="cm"
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setWaistCircumference(e.target.value)
               }
@@ -196,6 +201,7 @@ const WHODefinition: FC = () => {
           <div>
             <div className={styles.label}>Hip Circumference:</div>
             <Input
+              placeholder="cm"
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setHipCircumference(e.target.value)
               }
@@ -205,6 +211,7 @@ const WHODefinition: FC = () => {
           <div>
             <div className={styles.label}>Albumin:</div>
             <Input
+              placeholder="μgm/minute"
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setAlbumin(e.target.value)
               }
@@ -214,6 +221,7 @@ const WHODefinition: FC = () => {
           <div>
             <div className={styles.label}>Creatine:</div>
             <Input
+              placeholder="μgm/mg"
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setCreatine(e.target.value)
               }

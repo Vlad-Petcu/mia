@@ -18,7 +18,6 @@ const AACEDDefinition: FC = () => {
     useState<boolean>(false);
   const [endothelialDysfunction, setEndothelialDysfunction] =
     useState<boolean>(false);
-    const [result, setResult] = useState<boolean>(false);
     const [resultMessage, setResultMessage] = useState<string>("");
 
   const isPatientDiagnosed = () => {
@@ -51,7 +50,7 @@ const AACEDDefinition: FC = () => {
     }
   };
 
-  const createAAACEDDefinition = async () => {
+  const createAAACEDDefinition = async (result: boolean) => {
     const response = await axios.post("http://localhost:3000/aaced", {
       glucoseIntolerance,
       abnormalUricAcidMetabolism,
@@ -63,7 +62,6 @@ const AACEDDefinition: FC = () => {
       userId: 0,
       result,
     });
-    console.log(response.data);
   };
 
   const handleSubmit = async () => {
@@ -71,14 +69,13 @@ const AACEDDefinition: FC = () => {
       setResultMessage(
         'According to the "AACED Definition" your results suggests that you may be diagnosed with metabolic syndrome.'
       );
-      setResult(true);
+      createAAACEDDefinition(true);
     } else {
       setResultMessage(
         'According to the "AACED Definition" your results suggests that you are not in danger to be diagnosed with metabolic syndrome.'
       );
-      setResult(false);
+      createAAACEDDefinition(false);
     }
-    createAAACEDDefinition();
   };
 
   return (

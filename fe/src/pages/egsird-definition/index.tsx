@@ -4,6 +4,7 @@ import Footer from "../../components/footer";
 import Header from "../../components/header";
 import Navbar from "../../components/navbar";
 import styles from "./index.module.scss";
+import axios from "axios";
 
 const EGSIRDDefinition: FC = () => {
   const [gender, setGender] = useState<string>("");
@@ -11,7 +12,8 @@ const EGSIRDDefinition: FC = () => {
   const [waistCircumference, setWaistCircumference] = useState<string>("");
   const [hypertension, setHypertension] = useState<string>("");
   const [triglyceridesLevel, setTriglyceridesLevel] = useState<string>("");
-  const [impairedFastingGlucose, setImpairedFastingGlucose] = useState<boolean>(false);
+  const [impairedFastingGlucose, setImpairedFastingGlucose] =
+    useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [resultMessage, setResultMessage] = useState<string>("");
 
@@ -36,6 +38,7 @@ const EGSIRDDefinition: FC = () => {
       setErrorMessage("Triglycerides input is not valid!");
       return false;
     }
+    setErrorMessage("");
     return true;
   };
 
@@ -69,18 +72,33 @@ const EGSIRDDefinition: FC = () => {
     }
   };
 
+  const createEGSIRDDefinition = async (result: boolean) => {
+    const response = await axios.post("http://localhost:3000/egsird", {
+      gender,
+      plasmaInsulin,
+      waistCircumference,
+      hypertension,
+      triglyceridesLevel,
+      impairedFastingGlucose,
+      result,
+      userId: 0,
+    });
+  };
+
   const handleSubmit = async () => {
     if (!isFormValid()) {
       return;
     }
     if (isPatientDiagnosed()) {
       setResultMessage(
-        'According to the "WHO Definition" your results suggests that you may be diagnosed with metabolic syndrome'
+        'According to the "EGSIRD Definition" your results suggests that you may be diagnosed with metabolic syndrome'
       );
+      createEGSIRDDefinition(true);
     } else {
       setResultMessage(
-        'According to the "WHO Definition" your results suggests that you are not in danger to be diagnosed with metabolic syndrome'
+        'According to the "EGSIRD Definition" your results suggests that you are not in danger to be diagnosed with metabolic syndrome'
       );
+      createEGSIRDDefinition(false);
     }
   };
 
@@ -110,6 +128,7 @@ const EGSIRDDefinition: FC = () => {
           <div>
             <div className={styles.label}>Plasma Insulin:</div>
             <Input
+              placeholder="k-th percentile"
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setPlasmaInsulin(e.target.value)
               }
@@ -119,6 +138,7 @@ const EGSIRDDefinition: FC = () => {
           <div>
             <div className={styles.label}>Waist Circumference:</div>
             <Input
+              placeholder="cm"
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setWaistCircumference(e.target.value)
               }
@@ -128,6 +148,7 @@ const EGSIRDDefinition: FC = () => {
           <div>
             <div className={styles.label}>Hypertension:</div>
             <Input
+              placeholder="mm og Hg"
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setHypertension(e.target.value)
               }
@@ -137,6 +158,7 @@ const EGSIRDDefinition: FC = () => {
           <div>
             <div className={styles.label}>Triglycerides Level:</div>
             <Input
+              placeholder="mg/dl"
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setTriglyceridesLevel(e.target.value)
               }
@@ -146,12 +168,14 @@ const EGSIRDDefinition: FC = () => {
           <div className={styles.checkboxContainer}>
             <p>Impaired fasting glucose:</p>
             <Checkbox
-              onChange={() => setImpairedFastingGlucose(!impairedFastingGlucose)}
+              onChange={() =>
+                setImpairedFastingGlucose(!impairedFastingGlucose)
+              }
               className={styles.checkbox}
             ></Checkbox>
           </div>
           <p className={styles.errorMessage}>{errorMessage}</p>
-          <p className={styles.errorMessage}>{resultMessage}</p>
+          <p className={styles.resultMessage}>{resultMessage}</p>
           <div>
             <Button
               className={styles.submitButton}

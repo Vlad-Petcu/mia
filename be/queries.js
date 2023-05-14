@@ -79,10 +79,11 @@ const createAACEDDefinition = (request, response) => {
     markersOfInflammation,
     endothelialDysfunction,
     userId,
+    result,
   } = request.body;
 
   pool.query(
-    "INSERT INTO aaced_definition (glucose_intolerance, abnormal_uric_acid_metabolism, dyslipidemia, hemodynamic_changes, prothrombotic_factors, markers_of_inflammation, endothelial_dysfunction, user_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",
+    "INSERT INTO aaced_definition (glucose_intolerance, abnormal_uric_acid_metabolism, dyslipidemia, hemodynamic_changes, prothrombotic_factors, markers_of_inflammation, endothelial_dysfunction, user_id, result) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *",
     [
       glucoseIntolerance,
       abnormalUricAcidMetabolism,
@@ -92,6 +93,7 @@ const createAACEDDefinition = (request, response) => {
       markersOfInflammation,
       endothelialDysfunction,
       userId,
+      result,
     ],
     (error, results) => {
       if (error) {
@@ -111,10 +113,11 @@ const createEGSIRDDefinition = (request, response) => {
     triglyceridesLevel,
     impairedFastingGlucose,
     userId,
+    result,
   } = request.body;
 
   pool.query(
-    "INSERT INTO egsird_definition (gender, plasma_insulin, waist_circumference, hypertension, triglycerides, impaired_fasting_glucose, user_id) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *",
+    "INSERT INTO egsird_definition (gender, plasma_insulin, waist_circumference, hypertension, triglycerides, impaired_fasting_glucose, user_id, result) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",
     [
       gender,
       plasmaInsulin,
@@ -123,6 +126,7 @@ const createEGSIRDDefinition = (request, response) => {
       triglyceridesLevel,
       impairedFastingGlucose,
       userId,
+      result,
     ],
     (error, results) => {
       if (error) {
@@ -134,12 +138,12 @@ const createEGSIRDDefinition = (request, response) => {
 };
 
 const createIDFGCDDefinition = (request, response) => {
-  const { gender, location, tryglycerides, HDLC, bloodPresure, FPG, userId } =
+  const { gender, location, tryglycerides, HDLC, bloodPressure, FPG, userId, result } =
     request.body;
 
   pool.query(
-    "INSERT INTO idfgcd_definition (gender, location, tryglycerides, hdlc, blood_presure, fpg, user_id) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *",
-    [gender, location, tryglycerides, HDLC, bloodPresure, FPG, userId],
+    "INSERT INTO idfgcd_definition (gender, location, tryglycerides, hdlc, blood_presure, fpg, user_id, result) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",
+    [gender, location, tryglycerides, HDLC, bloodPressure, FPG, userId, result],
     (error, results) => {
       if (error) {
         throw error;
@@ -157,11 +161,12 @@ const createIDRSDefinition = (request, response) => {
     physicalActivity,
     familyHistory,
     userId,
+    result,
   } = request.body;
 
   pool.query(
-    "INSERT INTO idrs_definition (gender, age, waist_circumference, physical_activity, family_history, user_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
-    [gender, age, waistCircumference, physicalActivity, familyHistory, userId],
+    "INSERT INTO idrs_definition (gender, age, waist_circumference, physical_activity, family_history, user_id, result) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *",
+    [gender, age, waistCircumference, physicalActivity, familyHistory, userId, result],
     (error, results) => {
       if (error) {
         throw error;
@@ -172,12 +177,12 @@ const createIDRSDefinition = (request, response) => {
 };
 
 const createLAPDefinition = (request, response) => {
-  const { gender, triglyceridesLevel, waistCircumference, userId } =
+  const { gender, triglyceridesLevel, waistCircumference, userId, result } =
     request.body;
 
   pool.query(
-    "INSERT INTO lap_definition (gender, triglycerides_level, waist_circumference, user_id) VALUES ($1, $2, $3, $4) RETURNING *",
-    [gender, triglyceridesLevel, waistCircumference, userId],
+    "INSERT INTO lap_definition (gender, triglycerides_level, waist_circumference, user_id, result) VALUES ($1, $2, $3, $4, $5) RETURNING *",
+    [gender, triglyceridesLevel, waistCircumference, userId, result],
     (error, results) => {
       if (error) {
         throw error;
@@ -193,21 +198,23 @@ const createNCEPATPIIIDefinition = (request, response) => {
     waistCircumference,
     hypertriglyceridemia,
     HDLC,
-    bloodPresure,
+    bloodPressure,
     fastingGlucose,
     userId,
+    result,
   } = request.body;
 
   pool.query(
-    "INSERT INTO ncep_atp_iii_definition (gender, waist_circumference, hypertriglyceridemia, hdlc, blood_presure, fasting_glucose, user_id) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *",
+    "INSERT INTO ncep_atp_iii_definition (gender, waist_circumference, hypertriglyceridemia, hdlc, blood_pressure, fasting_glucose, user_id, result) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",
     [
       gender,
       waistCircumference,
       hypertriglyceridemia,
       HDLC,
-      bloodPresure,
+      bloodPressure,
       fastingGlucose,
       userId,
+      result,
     ],
     (error, results) => {
       if (error) {
@@ -219,11 +226,11 @@ const createNCEPATPIIIDefinition = (request, response) => {
 };
 
 const createSDMSDefinition = (request, response) => {
-  const { height, waistCircumference, userId } = request.body;
+  const { height, waistCircumference, userId, result } = request.body;
 
   pool.query(
-    "INSERT INTO sdms_definition (height, waist_circumference, user_id) VALUES ($1, $2, $3) RETURNING *",
-    [height, waistCircumference, userId],
+    "INSERT INTO sdms_definition (height, waist_circumference, user_id, result) VALUES ($1, $2, $3, $4) RETURNING *",
+    [height, waistCircumference, userId, result],
     (error, results) => {
       if (error) {
         throw error;
