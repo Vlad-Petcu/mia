@@ -30,3 +30,28 @@
 .errorMessage {
   color: red;
 }
+
+.ratio {
+  display: flex;
+  flex-direction: row;
+}
+
+.firstRatioContainer {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+  margin-right: -6.4rem;
+}
+
+.secondRatioContainer {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+  margin-right: -1.4rem;
+}
+
+.select {
+  margin-right: 0.2rem;
+}

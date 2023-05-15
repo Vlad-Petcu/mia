@@ -113,6 +113,20 @@ app.get("/users", db.getUsers);
 
 /**
  * @openapi
+ * /users:
+ *  get:
+ *     tags:
+ *     - User
+ *     summary: Get all users who are doctors
+ *     description: Returns all users who are doctors in the app
+ *     responses:
+ *       200:
+ *         description: Success
+ */
+app.get("/users/doctors", db.getDoctorUsers);
+
+/**
+ * @openapi
  * /users/{id}:
  *   get:
  *     summary: Get the user by id

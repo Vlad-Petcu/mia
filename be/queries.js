@@ -16,12 +16,21 @@ const getUsers = (request, response) => {
   });
 };
 
+const getDoctorUsers = (request, response) => {
+  pool.query("SELECT * FROM users WHERE is_doctor=true ORDER BY id ASC", (error, results) => {
+    if (error) {
+      throw error;
+    }
+    response.status(200).json(results.rows);
+  });
+};
+
 const createUser = (request, response) => {
-  const { firstName, lastName, gender, email, password } = request.body;
+  const { isDoctor, doctorId, firstName, lastName, gender, email, password } = request.body;
 
   pool.query(
-    "INSERT INTO users (first_name, last_name, gender, email, password) VALUES ($1, $2, $3, $4, $5) RETURNING *",
-    [firstName, lastName, gender, email, password],
+    "INSERT INTO users (is_doctor, doctor_id, first_name, last_name, gender, email, password) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *",
+    [isDoctor, doctorId, firstName, lastName, gender, email, password],
     (error, results) => {
       if (error) {
         throw error;
@@ -436,6 +445,7 @@ const getWHOByUserId = (request, response) => {
 
 module.exports = {
   getUsers,
+  getDoctorUsers,
   getUserById,
   createUser,
   updateUser,
