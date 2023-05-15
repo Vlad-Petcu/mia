@@ -168,60 +168,72 @@ const NCEPATPIIIDefinition: FC = () => {
           <div>
             <div>Waist Circumference:</div>
             <Input
+              value={waistCircumference}
               placeholder="cm"
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setWaistCircumference(e.target.value)
-              }
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                e.target.value = e.target.value.replace(/\D/g, "");
+                setWaistCircumference(e.target.value);
+              }}
               className={styles.input}
             />
           </div>
           <div>
             <div>Hypertriglyceridemia:</div>
             <Input
+              value={hypertriglyceridemia}
               placeholder="mg/dl"
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setHypertriglyceridemia(e.target.value)
-              }
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                e.target.value = e.target.value.replace(/\D/g, "");
+                setHypertriglyceridemia(e.target.value);
+              }}
               className={styles.input}
             />
           </div>
           <div>
             <div>HDLC:</div>
             <Input
+              value={HDLC}
               placeholder="mg/dl"
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setHDLC(e.target.value)
-              }
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                e.target.value = e.target.value.replace(/\D/g, "");
+                setHDLC(e.target.value);
+              }}
               className={styles.input}
             />
           </div>
           <div>
             <div className={styles.label}>Systolic Tension:</div>
             <Input
+              value={systolicTension}
               placeholder="mm of Hg"
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setSystolicTension(e.target.value)
-              }
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                e.target.value = e.target.value.replace(/\D/g, "");
+                setSystolicTension(e.target.value);
+              }}
               className={styles.input}
             />
           </div>
           <div>
             <div className={styles.label}>Diastolic Tension:</div>
             <Input
+              value={diastolicTension}
               placeholder="mm of Hg"
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setDiastolicTension(e.target.value)
-              }
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                e.target.value = e.target.value.replace(/\D/g, "");
+                setDiastolicTension(e.target.value);
+              }}
               className={styles.input}
             />
           </div>
           <div>
             <div>Fasting Glucose:</div>
             <Input
+              value={fastingGlucose}
               placeholder="mg/dl"
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setFastingGlucose(e.target.value)
-              }
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                e.target.value = e.target.value.replace(/\D/g, "");
+                setFastingGlucose(e.target.value);
+              }}
               className={styles.input}
             />
           </div>

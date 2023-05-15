@@ -152,20 +152,24 @@ const IDRSDefinition: FC = () => {
           <div>
             <div className={styles.label}>Age:</div>
             <Input
+              value={age}
               placeholder="year"
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setAge(e.target.value)
-              }
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                e.target.value = e.target.value.replace(/\D/g, "");
+                setAge(e.target.value);
+              }}
               className={styles.input}
             />
           </div>
           <div>
             <div className={styles.label}>Waist Circumference:</div>
             <Input
+              value={waistCircumference}
               placeholder="cm"
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setWaistCircumference(e.target.value)
-              }
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                e.target.value = e.target.value.replace(/\D/g, "");
+                setWaistCircumference(e.target.value);
+              }}
               className={styles.input}
             />
           </div>

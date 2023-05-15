@@ -114,20 +114,24 @@ const LAPDefinition: FC = () => {
           <div>
             <div className={styles.label}>Waist Circumference:</div>
             <Input
+              value={waistCircumference}
               placeholder="cm"
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setWaistCircumference(e.target.value)
-              }
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                e.target.value = e.target.value.replace(/\D/g, "");
+                setWaistCircumference(e.target.value);
+              }}
               className={styles.input}
             />
           </div>
           <div>
             <div className={styles.label}>Triglyceride Level:</div>
             <Input
+              value={triglycerideLevel}
               placeholder="mg/dl"
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setTriglyceridesLevel(e.target.value)
-              }
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                e.target.value = e.target.value.replace(/\D/g, "");
+                setTriglyceridesLevel(e.target.value);
+              }}
               className={styles.input}
             />
           </div>

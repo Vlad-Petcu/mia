@@ -170,60 +170,72 @@ const IDFGDCDefinition: FC = () => {
           <div>
             <div className={styles.label}>Waist Circumference:</div>
             <Input
+              value={waistCircumference}
               placeholder="cm"
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setWaistCircumference(e.target.value)
-              }
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                e.target.value = e.target.value.replace(/\D/g, "");
+                setWaistCircumference(e.target.value);
+              }}
               className={styles.input}
             />
           </div>
           <div>
             <div className={styles.label}>Triglyceride Level:</div>
             <Input
+              value={tryglycerides}
               placeholder="mg/dl"
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setTryglycerides(e.target.value)
-              }
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                e.target.value = e.target.value.replace(/\D/g, "");
+                setTryglycerides(e.target.value);
+              }}
               className={styles.input}
             />
           </div>
           <div>
             <div className={styles.label}>HDLC:</div>
             <Input
+              value={HDLC}
               placeholder="mg/dl"
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setHDLC(e.target.value)
-              }
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                e.target.value = e.target.value.replace(/\D/g, "");
+                setHDLC(e.target.value);
+              }}
               className={styles.input}
             />
           </div>
           <div>
             <div className={styles.label}>Systolic Tension:</div>
             <Input
+              value={systolicTension}
               placeholder="mm of Hg"
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setSystolicTension(e.target.value)
-              }
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                e.target.value = e.target.value.replace(/\D/g, "");
+                setSystolicTension(e.target.value);
+              }}
               className={styles.input}
             />
           </div>
           <div>
             <div className={styles.label}>Diastolic Tension:</div>
             <Input
+              value={diastolicTension}
               placeholder="mm of Hg"
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setDiastolicTension(e.target.value)
-              }
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                e.target.value = e.target.value.replace(/\D/g, "");
+                setDiastolicTension(e.target.value);
+              }}
               className={styles.input}
             />
           </div>
           <div>
             <div className={styles.label}>FPG:</div>
             <Input
+              value={FPG}
               placeholder="mg/dl"
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setFPG(e.target.value)
-              }
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                e.target.value = e.target.value.replace(/\D/g, "");
+                setFPG(e.target.value);
+              }}
               className={styles.input}
             />
           </div>

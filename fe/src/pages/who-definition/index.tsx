@@ -189,70 +189,84 @@ const WHODefinition: FC = () => {
           <div>
             <div className={styles.label}>Systolic Tension:</div>
             <Input
+              value={systolicTension}
               placeholder="mm of Hg"
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setSystolicTension(e.target.value)
-              }
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                e.target.value = e.target.value.replace(/\D/g, "");
+                setSystolicTension(e.target.value);
+              }}
               className={styles.input}
             />
           </div>
           <div>
             <div className={styles.label}>Diastolic Tension:</div>
             <Input
+              value={diastolicTension}
               placeholder="mm of Hg"
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setDiastolicTension(e.target.value)
-              }
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                e.target.value = e.target.value.replace(/\D/g, "");
+                setDiastolicTension(e.target.value);
+              }}
               className={styles.input}
             />
           </div>
           <div>
             <div className={styles.label}>Triglyceride Level:</div>
             <Input
+              value={triglycerideLevel}
               placeholder="mm/dl"
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setTriglycerideLevel(e.target.value)
-              }
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                e.target.value = e.target.value.replace(/\D/g, "");
+                setTriglycerideLevel(e.target.value);
+              }}
               className={styles.input}
             />
           </div>
           <div>
             <div className={styles.label}>Waist Circumference:</div>
             <Input
+              value={waistCircumference}
               placeholder="cm"
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setWaistCircumference(e.target.value)
-              }
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                e.target.value = e.target.value.replace(/\D/g, "");
+                setWaistCircumference(e.target.value);
+              }}
               className={styles.input}
             />
           </div>
           <div>
             <div className={styles.label}>Hip Circumference:</div>
             <Input
+              value={hipCircumference}
               placeholder="cm"
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setHipCircumference(e.target.value)
-              }
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                e.target.value = e.target.value.replace(/\D/g, "");
+                setHipCircumference(e.target.value);
+              }}
               className={styles.input}
             />
           </div>
           <div>
             <div className={styles.label}>Albumin:</div>
             <Input
+              value={albumin}
               placeholder="μgm/minute"
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setAlbumin(e.target.value)
-              }
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                e.target.value = e.target.value.replace(/\D/g, "");
+                setAlbumin(e.target.value);
+              }}
               className={styles.input}
             />
           </div>
           <div>
             <div className={styles.label}>Creatine:</div>
             <Input
+              value={creatine}
               placeholder="μgm/mg"
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setCreatine(e.target.value)
-              }
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                e.target.value = e.target.value.replace(/\D/g, "");
+                setCreatine(e.target.value);
+              }}
               className={styles.input}
             />
           </div>
