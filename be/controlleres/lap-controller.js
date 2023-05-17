@@ -1,0 +1,32 @@
+import pool from "../config/db.js";
+
+export const createLAPDefinition = (request, response) => {
+  const { gender, triglycerideLevel, waistCircumference, userId, result } =
+    request.body;
+
+  pool.query(
+    "INSERT INTO lap_definition (gender, triglyceride_level, waist_circumference, user_id, result) VALUES ($1, $2, $3, $4, $5) RETURNING *",
+    [gender, triglycerideLevel, waistCircumference, userId, result],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(201).send(`lap_definition input saved.`);
+    }
+  );
+};
+
+export const getLAPByUserId = (request, response) => {
+  const id = parseInt(request.params.id);
+
+  pool.query(
+    "SELECT * FROM lap_definition WHERE user_Id = $1",
+    [id],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).json(results.rows);
+    }
+  );
+};
