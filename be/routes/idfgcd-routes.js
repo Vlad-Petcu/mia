@@ -1,7 +1,10 @@
 import express from "express";
-import bodyParser from 'body-parser';
+import bodyParser from "body-parser";
 
-import { createIDFGCDDefinition, getIDFGCDByUserId } from "../controlleres/idfgcd-controller.js";
+import {
+  createIDFGCDDefinition,
+  getIDFGCDByUserId,
+} from "../controllers/idfgcd-controller.js";
 import { authenticateToken } from "../middleware/authorization.js";
 
 const router = express.Router();

@@ -4,7 +4,7 @@ import bodyParser from "body-parser";
 import {
   createWHODefinition,
   getWHOByUserId,
-} from "../controlleres/who-controller.js";
+} from "../controllers/who-controller.js";
 import { authenticateToken } from "../middleware/authorization.js";
 
 const router = express.Router();

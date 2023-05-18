@@ -4,7 +4,7 @@ import bodyParser from "body-parser";
 import {
   createEGSIRDDefinition,
   getEGSIRDByUserId,
-} from "../controlleres/egsird-controller.js";
+} from "../controllers/egsird-controller.js";
 
 import { authenticateToken } from "../middleware/authorization.js";
 

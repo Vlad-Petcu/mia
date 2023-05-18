@@ -1,6 +1,9 @@
 import express from "express";
-import bodyParser from 'body-parser';
-import { createAACEDDefinition, getAACEDByUserId } from "../controlleres/aaced-controller.js";
+import bodyParser from "body-parser";
+import {
+  createAACEDDefinition,
+  getAACEDByUserId,
+} from "../controllers/aaced-controller.js";
 
 import { authenticateToken } from "../middleware/authorization.js";
 
@@ -36,7 +39,7 @@ router.post("/aaced", authenticateToken, jsonParser, createAACEDDefinition);
  * /aaced/{id}:
  *   get:
  *     summary: Get aaced data for specific user
- *     tags: 
+ *     tags:
  *      - AACED
  *     parameters:
  *       - in: path

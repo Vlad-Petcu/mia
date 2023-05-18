@@ -1,5 +1,10 @@
 import express, { json } from "express";
 import cors from "cors";
+import { dirname,join } from 'path';
+import { fileURLToPath } from 'url';
+import swaggerDocs from "../be/swagger/swagger.js";
+import dotenv from "dotenv";
+// import cookieParser from "cookie-parser";
 // import authRouter from './routes/auth-routes.js';
 import usersRouter from "./routes/user-routes.js";
 import aacedRouter from "./routes/aaced-routes.js";
@@ -10,11 +15,10 @@ import lapRouter from "./routes/lap-routes.js";
 import ncepatpiiiRouter from "./routes/ncepatpiii-routes.js";
 import sdmsRouter from "./routes/sdms-routes.js";
 import whoRouter from "./routes/who-routes.js"
-import swaggerDocs from "../be/swagger/swagger.js";
-import dotenv from "dotenv";
-import cookieParser from "cookie-parser";
 
 dotenv.config();
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const app = express();
 const port = 3000;
@@ -32,6 +36,7 @@ app.get("/", (response) => {
   response.json({ info: "Welcome to MIA API" });
 });
 
+app.use('/', express.static(join(__dirname, 'public')))
 // app.use('/api/auth',authRouter);
 app.use("/users", usersRouter);
 app.use("/AACED", aacedRouter);

@@ -1,7 +1,10 @@
 import express from "express";
-import bodyParser from 'body-parser';
+import bodyParser from "body-parser";
 
-import { createSDMSDefinition, getSDMSByUserId } from "../controlleres/sdms-controller.js";
+import {
+  createSDMSDefinition,
+  getSDMSByUserId,
+} from "../controllers/sdms-controller.js";
 import { authenticateToken } from "../middleware/authorization.js";
 
 const router = express.Router();

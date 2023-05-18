@@ -1,7 +1,10 @@
 import express from "express";
-import bodyParser from 'body-parser';
+import bodyParser from "body-parser";
 
-import { createIDRSDefinition, getIDRSByUserId } from "../controlleres/idrs-controller.js";
+import {
+  createIDRSDefinition,
+  getIDRSByUserId,
+} from "../controllers/idrs-controller.js";
 import { authenticateToken } from "../middleware/authorization.js";
 
 const router = express.Router();

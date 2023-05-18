@@ -1,5 +1,5 @@
 import express from "express";
-import bodyParser from 'body-parser';
+import bodyParser from "body-parser";
 
 import {
   getUsers,
@@ -8,7 +8,7 @@ import {
   createUser,
   updateUser,
   deleteUser,
-} from "../controlleres/user-controller.js";
+} from "../controllers/user-controller.js";
 import { authenticateToken } from "../middleware/authorization.js";
 
 const router = express.Router();
@@ -36,7 +36,7 @@ const jsonParser = bodyParser.json();
  *      400:
  *        description: Bad request
  */
-router.post("/users", authenticateToken, jsonParser, createUser);
+router.post("/", jsonParser, createUser);
 
 /**
  * @openapi
@@ -51,7 +51,7 @@ router.post("/users", authenticateToken, jsonParser, createUser);
  *         description: Success
  */
 
-router.get("/users", authenticateToken, getUsers);
+router.get("/", authenticateToken, getUsers);
 
 /**
  * @openapi
@@ -65,7 +65,7 @@ router.get("/users", authenticateToken, getUsers);
  *       200:
  *         description: Success
  */
-router.get("/users/doctors", authenticateToken, getDoctorUsers);
+router.get("/doctors", getDoctorUsers);
 
 /**
  * @openapi
@@ -91,8 +91,7 @@ router.get("/users/doctors", authenticateToken, getDoctorUsers);
  *       404:
  *         description: The user was not found
  */
-router.get("/users/:id", authenticateToken, jsonParser, getUserById);
-
+router.get("/:id", jsonParser, getUserById);
 
 /**
  * @openapi
@@ -123,14 +122,14 @@ router.get("/users/:id", authenticateToken, jsonParser, getUserById);
  *      400:
  *        description: Bad request
  */
-router.put("/users/:id", authenticateToken, jsonParser, updateUser);
+router.put("/:id", authenticateToken, jsonParser, updateUser);
 
 /**
  * @openapi
  * /users/{id}:
  *   delete:
  *     summary: Delete the user by id
- *     tags: 
+ *     tags:
  *      - User
  *     parameters:
  *       - in: path
@@ -149,6 +148,6 @@ router.put("/users/:id", authenticateToken, jsonParser, updateUser);
  *       404:
  *         description: The user was not found
  */
-router.delete("/users/:id", authenticateToken, jsonParser, deleteUser);
+router.delete("/:id", authenticateToken, jsonParser, deleteUser);
 
 export default router;

@@ -1,12 +1,14 @@
 import express from "express";
-import bodyParser from 'body-parser';
+import bodyParser from "body-parser";
 
-import { createNCEPATPIIIDefinition, getNCEPATPIIIByUserId } from "../controlleres/ncepatpiii-controller.js";
+import {
+  createNCEPATPIIIDefinition,
+  getNCEPATPIIIByUserId,
+} from "../controllers/ncepatpiii-controller.js";
 import { authenticateToken } from "../middleware/authorization.js";
 
 const router = express.Router();
 const jsonParser = bodyParser.json();
-
 
 /**
  * @openapi
@@ -30,7 +32,12 @@ const jsonParser = bodyParser.json();
  *      400:
  *        description: Bad request
  */
-router.post("/ncepatpiii", authenticateToken, jsonParser, createNCEPATPIIIDefinition);
+router.post(
+  "/ncepatpiii",
+  authenticateToken,
+  jsonParser,
+  createNCEPATPIIIDefinition
+);
 
 /**
  * @openapi
@@ -56,6 +63,11 @@ router.post("/ncepatpiii", authenticateToken, jsonParser, createNCEPATPIIIDefini
  *       404:
  *         description: This user does not have data for this definition
  */
-router.get("/ncepatpiii/:id", authenticateToken, jsonParser, getNCEPATPIIIByUserId);
+router.get(
+  "/ncepatpiii/:id",
+  authenticateToken,
+  jsonParser,
+  getNCEPATPIIIByUserId
+);
 
 export default router;

@@ -4,7 +4,7 @@ import bodyParser from "body-parser";
 import {
   createLAPDefinition,
   getLAPByUserId,
-} from "../controlleres/lap-controller.js";
+} from "../controllers/lap-controller.js";
 import { authenticateToken } from "../middleware/authorization.js";
 
 const router = express.Router();
