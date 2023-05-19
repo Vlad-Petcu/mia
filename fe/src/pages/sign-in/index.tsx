@@ -5,7 +5,6 @@ import Header from "../../components/header";
 import Navbar from "../../components/navbar";
 import styles from "./index.module.scss";
 import axios from "axios";
-import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 export type SelectOption = {
@@ -71,7 +70,6 @@ const SignIn: FC = () => {
       password,
     });
     if (response.status === 201) {
-      // toast.success("Account created! Please login");
         navigate("/log-in");
     }
   };

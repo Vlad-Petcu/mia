@@ -4,11 +4,15 @@ import Footer from "../../components/footer";
 import Header from "../../components/header";
 import Navbar from "../../components/navbar";
 import styles from "./index.module.scss";
+import axios from "axios";
+import jwt_decode from 'jwt-decode';
+import { useNavigate } from "react-router-dom";
 
 const LogIn: FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const navigate = useNavigate();
 
   const isFormValid = () => {
     if (email.length === 0 && !email.includes("@")) {
@@ -26,8 +30,28 @@ const LogIn: FC = () => {
     return true;
   };
 
+  const loginUser = async () => {
+    try {
+      const response = await axios.post("http://localhost:3000/login", {
+        email,
+        password,
+      });
+      localStorage.setItem("token", response.data.accessToken);
+      const user: any = jwt_decode(response.data.accessToken);
+      localStorage.setItem("userId", user.id);
+      localStorage.setItem("userEmail", user.email);
+      localStorage.setItem("isDoctor", user.isDoctor);
+      navigate("/");
+    } catch (e: any) {
+      setErrorMessage(e.response.data.error);
+    }
+  };
+
   const handleSubmit = async () => {
-    isFormValid();
+    if (!isFormValid()) {
+      return;
+    }
+    loginUser();
   };
 
   return (
@@ -58,8 +82,10 @@ const LogIn: FC = () => {
               type={"password"}
             />
           </div>
-          <div>
+          {errorMessage && (
             <p className={styles.errorMessage}>{errorMessage}</p>
+          )}
+          <div>
             <Button
               className={styles.submitButton}
               onClick={() => handleSubmit()}

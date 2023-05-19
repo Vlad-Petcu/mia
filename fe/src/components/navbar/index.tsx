@@ -11,17 +11,22 @@ const Navbar: FC = () => {
     setShowNav(!showNav);
   };
 
-  const isDoctor = true;
+  const isDoctor = localStorage.getItem("isDoctor");
+  const userId = localStorage.getItem("userId");
+
+  const handleLogOut = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("userEmail");
+    localStorage.removeItem("isDoctor");
+  };
 
   return (
     <nav className="navbar">
       <div className="container">
         <div className="menu-icon" onClick={handleShowNavbar}>
           <h1>
-            <Button
-              aria-label={"Open Menu"}
-              icon={<MenuOutlined />}
-            />
+            <Button aria-label={"Open Menu"} icon={<MenuOutlined />} />
           </h1>
         </div>
         <div className={`nav-elements  ${showNav && "active"}`}>
@@ -57,15 +62,22 @@ const Navbar: FC = () => {
               <NavLink to="/lap-definition">LAP</NavLink>
             </li>
             <li>
-              {isDoctor ? (
-                <NavLink to="/my-patients">My patients</NavLink>
-              ) : (
-                <NavLink to="/my-medical-record">My Medical Record</NavLink>
-              )}
+              <NavLink to="/my-medical-record">Medical Record</NavLink>
             </li>
-            <li>
-              <NavLink to="/log-in">Login</NavLink>
-            </li>
+            {isDoctor && (
+              <li>
+                <NavLink to="/my-patients">Patients</NavLink>
+              </li>
+            )}
+            {userId ? (
+              <li onClick={() => handleLogOut()}>
+                <NavLink to="/log-in">Logout</NavLink>
+              </li>
+            ) : (
+              <li>
+                <NavLink to="/log-in">Login</NavLink>
+              </li>
+            )}
             <li>
               <NavLink to="/sign-in">Register</NavLink>
             </li>

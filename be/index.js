@@ -22,9 +22,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const app = express();
 const port = 3000;
-const corsOptions = {credentials:true, origin: process.env.URL || '*'};
 
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(json());
 app.use(cookieParser());
 
