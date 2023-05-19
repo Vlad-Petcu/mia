@@ -17,6 +17,7 @@ const EGSIRDDefinition: FC = () => {
     useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [resultMessage, setResultMessage] = useState<string>("");
+  const userId = localStorage.getItem("userId");
 
   const isFormValid = () => {
     if (gender.length === 0) {
@@ -90,7 +91,7 @@ const EGSIRDDefinition: FC = () => {
       triglycerideLevel,
       impairedFastingGlucose,
       result,
-      userId: 0,
+      userId,
     });
   };
 
@@ -102,12 +103,16 @@ const EGSIRDDefinition: FC = () => {
       setResultMessage(
         'According to the "EGSIRD Definition" your results suggests that you may be diagnosed with metabolic syndrome'
       );
-      createEGSIRDDefinition(true);
+      if (userId) {
+        createEGSIRDDefinition(true);
+      }
     } else {
       setResultMessage(
         'According to the "EGSIRD Definition" your results suggests that you are not in danger to be diagnosed with metabolic syndrome'
       );
-      createEGSIRDDefinition(false);
+      if (userId) {
+        createEGSIRDDefinition(false);
+      }
     }
   };
 

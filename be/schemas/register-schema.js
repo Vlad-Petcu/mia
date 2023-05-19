@@ -1,4 +1,4 @@
-const UserSchema = {
+const RegisterSchema = {
   type: "object",
   required: [
     "firstName",
@@ -50,4 +50,4 @@ const UserSchema = {
   },
 };
 
-export default UserSchema;
+export default RegisterSchema;

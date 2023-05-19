@@ -32,7 +32,7 @@ const jsonParser = bodyParser.json();
  *      400:
  *        description: Bad request
  */
-router.post("/sdms", authenticateToken, jsonParser, createSDMSDefinition);
+router.post("/", authenticateToken, jsonParser, createSDMSDefinition);
 
 /**
  * @openapi
@@ -58,6 +58,6 @@ router.post("/sdms", authenticateToken, jsonParser, createSDMSDefinition);
  *       404:
  *         description: This user does not have data for this definition
  */
-router.get("/sdms/:id", authenticateToken, jsonParser, createSDMSDefinition);
+router.get("/:id", authenticateToken, jsonParser, createSDMSDefinition);
 
 export default router;

@@ -32,7 +32,7 @@ const jsonParser = bodyParser.json();
  *      400:
  *        description: Bad request
  */
-router.post("/lap", authenticateToken, jsonParser, createLAPDefinition);
+router.post("/", authenticateToken, jsonParser, createLAPDefinition);
 
 /**
  * @openapi
@@ -58,6 +58,6 @@ router.post("/lap", authenticateToken, jsonParser, createLAPDefinition);
  *       404:
  *         description: This user does not have data for this definition
  */
-router.get("/lap/:id", authenticateToken, jsonParser, getLAPByUserId);
+router.get("/:id", authenticateToken, jsonParser, getLAPByUserId);
 
 export default router;

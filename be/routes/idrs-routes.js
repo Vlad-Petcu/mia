@@ -32,7 +32,7 @@ const jsonParser = bodyParser.json();
  *      400:
  *        description: Bad request
  */
-router.post("/idrs", authenticateToken, jsonParser, createIDRSDefinition);
+router.post("/", authenticateToken, jsonParser, createIDRSDefinition);
 
 /**
  * @openapi
@@ -58,6 +58,6 @@ router.post("/idrs", authenticateToken, jsonParser, createIDRSDefinition);
  *       404:
  *         description: This user does not have data for this definition
  */
-router.get("/idrs/:id", authenticateToken, jsonParser, getIDRSByUserId);
+router.get("/:id", authenticateToken, jsonParser, getIDRSByUserId);
 
 export default router;

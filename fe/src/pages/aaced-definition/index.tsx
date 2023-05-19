@@ -19,6 +19,7 @@ const AACEDDefinition: FC = () => {
   const [endothelialDysfunction, setEndothelialDysfunction] =
     useState<boolean>(false);
   const [resultMessage, setResultMessage] = useState<string>("");
+  const userId = localStorage.getItem("userId");
 
   const isPatientDiagnosed = () => {
     let overLimitResultCounter = 0;
@@ -59,7 +60,7 @@ const AACEDDefinition: FC = () => {
       prothromboticFactors,
       markersOfInflammation,
       endothelialDysfunction,
-      userId: 0,
+      userId,
       result,
     });
   };
@@ -69,12 +70,16 @@ const AACEDDefinition: FC = () => {
       setResultMessage(
         'According to the "AACED Definition" your results suggests that you may be diagnosed with metabolic syndrome.'
       );
-      createAAACEDDefinition(true);
+      if (userId) {
+        createAAACEDDefinition(true);
+      }
     } else {
       setResultMessage(
         'According to the "AACED Definition" your results suggests that you are not in danger to be diagnosed with metabolic syndrome.'
       );
-      createAAACEDDefinition(false);
+      if (userId) {
+        createAAACEDDefinition(false);
+      }
     }
   };
 

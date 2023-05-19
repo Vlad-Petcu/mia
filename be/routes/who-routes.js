@@ -32,7 +32,7 @@ const jsonParser = bodyParser.json();
  *      400:
  *        description: Bad request
  */
-router.post("/who", authenticateToken, jsonParser, createWHODefinition);
+router.post("/", authenticateToken, jsonParser, createWHODefinition);
 
 /**
  * @openapi
@@ -58,6 +58,6 @@ router.post("/who", authenticateToken, jsonParser, createWHODefinition);
  *       404:
  *         description: This user does not have data for this definition
  */
-router.get("/who/:id", authenticateToken, jsonParser, getWHOByUserId);
+router.get("/:id", authenticateToken, jsonParser, getWHOByUserId);
 
 export default router;

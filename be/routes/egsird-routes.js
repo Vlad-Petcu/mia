@@ -33,7 +33,7 @@ const jsonParser = bodyParser.json();
  *      400:
  *        description: Bad request
  */
-router.post("/egsird", authenticateToken, jsonParser, createEGSIRDDefinition);
+router.post("/", authenticateToken, jsonParser, createEGSIRDDefinition);
 
 /**
  * @openapi
@@ -59,6 +59,6 @@ router.post("/egsird", authenticateToken, jsonParser, createEGSIRDDefinition);
  *       404:
  *         description: This user does not have data for this definition
  */
-router.get("/egsird/:id", authenticateToken, jsonParser, getEGSIRDByUserId);
+router.get("/:id", authenticateToken, jsonParser, getEGSIRDByUserId);
 
 export default router;

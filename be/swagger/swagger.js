@@ -1,6 +1,7 @@
 import swaggerUI from "swagger-ui-express";
 import swaggerJsDoc from "swagger-jsdoc";
-import UserSchema from "../schemas/user-schema.js";
+import RegisterSchema from "../schemas/register-schema.js";
+import LoginSchema from "../schemas/login-schema.js";
 import AACEDSchema from "../schemas/aaced-schema.js";
 import WHOSchema from "../schemas/who-defeinition.js";
 import EGSIRDSchema from "../schemas/egsird-schema.js";
@@ -9,7 +10,6 @@ import IDFGCDSchema from "../schemas/idfgcd-schema.js";
 import SDMSSchema from "../schemas/sdms-schema.js";
 import IDRSSchema from "../schemas/idrs-schema.js";
 import LAPSchema from "../schemas/lap-schema.js";
-import AuthSchema from "../schemas/auth-schema.js";
 
 const options = {
   definition: {
@@ -26,7 +26,8 @@ const options = {
         },
       },
       schemas: {
-        User: UserSchema,
+        Register: RegisterSchema,
+        Login: LoginSchema,
         AACED: AACEDSchema,
         WHO: WHOSchema,
         EGSIRD: EGSIRDSchema,
@@ -35,7 +36,6 @@ const options = {
         SDMS: SDMSSchema,
         IDRS: IDRSSchema,
         LAP: LAPSchema,
-        AUTH: AuthSchema,
       },
     },
     security: [
@@ -45,7 +45,8 @@ const options = {
     ],
   },
   apis: [
-    "./routes/user-routes.js",
+    "./routes/register-routes.js",
+    "./routes/login-routes.js",
     "./routes/aaced-routes.js",
     "./routes/egsird-routes.js",
     "./routes/idfgcd-routes.js",
@@ -54,7 +55,6 @@ const options = {
     "./routes/ncepatpiii-routes.js",
     "./routes/sdms-routes.js",
     "./routes/who-routes.js",
-    "./routes/auth-routes.js",
   ],
 };
 

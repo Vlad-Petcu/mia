@@ -1,4 +1,4 @@
-const AuthSchema = {
+const LoginSchema = {
     type: "object",
     required: ["email", "password"],
     properties: {
@@ -17,4 +17,4 @@ const AuthSchema = {
     },
   };
 
-  export default AuthSchema;
+  export default LoginSchema;

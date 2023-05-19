@@ -32,7 +32,7 @@ const jsonParser = bodyParser.json();
  *      400:
  *        description: Bad request
  */
-router.post("/idfgcd", authenticateToken, jsonParser, createIDFGCDDefinition);
+router.post("/", authenticateToken, jsonParser, createIDFGCDDefinition);
 
 /**
  * @openapi
@@ -58,6 +58,6 @@ router.post("/idfgcd", authenticateToken, jsonParser, createIDFGCDDefinition);
  *       404:
  *         description: This user does not have data for this definition
  */
-router.get("/idfgcd/:id", authenticateToken, jsonParser, getIDFGCDByUserId);
+router.get("/:id", authenticateToken, jsonParser, getIDFGCDByUserId);
 
 export default router;

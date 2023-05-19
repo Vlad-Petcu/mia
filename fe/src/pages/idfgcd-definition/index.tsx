@@ -17,6 +17,7 @@ const IDFGDCDefinition: FC = () => {
   const [FPG, setFPG] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [resultMessage, setResultMessage] = useState<string>("");
+  const userId = localStorage.getItem("userId");
 
   const isFormValid = () => {
     if (gender.length === 0) {
@@ -94,7 +95,7 @@ const IDFGDCDefinition: FC = () => {
       diastolicTension,
       FPG,
       result,
-      userId: 0,
+      userId,
     });
   };
 
@@ -106,12 +107,16 @@ const IDFGDCDefinition: FC = () => {
       setResultMessage(
         'According to the "IDFGCD Definition" your results suggests that you may be diagnosed with metabolic syndrome.'
       );
-      createIDFGCDDefinition(true);
+      if (userId) {
+        createIDFGCDDefinition(true);
+      }
     } else {
       setResultMessage(
         'According to the "IDFGCD Definition" your results suggests that you are not in danger to be diagnosed with metabolic syndrome.'
       );
-      createIDFGCDDefinition(false);
+      if (userId) {
+        createIDFGCDDefinition(false);
+      }
     }
   };
 

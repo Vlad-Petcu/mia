@@ -11,6 +11,7 @@ const SDMSDefinition: FC = () => {
   const [waistCircumference, setWaistCircumference] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [resultMessage, setResultMessage] = useState<string>("");
+  const userId = localStorage.getItem("userId");
 
   const isFormValid = () => {
     if (height.length === 0) {
@@ -38,7 +39,7 @@ const SDMSDefinition: FC = () => {
       height,
       waistCircumference,
       result,
-      userId: 0,
+      userId,
     });
   };
 
@@ -50,12 +51,16 @@ const SDMSDefinition: FC = () => {
       setResultMessage(
         'According to the "SDMS Definition" your results suggests that you may be diagnosed with metabolic syndrome.'
       );
-      createSDMSDefinition(true);
+      if (userId) {
+        createSDMSDefinition(true);
+      }
     } else {
       setResultMessage(
         'According to the "SDMS Definition" your results suggests that you are not in danger to be diagnosed with metabolic syndrome.'
       );
-      createSDMSDefinition(false);
+      if (userId) {
+        createSDMSDefinition(false);
+      }
     }
   };
 

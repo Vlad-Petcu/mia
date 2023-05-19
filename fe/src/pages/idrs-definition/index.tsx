@@ -14,6 +14,7 @@ const IDRSDefinition: FC = () => {
   const [familyHistory, setFamilyHistory] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [resultMessage, setResultMessage] = useState<string>("");
+  const userId = localStorage.getItem("userId");
 
   const isFormValid = () => {
     if (gender.length === 0) {
@@ -95,7 +96,7 @@ const IDRSDefinition: FC = () => {
       physicalActivity,
       familyHistory,
       result,
-      userId: 0,
+      userId,
     });
   };
 
@@ -107,12 +108,16 @@ const IDRSDefinition: FC = () => {
       setResultMessage(
         'According to the "IDRS Definition" your results suggests that you may be diagnosed with metabolic syndrome.'
       );
-      createIDRSDefinition(true);
+      if (userId) {
+        createIDRSDefinition(true);
+      }
     } else {
       setResultMessage(
         'According to the "IDRS Definition" your results suggests that you are not in danger to be diagnosed with metabolic syndrome.'
       );
-      createIDRSDefinition(false);
+      if (userId) {
+        createIDRSDefinition(false);
+      }
     }
   };
 

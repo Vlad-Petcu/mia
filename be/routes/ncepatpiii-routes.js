@@ -33,7 +33,7 @@ const jsonParser = bodyParser.json();
  *        description: Bad request
  */
 router.post(
-  "/ncepatpiii",
+  "/",
   authenticateToken,
   jsonParser,
   createNCEPATPIIIDefinition
@@ -64,7 +64,7 @@ router.post(
  *         description: This user does not have data for this definition
  */
 router.get(
-  "/ncepatpiii/:id",
+  "/:id",
   authenticateToken,
   jsonParser,
   getNCEPATPIIIByUserId

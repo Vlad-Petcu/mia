@@ -8,8 +8,6 @@ import styles from "./index.module.scss";
 
 const Home: FC = () => {
 
-
-
   return (
     <>
       <Header />

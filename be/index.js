@@ -1,11 +1,12 @@
 import express, { json } from "express";
 import cors from "cors";
-import { dirname,join } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname, join } from "path";
+import { fileURLToPath } from "url";
 import swaggerDocs from "../be/swagger/swagger.js";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
-import authRouter from './routes/auth-routes.js';
+import registerRouter from "./routes/register-routes.js";
+import loginRouter from "./routes/login-routes.js";
 import usersRouter from "./routes/user-routes.js";
 import aacedRouter from "./routes/aaced-routes.js";
 import egsirdRouter from "./routes/egsird-routes.js";
@@ -14,7 +15,7 @@ import idrsRouter from "./routes/idrs-routes.js";
 import lapRouter from "./routes/lap-routes.js";
 import ncepatpiiiRouter from "./routes/ncepatpiii-routes.js";
 import sdmsRouter from "./routes/sdms-routes.js";
-import whoRouter from "./routes/who-routes.js"
+import whoRouter from "./routes/who-routes.js";
 
 dotenv.config();
 
@@ -37,8 +38,9 @@ app.get("/", (response) => {
   response.json({ info: "Welcome to MIA API" });
 });
 
-app.use('/', express.static(join(__dirname, 'public')))
-app.use('/login',authRouter);
+app.use("/", express.static(join(__dirname, "public")));
+app.use("/register", registerRouter);
+app.use("/login", loginRouter);
 app.use("/users", usersRouter);
 app.use("/AACED", aacedRouter);
 app.use("/EGSIRD", egsirdRouter);

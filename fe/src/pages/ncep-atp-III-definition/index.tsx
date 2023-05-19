@@ -16,6 +16,7 @@ const NCEPATPIIIDefinition: FC = () => {
   const [fastingGlucose, setFastingGlucose] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [resultMessage, setResultMessage] = useState<string>("");
+  const userId = localStorage.getItem("userId");
 
   const isFormValid = () => {
     if (gender.length === 0) {
@@ -98,7 +99,7 @@ const NCEPATPIIIDefinition: FC = () => {
       diastolicTension,
       fastingGlucose,
       result,
-      userId: 0,
+      userId,
     });
   };
 
@@ -111,12 +112,16 @@ const NCEPATPIIIDefinition: FC = () => {
       setResultMessage(
         'According to the "WHO Definition" your results suggests that you may be diagnosed with metabolic syndrome.'
       );
-      createNCEPATPIIIDefinition(true);
+      if (userId) {
+        createNCEPATPIIIDefinition(true);
+      }
     } else {
       setResultMessage(
         'According to the "WHO Definition" your results suggests that you are not in danger to be diagnosed with metabolic syndrome.'
       );
-      createNCEPATPIIIDefinition(false);
+      if (userId) {
+        createNCEPATPIIIDefinition(false);
+      }
     }
   };
 
