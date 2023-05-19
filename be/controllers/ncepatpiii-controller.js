@@ -39,7 +39,7 @@ export const getNCEPATPIIIByUserId = (request, response) => {
   const id = parseInt(request.params.id);
 
   pool.query(
-    "SELECT * FROM ncep_atp_iii_definition WHERE user_Id = $1",
+    "SELECT * FROM ncep_atp_iii_definition WHERE user_Id = $1 ORDER BY id ASC",
     [id],
     (error, results) => {
       if (error) {

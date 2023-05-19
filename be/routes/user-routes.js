@@ -1,6 +1,9 @@
 import express from "express";
 
-import { getDoctorUsers } from "../controllers/user-controller.js";
+import {
+  getDoctorUsers,
+  getPatientsByDoctorId,
+} from "../controllers/user-controller.js";
 
 const router = express.Router();
 
@@ -11,11 +14,32 @@ const router = express.Router();
  *     tags:
  *     - User
  *     summary: Get all users who are doctors
- *     description: Returns all users who are doctors in the app
+ *     description: Get all users who are doctors
  *     responses:
  *       200:
  *         description: Success
  */
 router.get("/doctors", getDoctorUsers);
+
+/**
+ * @openapi
+ * /user/patients/{id}:
+ *  get:
+ *     tags:
+ *     - User
+ *     parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: integer
+ *        required: true
+ *        description: The user id which you want to get the data
+ *     summary: Get all patients for specific doctor
+ *     description: Get all patients for specific doctor
+ *     responses:
+ *       200:
+ *         description: Success
+ */
+router.get("/patients/:id", getPatientsByDoctorId);
 
 export default router;

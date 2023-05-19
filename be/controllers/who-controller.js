@@ -47,7 +47,7 @@ export const createWHODefinition = (request, response) => {
     const id = parseInt(request.params.id);
   
     pool.query(
-      "SELECT * FROM who_definition WHERE user_Id = $1",
+      "SELECT * FROM who_definition WHERE user_Id = $1 ORDER BY id ASC",
       [id],
       (error, results) => {
         if (error) {

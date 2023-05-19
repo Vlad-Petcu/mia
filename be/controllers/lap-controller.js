@@ -20,7 +20,7 @@ export const getLAPByUserId = (request, response) => {
   const id = parseInt(request.params.id);
 
   pool.query(
-    "SELECT * FROM lap_definition WHERE user_Id = $1",
+    "SELECT * FROM lap_definition WHERE user_Id = $1 ORDER BY id ASC",
     [id],
     (error, results) => {
       if (error) {

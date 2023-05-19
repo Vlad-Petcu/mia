@@ -39,7 +39,7 @@ export const getIDFGCDByUserId = (request, response) => {
   const id = parseInt(request.params.id);
 
   pool.query(
-    "SELECT * FROM idfgcd_definition WHERE user_Id = $1",
+    "SELECT * FROM idfgcd_definition WHERE user_Id = $1 ORDER BY id ASC",
     [id],
     (error, results) => {
       if (error) {

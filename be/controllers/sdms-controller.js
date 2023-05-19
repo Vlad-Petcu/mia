@@ -19,7 +19,7 @@ export const getSDMSByUserId = (request, response) => {
   const id = parseInt(request.params.id);
 
   pool.query(
-    "SELECT * FROM sdms_definition WHERE user_Id = $1",
+    "SELECT * FROM sdms_definition WHERE user_Id = $1 ORDER BY id ASC",
     [id],
     (error, results) => {
       if (error) {
