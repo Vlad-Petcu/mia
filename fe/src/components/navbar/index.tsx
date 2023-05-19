@@ -61,10 +61,12 @@ const Navbar: FC = () => {
             <li>
               <NavLink to="/lap-definition">LAP</NavLink>
             </li>
-            <li>
-              <NavLink to="/my-medical-record">Medical Record</NavLink>
-            </li>
-            {isDoctor && (
+            {userId && (
+              <li>
+                <NavLink to="/my-medical-record">Medical Record</NavLink>
+              </li>
+            )}
+            {isDoctor === "true" && (
               <li>
                 <NavLink to="/my-patients">Patients</NavLink>
               </li>

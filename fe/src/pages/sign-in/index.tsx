@@ -60,7 +60,7 @@ const SignIn: FC = () => {
   };
 
   const createNewUser = async () => {
-    const response = await axios.post("http://localhost:3000/users", {
+    const response = await axios.post("http://localhost:3000/register", {
       isDoctor,
       doctorId: isDoctor ? null : doctorId,
       gender,
@@ -82,7 +82,7 @@ const SignIn: FC = () => {
   };
 
   const getAllDoctorUsers = async () => {
-    const response = await axios.get("http://localhost:3000/users/doctors");
+    const response = await axios.get("http://localhost:3000/user/doctors");
     const doctorUsers: Array<User> = response.data;
     const responseDoctorUsersOptions: Array<SelectOption> = doctorUsers.map(
       (doctorUser) => {

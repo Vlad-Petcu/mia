@@ -7,7 +7,7 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import registerRouter from "./routes/register-routes.js";
 import loginRouter from "./routes/login-routes.js";
-import usersRouter from "./routes/user-routes.js";
+import userRouter from "./routes/user-routes.js";
 import aacedRouter from "./routes/aaced-routes.js";
 import egsirdRouter from "./routes/egsird-routes.js";
 import idfgcdRouter from "./routes/idfgcd-routes.js";
@@ -41,7 +41,7 @@ app.get("/", (response) => {
 app.use("/", express.static(join(__dirname, "public")));
 app.use("/register", registerRouter);
 app.use("/login", loginRouter);
-app.use("/users", usersRouter);
+app.use("/user", userRouter);
 app.use("/AACED", aacedRouter);
 app.use("/EGSIRD", egsirdRouter);
 app.use("/IDFGCD", idfgcdRouter);

@@ -5,7 +5,6 @@ import {
   createIDFGCDDefinition,
   getIDFGCDByUserId,
 } from "../controllers/idfgcd-controller.js";
-import { authenticateToken } from "../middleware/authorization.js";
 
 const router = express.Router();
 const jsonParser = bodyParser.json();
@@ -32,7 +31,7 @@ const jsonParser = bodyParser.json();
  *      400:
  *        description: Bad request
  */
-router.post("/", authenticateToken, jsonParser, createIDFGCDDefinition);
+router.post("/", jsonParser, createIDFGCDDefinition);
 
 /**
  * @openapi
@@ -58,6 +57,6 @@ router.post("/", authenticateToken, jsonParser, createIDFGCDDefinition);
  *       404:
  *         description: This user does not have data for this definition
  */
-router.get("/:id", authenticateToken, jsonParser, getIDFGCDByUserId);
+router.get("/:id", jsonParser, getIDFGCDByUserId);
 
 export default router;

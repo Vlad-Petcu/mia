@@ -5,8 +5,6 @@ import {
   getAACEDByUserId,
 } from "../controllers/aaced-controller.js";
 
-import { authenticateToken } from "../middleware/authorization.js";
-
 const router = express.Router();
 const jsonParser = bodyParser.json();
 
@@ -32,7 +30,7 @@ const jsonParser = bodyParser.json();
  *      400:
  *        description: Bad request
  */
-router.post("/", authenticateToken, jsonParser, createAACEDDefinition);
+router.post("/", jsonParser, createAACEDDefinition);
 
 /**
  * @openapi
@@ -58,6 +56,6 @@ router.post("/", authenticateToken, jsonParser, createAACEDDefinition);
  *       404:
  *         description: This user does not have data for this definition
  */
-router.get("/:id", authenticateToken, jsonParser, getAACEDByUserId);
+router.get("/:id", jsonParser, getAACEDByUserId);
 
 export default router;

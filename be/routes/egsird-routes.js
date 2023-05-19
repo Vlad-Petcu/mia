@@ -6,8 +6,6 @@ import {
   getEGSIRDByUserId,
 } from "../controllers/egsird-controller.js";
 
-import { authenticateToken } from "../middleware/authorization.js";
-
 const router = express.Router();
 const jsonParser = bodyParser.json();
 
@@ -33,7 +31,7 @@ const jsonParser = bodyParser.json();
  *      400:
  *        description: Bad request
  */
-router.post("/", authenticateToken, jsonParser, createEGSIRDDefinition);
+router.post("/", jsonParser, createEGSIRDDefinition);
 
 /**
  * @openapi
@@ -59,6 +57,6 @@ router.post("/", authenticateToken, jsonParser, createEGSIRDDefinition);
  *       404:
  *         description: This user does not have data for this definition
  */
-router.get("/:id", authenticateToken, jsonParser, getEGSIRDByUserId);
+router.get("/:id", jsonParser, getEGSIRDByUserId);
 
 export default router;

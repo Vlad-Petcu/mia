@@ -47,6 +47,7 @@ const options = {
   apis: [
     "./routes/register-routes.js",
     "./routes/login-routes.js",
+    "./routes/user-routes.js",
     "./routes/aaced-routes.js",
     "./routes/egsird-routes.js",
     "./routes/idfgcd-routes.js",

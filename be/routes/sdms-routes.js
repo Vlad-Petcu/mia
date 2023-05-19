@@ -5,7 +5,6 @@ import {
   createSDMSDefinition,
   getSDMSByUserId,
 } from "../controllers/sdms-controller.js";
-import { authenticateToken } from "../middleware/authorization.js";
 
 const router = express.Router();
 const jsonParser = bodyParser.json();
@@ -32,7 +31,7 @@ const jsonParser = bodyParser.json();
  *      400:
  *        description: Bad request
  */
-router.post("/", authenticateToken, jsonParser, createSDMSDefinition);
+router.post("/", jsonParser, createSDMSDefinition);
 
 /**
  * @openapi
@@ -58,6 +57,6 @@ router.post("/", authenticateToken, jsonParser, createSDMSDefinition);
  *       404:
  *         description: This user does not have data for this definition
  */
-router.get("/:id", authenticateToken, jsonParser, createSDMSDefinition);
+router.get("/:id", jsonParser, getSDMSByUserId);
 
 export default router;

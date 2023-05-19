@@ -8,12 +8,12 @@ const jsonParser = bodyParser.json();
 
 /**
  * @openapi
- * /users:
+ * /register:
  *  post:
  *     tags:
  *     - Register
- *     summary: Register a user
- *     description: A new user will be added to the database
+ *     summary: Register a new user account
+ *     description: Register a new user account
  *     requestBody:
  *      required: true
  *      content:

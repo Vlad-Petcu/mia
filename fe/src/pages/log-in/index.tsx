@@ -40,7 +40,7 @@ const LogIn: FC = () => {
       const user: any = jwt_decode(response.data.accessToken);
       localStorage.setItem("userId", user.id);
       localStorage.setItem("userEmail", user.email);
-      localStorage.setItem("isDoctor", user.isDoctor);
+      localStorage.setItem("isDoctor", user.is_doctor);
       navigate("/");
     } catch (e: any) {
       setErrorMessage(e.response.data.error);
