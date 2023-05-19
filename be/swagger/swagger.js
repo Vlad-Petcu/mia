@@ -9,6 +9,7 @@ import IDFGCDSchema from "../schemas/idfgcd-schema.js";
 import SDMSSchema from "../schemas/sdms-schema.js";
 import IDRSSchema from "../schemas/idrs-schema.js";
 import LAPSchema from "../schemas/lap-schema.js";
+import AuthSchema from "../schemas/auth-schema.js";
 
 const options = {
   definition: {
@@ -34,6 +35,7 @@ const options = {
         SDMS: SDMSSchema,
         IDRS: IDRSSchema,
         LAP: LAPSchema,
+        AUTH: AuthSchema,
       },
     },
     security: [
@@ -52,6 +54,7 @@ const options = {
     "./routes/ncepatpiii-routes.js",
     "./routes/sdms-routes.js",
     "./routes/who-routes.js",
+    "./routes/auth-routes.js",
   ],
 };
 

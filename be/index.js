@@ -4,8 +4,8 @@ import { dirname,join } from 'path';
 import { fileURLToPath } from 'url';
 import swaggerDocs from "../be/swagger/swagger.js";
 import dotenv from "dotenv";
-// import cookieParser from "cookie-parser";
-// import authRouter from './routes/auth-routes.js';
+import cookieParser from "cookie-parser";
+import authRouter from './routes/auth-routes.js';
 import usersRouter from "./routes/user-routes.js";
 import aacedRouter from "./routes/aaced-routes.js";
 import egsirdRouter from "./routes/egsird-routes.js";
@@ -22,9 +22,11 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const app = express();
 const port = 3000;
+const corsOptions = {credentials:true, origin: process.env.URL || '*'};
 
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(json());
+app.use(cookieParser());
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`);
@@ -37,7 +39,7 @@ app.get("/", (response) => {
 });
 
 app.use('/', express.static(join(__dirname, 'public')))
-// app.use('/api/auth',authRouter);
+app.use('/login',authRouter);
 app.use("/users", usersRouter);
 app.use("/AACED", aacedRouter);
 app.use("/EGSIRD", egsirdRouter);

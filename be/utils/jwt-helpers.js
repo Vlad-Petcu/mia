@@ -1,5 +1,4 @@
-// import jwt from 'jsonwebtoken';
-const jwt = require("jsonwebtoken");
+import jwt from 'jsonwebtoken';
 
 //Generate an access token and a refresh token for this database user
 function jwtTokens({ user_id, user_name, user_email }) {
