@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import {
   createIDFGCDDefinition,
   getIDFGCDByUserId,
+  deleteIDFGCDById,
 } from "../controllers/idfgcd-controller.js";
 
 const router = express.Router();
@@ -58,5 +59,32 @@ router.post("/", jsonParser, createIDFGCDDefinition);
  *         description: This user does not have data for this definition
  */
 router.get("/:id", jsonParser, getIDFGCDByUserId);
+
+/**
+ * @openapi
+ * /idfgcd/{id}:
+ *   delete:
+ *     summary: Delete definition result by id
+ *     tags: 
+ *      - IDFGCD
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: The definition id
+ *     responses:
+ *       200:
+ *         description: The definition description by id
+ *         contents:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/IDFGCD'
+ *       404:
+ *         description: The user was not found
+ */
+
+router.delete("/:id", jsonParser, deleteIDFGCDById);
 
 export default router;

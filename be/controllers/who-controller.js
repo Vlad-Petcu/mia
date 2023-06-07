@@ -57,5 +57,16 @@ export const createWHODefinition = (request, response) => {
       }
     );
   };
+
+  export const deleteWHOById = (request, response) => {
+    const id = parseInt(request.params.id)
+  
+    pool.query('DELETE FROM who_definition WHERE id = $1', [id], (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).send(`Definition deleted with ID: ${id}`)
+    })
+  };
   
   

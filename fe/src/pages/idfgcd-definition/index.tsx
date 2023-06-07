@@ -95,6 +95,7 @@ const IDFGDCDefinition: FC = () => {
       diastolicTension,
       FPG,
       result,
+      resultDate: new Date(),
       userId,
     });
   };

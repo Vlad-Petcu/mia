@@ -91,6 +91,7 @@ const EGSIRDDefinition: FC = () => {
       triglycerideLevel,
       impairedFastingGlucose,
       result,
+      resultDate: new Date(),
       userId,
     });
   };

@@ -113,6 +113,7 @@ const WHODefinition: FC = () => {
       albumin,
       creatine,
       result,
+      resultDate: new Date(),
       userId,
     });
   };

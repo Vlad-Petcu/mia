@@ -96,6 +96,7 @@ const IDRSDefinition: FC = () => {
       physicalActivity,
       familyHistory,
       result,
+      resultDate: new Date(),
       userId,
     });
   };

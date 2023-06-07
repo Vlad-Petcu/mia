@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import {
   createAACEDDefinition,
   getAACEDByUserId,
+  deleteAACEDById
 } from "../controllers/aaced-controller.js";
 
 const router = express.Router();
@@ -57,5 +58,32 @@ router.post("/", jsonParser, createAACEDDefinition);
  *         description: This user does not have data for this definition
  */
 router.get("/:id", jsonParser, getAACEDByUserId);
+
+/**
+ * @openapi
+ * /aaced/{id}:
+ *   delete:
+ *     summary: Delete definition result by id
+ *     tags: 
+ *      - AACED
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: The definition id
+ *     responses:
+ *       200:
+ *         description: The definition description by id
+ *         contents:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/AACED'
+ *       404:
+ *         description: The user was not found
+ */
+
+router.delete("/:id", jsonParser, deleteAACEDById);
 
 export default router;

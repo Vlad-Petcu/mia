@@ -39,6 +39,7 @@ const SDMSDefinition: FC = () => {
       height,
       waistCircumference,
       result,
+      resultDate: new Date(),
       userId,
     });
   };

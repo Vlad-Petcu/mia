@@ -99,6 +99,7 @@ const NCEPATPIIIDefinition: FC = () => {
       diastolicTension,
       fastingGlucose,
       result,
+      resultDate: new Date(),
       userId,
     });
   };

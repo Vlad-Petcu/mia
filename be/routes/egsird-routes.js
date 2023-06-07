@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import {
   createEGSIRDDefinition,
   getEGSIRDByUserId,
+  deleteEGSIRDById,
 } from "../controllers/egsird-controller.js";
 
 const router = express.Router();
@@ -58,5 +59,32 @@ router.post("/", jsonParser, createEGSIRDDefinition);
  *         description: This user does not have data for this definition
  */
 router.get("/:id", jsonParser, getEGSIRDByUserId);
+
+/**
+ * @openapi
+ * /egsird/{id}:
+ *   delete:
+ *     summary: Delete definition result by id
+ *     tags: 
+ *      - EGSIRD
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: The definition id
+ *     responses:
+ *       200:
+ *         description: The definition description by id
+ *         contents:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/EGSIRD'
+ *       404:
+ *         description: The user was not found
+ */
+
+router.delete("/:id", jsonParser, deleteEGSIRDById);
 
 export default router;

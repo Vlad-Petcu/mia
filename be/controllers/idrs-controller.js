@@ -45,3 +45,15 @@ export const createIDRSDefinition = (request, response) => {
       }
     );
   };
+
+  export const deleteIDRSById = (request, response) => {
+    const id = parseInt(request.params.id)
+  
+    pool.query('DELETE FROM idrs_definition WHERE id = $1', [id], (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).send(`Definition deleted with ID: ${id}`)
+    })
+  };
+  

@@ -54,6 +54,7 @@ const LAPDefinition: FC = () => {
       triglycerideLevel,
       waistCircumference,
       result,
+      resultDate: new Date(),
       userId,
     });
   };

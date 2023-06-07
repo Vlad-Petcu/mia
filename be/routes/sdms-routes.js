@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import {
   createSDMSDefinition,
   getSDMSByUserId,
+  deleteSDMSById,
 } from "../controllers/sdms-controller.js";
 
 const router = express.Router();
@@ -58,5 +59,32 @@ router.post("/", jsonParser, createSDMSDefinition);
  *         description: This user does not have data for this definition
  */
 router.get("/:id", jsonParser, getSDMSByUserId);
+
+/**
+ * @openapi
+ * /sdms/{id}:
+ *   delete:
+ *     summary: Delete definition result by id
+ *     tags:
+ *      - SDMS
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: The definition id
+ *     responses:
+ *       200:
+ *         description: The definition description by id
+ *         contents:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/SDMS'
+ *       404:
+ *         description: The user was not found
+ */
+
+router.delete("/:id", jsonParser, deleteSDMSById);
 
 export default router;

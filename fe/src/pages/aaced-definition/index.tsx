@@ -60,8 +60,9 @@ const AACEDDefinition: FC = () => {
       prothromboticFactors,
       markersOfInflammation,
       endothelialDysfunction,
-      userId,
       result,
+      resultDate: new Date(),
+      userId,
     });
   };
 
