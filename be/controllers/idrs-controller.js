@@ -9,10 +9,11 @@ export const createIDRSDefinition = (request, response) => {
       familyHistory,
       userId,
       result,
+      resultDate
     } = request.body;
   
     pool.query(
-      "INSERT INTO idrs_definition (gender, age, waist_circumference, physical_activity, family_history, user_id, result) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *",
+      "INSERT INTO idrs_definition (gender, age, waist_circumference, physical_activity, family_history, user_id, result) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",
       [
         gender,
         age,
@@ -21,6 +22,7 @@ export const createIDRSDefinition = (request, response) => {
         familyHistory,
         userId,
         result,
+        resultDate
       ],
       (error, results) => {
         if (error) {

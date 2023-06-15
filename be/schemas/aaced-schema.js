@@ -10,6 +10,7 @@ const AACEDSchema = {
     "endothelialDysfunction",
     "userId",
     "result",
+    "resultDate"
   ],
   properties: {
     glucoseIntolerance: {
@@ -38,7 +39,10 @@ const AACEDSchema = {
     },
     result: {
         type: "boolean",
-      },
+    },
+    resultDate: {
+      type: "string",
+  },
   },
   example: {
     glucoseIntolerance: true,
@@ -50,6 +54,7 @@ const AACEDSchema = {
     endothelialDysfunction: true,
     userId: 0,
     result: true,
+    resultDate: "2023-06-01 16:03:35.284+03",
   },
 };
 

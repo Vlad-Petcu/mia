@@ -11,10 +11,11 @@ export const createIDFGCDDefinition = (request, response) => {
     FPG,
     userId,
     result,
+    resultDate
   } = request.body;
 
   pool.query(
-    "INSERT INTO idfgcd_definition (gender, location, tryglycerides, hdlc, systolic_tension, diastolic_tension, fpg, user_id, result) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *",
+    "INSERT INTO idfgcd_definition (gender, location, tryglycerides, hdlc, systolic_tension, diastolic_tension, fpg, user_id, result, result_date) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *",
     [
       gender,
       location,
@@ -25,6 +26,7 @@ export const createIDFGCDDefinition = (request, response) => {
       FPG,
       userId,
       result,
+      resultDate
     ],
     (error, results) => {
       if (error) {

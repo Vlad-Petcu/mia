@@ -1,11 +1,11 @@
 import pool from "../config/db.js";
 
 export const createSDMSDefinition = (request, response) => {
-  const { height, waistCircumference, userId, result } = request.body;
+  const { height, waistCircumference, userId, result, resultDate } = request.body;
 
   pool.query(
-    "INSERT INTO sdms_definition (height, waist_circumference, user_id, result) VALUES ($1, $2, $3, $4) RETURNING *",
-    [height, waistCircumference, userId, result],
+    "INSERT INTO sdms_definition (height, waist_circumference, user_id, result) VALUES ($1, $2, $3, $4, $5) RETURNING *",
+    [height, waistCircumference, userId, result, resultDate],
     (error, results) => {
       if (error) {
         throw error;

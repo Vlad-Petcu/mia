@@ -11,6 +11,7 @@ const IDFGCDSchema = {
       "FPG",
       "userId",
       "result",
+      "resultDate",
     ],
     properties: {
       gender: {
@@ -43,6 +44,9 @@ const IDFGCDSchema = {
       result: {
         type: "boolean",
       },
+      resultDate: {
+        type: "string",
+      },
     },
     example: {
       gender: "Male",
@@ -55,6 +59,7 @@ const IDFGCDSchema = {
       FPG: 80,
       userId: 0,
       result: false,
+      resultDate: "2023-06-01 16:03:35.284+03",
     },
   };
   

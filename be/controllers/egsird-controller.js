@@ -11,10 +11,11 @@ export const createEGSIRDDefinition = (request, response) => {
       impairedFastingGlucose,
       userId,
       result,
+      resultDate
     } = request.body;
   
     pool.query(
-      "INSERT INTO egsird_definition (gender, plasma_insulin, waist_circumference, systolic_tension, diastolic_tension, triglyceride_level, impaired_fasting_glucose, user_id, result) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *",
+      "INSERT INTO egsird_definition (gender, plasma_insulin, waist_circumference, systolic_tension, diastolic_tension, triglyceride_level, impaired_fasting_glucose, user_id, result, result_date) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *",
       [
         gender,
         plasmaInsulin,
@@ -25,6 +26,7 @@ export const createEGSIRDDefinition = (request, response) => {
         impairedFastingGlucose,
         userId,
         result,
+        resultDate,
       ],
       (error, results) => {
         if (error) {

@@ -8,6 +8,7 @@ const IDRSSchema = {
       "familyHistory",
       "userId",
       "result",
+      "resultDate"
     ],
     properties: {
       gender: {
@@ -31,6 +32,9 @@ const IDRSSchema = {
       result: {
         type: "boolean",
       },
+      resultDate: {
+        type: "string",
+      },
     },
     example: {
       gender: "Male",
@@ -40,6 +44,7 @@ const IDRSSchema = {
       familyHistory: "2",
       userId: 0,
       result: false,
+      resultDate: "2023-06-01 16:03:35.284+03",
     },
   };
   

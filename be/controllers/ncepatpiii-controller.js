@@ -11,10 +11,11 @@ export const createNCEPATPIIIDefinition = (request, response) => {
     fastingGlucose,
     userId,
     result,
+    resultDate,
   } = request.body;
 
   pool.query(
-    "INSERT INTO ncep_atp_iii_definition (gender, waist_circumference, hypertriglyceridemia, hdlc, systolic_tension, diastolic_tension, fasting_glucose, user_id, result) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *",
+    "INSERT INTO ncep_atp_iii_definition (gender, waist_circumference, hypertriglyceridemia, hdlc, systolic_tension, diastolic_tension, fasting_glucose, user_id, result, resultDate) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *",
     [
       gender,
       waistCircumference,
@@ -25,6 +26,7 @@ export const createNCEPATPIIIDefinition = (request, response) => {
       fastingGlucose,
       userId,
       result,
+      resultDate
     ],
     (error, results) => {
       if (error) {

@@ -1,12 +1,12 @@
 import pool from "../config/db.js";
 
 export const createLAPDefinition = (request, response) => {
-  const { gender, triglycerideLevel, waistCircumference, userId, result } =
+  const { gender, triglycerideLevel, waistCircumference, userId, result, resultDate } =
     request.body;
 
   pool.query(
-    "INSERT INTO lap_definition (gender, triglyceride_level, waist_circumference, user_id, result) VALUES ($1, $2, $3, $4, $5) RETURNING *",
-    [gender, triglycerideLevel, waistCircumference, userId, result],
+    "INSERT INTO lap_definition (gender, triglyceride_level, waist_circumference, user_id, result, resultDate) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
+    [gender, triglycerideLevel, waistCircumference, userId, result, resultDate],
     (error, results) => {
       if (error) {
         throw error;
