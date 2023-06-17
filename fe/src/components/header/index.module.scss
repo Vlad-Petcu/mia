@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
 .header {
-  background: #4299E1;
+  background: #2e5e4e;
   height: 10vh;
   line-height: 10vh;
   font-size: 2rem;
@@ -12,4 +12,36 @@
 .header h1 a {
   color: white;
   text-decoration: none;
+}
+
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 25px;
+  padding-left: 25px;
+}
+
+.logo {
+  height: 50px;
+}
+
+.navBarElement {
+  min-width: fit-content;
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.li {
+  text-decoration: none;
+}
+
+.navElements {
+  display: flex;
+}
+
+.headerBtn {
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 500;
 }
