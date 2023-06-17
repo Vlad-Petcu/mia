@@ -1,69 +1,84 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import Footer from "../../components/footer";
 import Header from "../../components/header";
 import Navbar from "../../components/navbar";
 import styles from "./index.module.scss";
-import { Card, Space } from "antd";
+import { Select } from "antd";
+import AACEDResults from "../../components/aaced-results";
+import EGSIRDResults from "../../components/egsird-results";
+import IDFGCDResults from "../../components/idfgcd-results";
+import IDRSResults from "../../components/idrs-results";
+import LAPResults from "../../components/lap-results";
+import NCEPATPIIIResults from "../../components/ncep-atp-iii-results";
+import SDMSResults from "../../components/sdms-results";
+import WHOResults from "../../components/who-results";
+
+const options = [
+  { label: "AACED", value: "AACED" },
+  { label: "EGSIRD", value: "EGSIRD" },
+  { label: "IDFGCD", value: "IDFGCD" },
+  { label: "IDRS", value: "IDRS" },
+  { label: "LAP", value: "LAP" },
+  { label: "NCEPATPIII", value: "NCEPATPIII" },
+  { label: "SDMS", value: "SDMS" },
+  { label: "WHO", value: "WHO" },
+];
 
 const MyMedicalRecord: FC = () => {
+  const [definition, setDefinition] = useState<string>();
+  const userId = Number(localStorage.getItem("userId"));
+
+  const handleChange = async (value: string) => {
+    switch (value) {
+      case "AACED":
+        setDefinition("AACED");
+        break;
+      case "EGSIRD":
+        setDefinition("EGSIRD");
+        break;
+      case "IDFGCD":
+        setDefinition("IDFGCD");
+        break;
+      case "IDRS":
+        setDefinition("IDRS");
+        break;
+      case "LAP":
+        setDefinition("LAP");
+        break;
+      case "NCEPATPIII":
+        setDefinition("NCEPATPIII");
+        break;
+      case "SDMS":
+        setDefinition("SDMS");
+        break;
+      case "WHO":
+        setDefinition("WHO");
+        break;
+    }
+  };
+
   return (
     <>
       <Header />
       <Navbar />
       <div className={styles.contentContainer}>
-        <h1 className={styles.pageTitle}>My Medical Record</h1>
-        <Space direction="horizontal" size={16}>
-          <Card
-            title="WHO Definition"
-            extra={<p>03.06.2023</p>}
-            style={{ width: 300 }}
-          >
-            <p>Systolic Tension: 125</p>
-            <p>Diastolic Tension: 85</p>
-            <p>Triglyceride Level: 150</p>
-            <p>Result: false</p>
-          </Card>
-          <Card
-            title="LAP Definition"
-            extra={<p>01.06.2023</p>}
-            style={{ width: 300 }}
-          >
-            <p>Card content</p>
-            <p>Card content</p>
-            <p>Card content</p>
-            <p>Card content</p>
-          </Card>
-          <Card
-            title="SDMS Definition"
-            extra={<p>30.05.2023</p>}
-            style={{ width: 300 }}
-          >
-            <p>Card content</p>
-            <p>Card content</p>
-            <p>Card content</p>
-            <p>Card content</p>
-          </Card>
-          <Card
-            title="AACED Definition"
-            extra={<p>21.04.2023</p>}
-            style={{ width: 300 }}
-          >
-            <p>Card content</p>
-            <p>Card content</p>
-            <p>Card content</p>
-            <p>Card content</p>
-          </Card>
-          <Card
-            title="SDMS Definition"
-            extra={<p>02.03.2023</p>}
-            style={{ width: 300 }}
-          >
-            <p>Card content</p>
-            <p>Card content</p>
-            <p>Card content</p>
-            <p>Card content</p>
-          </Card>
-        </Space>
+        <h1 className={styles.pageTitle}>Medical Record</h1>
+        <div className={styles.selectDefinition}>
+          <Select
+            defaultValue="Select Definition"
+            style={{ width: 220 }}
+            onChange={handleChange}
+            options={options}
+          />
+        </div>
+        {definition === "AACED" && <AACEDResults userId={userId} />}
+        {definition === "EGSIRD" && <EGSIRDResults userId={userId} />}
+        {definition === "IDFGCD" && <IDFGCDResults userId={userId} />}
+        {definition === "IDRS" && <IDRSResults userId={userId} />}
+        {definition === "LAP" && <LAPResults userId={userId} />}
+        {definition === "NCEPATPIII" && <NCEPATPIIIResults userId={userId} />}
+        {definition === "SDMS" && <SDMSResults userId={userId} />}
+        {definition === "WHO" && <WHOResults userId={userId} />}
       </div>
       <Footer />
     </>

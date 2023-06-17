@@ -162,13 +162,13 @@ const IDFGDCDefinition: FC = () => {
               onChange={(e: RadioChangeEvent) => setLocation(e.target.value)}
               className={styles.firstRatioContainer}
             >
-              <Radio className={styles.ratio} value={"1"}>
+              <Radio className={styles.ratio} value={"Europe"}>
                 Europe
               </Radio>
-              <Radio className={styles.ratio} value={"2"}>
+              <Radio className={styles.ratio} value={"USA"}>
                 USA
               </Radio>
-              <Radio className={styles.ratio} value={"3"}>
+              <Radio className={styles.ratio} value={"Rest of the world"}>
                 Rest of the world
               </Radio>
             </Radio.Group>
