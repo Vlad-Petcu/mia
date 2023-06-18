@@ -130,107 +130,110 @@ const IDRSDefinition: FC = () => {
         <div className={styles.pageTitle}>
           <p>IDRS Definition</p>
         </div>
-        <div className={styles.description}>
-          <p>
-            Identification of MS can be made more clinical by including clinical
-            parameters like age, family history, personal history, etc., as
-            parameters to define MS. Indian diabetes risk score (IDRS) is one
-            such parameter comprising simple clinical information like age, WC,
-            family history of diabetes, and physical activity. IDRS ≥ 60 been
-            found to be useful In predicting MS and cardiovascular disease.
-          </p>
+        <div className={styles.sectionsContainer}>
+          <div className={styles.description}>
+            <p>
+              Identification of MS can be made more clinical by including
+              clinical parameters like age, family history, personal history,
+              etc., as parameters to define MS. Indian diabetes risk score
+              (IDRS) is one such parameter comprising simple clinical
+              information like age, WC, family history of diabetes, and physical
+              activity. IDRS ≥ 60 been found to be useful In predicting MS and
+              cardiovascular disease.
+            </p>
+          </div>
+          <div>
+            <div className={styles.ratio}>
+              <div className={styles.firstRatioTitle}>Gender:</div>
+              <Radio.Group
+                onChange={(e: RadioChangeEvent) => setGender(e.target.value)}
+                className={styles.thirdRatioContainer}
+              >
+                <Radio className={styles.ratio} value={"Male"}>
+                  Male
+                </Radio>
+                <Radio className={styles.ratio} value={"Female"}>
+                  Female
+                </Radio>
+              </Radio.Group>
+            </div>
+            <div>
+              <div className={styles.label}>Age:</div>
+              <Input
+                value={age}
+                placeholder="year"
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  e.target.value = e.target.value.replace(/\D/g, "");
+                  setAge(e.target.value);
+                }}
+                className={styles.input}
+              />
+            </div>
+            <div>
+              <div className={styles.label}>Waist Circumference:</div>
+              <Input
+                value={waistCircumference}
+                placeholder="cm"
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  e.target.value = e.target.value.replace(/\D/g, "");
+                  setWaistCircumference(e.target.value);
+                }}
+                className={styles.input}
+              />
+            </div>
+          </div>
+          <div>
+            <div>
+              <div className={styles.firstRatioTitle}>Physical Activity:</div>
+              <Radio.Group
+                onChange={(e: RadioChangeEvent) =>
+                  setPhysicalActivity(e.target.value)
+                }
+                className={styles.firstRatioContainer}
+              >
+                <Radio className={styles.ratio} value={"1"}>
+                  Exercise regular + strenuous work
+                </Radio>
+                <Radio className={styles.ratio} value={"2"}>
+                  Exercise regular or strenuous work
+                </Radio>
+                <Radio className={styles.ratio} value={"3"}>
+                  No exercise and sedentary work
+                </Radio>
+              </Radio.Group>
+            </div>
+            <div>
+              <div className={styles.secondRatioTitle}>Family history:</div>
+              <Radio.Group
+                onChange={(e: RadioChangeEvent) =>
+                  setFamilyHistory(e.target.value)
+                }
+                className={styles.secondRatioContainer}
+              >
+                <Radio className={styles.ratio} value={"1"}>
+                  No family history
+                </Radio>
+                <Radio className={styles.ratio} value={"2"}>
+                  Either parent
+                </Radio>
+                <Radio className={styles.ratio} value={"3"}>
+                  Both parents
+                </Radio>
+              </Radio.Group>
+            </div>
+          </div>
         </div>
-        <div className={styles.formContainer}>
-          <div className={styles.ratio}>
-            <div className={styles.firstRatioTitle}>Gender:</div>
-            <Radio.Group
-              onChange={(e: RadioChangeEvent) => setGender(e.target.value)}
-              className={styles.thirdRatioContainer}
-            >
-              <Radio className={styles.ratio} value={"Male"}>
-                Male
-              </Radio>
-              <Radio className={styles.ratio} value={"Female"}>
-                Female
-              </Radio>
-            </Radio.Group>
-          </div>
-          <div>
-            <div className={styles.label}>Age:</div>
-            <Input
-              value={age}
-              placeholder="year"
-              onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                e.target.value = e.target.value.replace(/\D/g, "");
-                setAge(e.target.value);
-              }}
-              className={styles.input}
-            />
-          </div>
-          <div>
-            <div className={styles.label}>Waist Circumference:</div>
-            <Input
-              value={waistCircumference}
-              placeholder="cm"
-              onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                e.target.value = e.target.value.replace(/\D/g, "");
-                setWaistCircumference(e.target.value);
-              }}
-              className={styles.input}
-            />
-          </div>
-          <div>
-            <div className={styles.firstRatioTitle}>Physical Activity:</div>
-            <Radio.Group
-              onChange={(e: RadioChangeEvent) =>
-                setPhysicalActivity(e.target.value)
-              }
-              className={styles.firstRatioContainer}
-            >
-              <Radio className={styles.ratio} value={"1"}>
-                Exercise regular + strenuous work
-              </Radio>
-              <Radio className={styles.ratio} value={"2"}>
-                Exercise regular or strenuous work
-              </Radio>
-              <Radio className={styles.ratio} value={"3"}>
-                No exercise and sedentary work
-              </Radio>
-            </Radio.Group>
-          </div>
-          <div>
-            <div className={styles.secondRatioTitle}>Family history:</div>
-            <Radio.Group
-              onChange={(e: RadioChangeEvent) =>
-                setFamilyHistory(e.target.value)
-              }
-              className={styles.secondRatioContainer}
-            >
-              <Radio className={styles.ratio} value={"1"}>
-                No family history
-              </Radio>
-              <Radio className={styles.ratio} value={"2"}>
-                Either parent
-              </Radio>
-              <Radio className={styles.ratio} value={"3"}>
-                Both parents
-              </Radio>
-            </Radio.Group>
-          </div>
-          {errorMessage && (
-            <p className={styles.errorMessage}>{errorMessage}</p>
-          )}
-          {resultMessage && (
-            <p className={styles.resultMessage}>{resultMessage}</p>
-          )}
-          <div>
-            <Button
-              className={styles.submitButton}
-              onClick={() => handleSubmit()}
-            >
-              Apply
-            </Button>
-          </div>
+        {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
+        {resultMessage && (
+          <p className={styles.resultMessage}>{resultMessage}</p>
+        )}
+        <div>
+          <Button
+            className={styles.submitButton}
+            onClick={() => handleSubmit()}
+          >
+            Apply
+          </Button>
         </div>
       </div>
       <Footer />

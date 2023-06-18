@@ -32,9 +32,9 @@ const Header: FC = () => {
               >
                 <div
                   className={styles.headerBtn}
-                  onClick={() => navigate("/log-out")}
+                  onClick={() => navigate("/log-in")}
                 >
-                  Logout
+                  Logout |
                 </div>
               </div>
             ) : (

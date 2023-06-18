@@ -88,73 +88,73 @@ const LAPDefinition: FC = () => {
         <div className={styles.pageTitle}>
           <p>LAP Definition</p>
         </div>
-        <div className={styles.description}>
-          <p>
-            In view of the role of central obesity and dyslipidemia in
-            atherosclerotic process, an alternative continuous index of lipid
-            overaccumulation, the lipid accumulation product (LAP), has been
-            proposed. LAP is computed using WC and fasting triglycerides level
-            (in mmol/l): (WC - 65) x TG (men) and (WC - 58) x TG (women).[46]
-            This parameter has been found to be better than BMI for predicting
-            diabetes and has also been suggested for use in the identification
-            MS. It has been shown to be a good predictor of cardiovascular
-            disease though one study has shown that it may not be better than
-            ICO or WHR for predicting cardiovascular disease.
-          </p>
+        <div className={styles.sectionsContainer}>
+          <div className={styles.description}>
+            <p>
+              In view of the role of central obesity and dyslipidemia in
+              atherosclerotic process, an alternative continuous index of lipid
+              overaccumulation, the lipid accumulation product (LAP), has been
+              proposed. LAP is computed using WC and fasting triglycerides level
+              (in mmol/l): (WC - 65) x TG (men) and (WC - 58) x TG (women).[46]
+              This parameter has been found to be better than BMI for predicting
+              diabetes and has also been suggested for use in the identification
+              MS. It has been shown to be a good predictor of cardiovascular
+              disease though one study has shown that it may not be better than
+              ICO or WHR for predicting cardiovascular disease.
+            </p>
+          </div>
+          <div className={styles.formContainer}>
+            <div className={styles.ratio}>
+              <div className={styles.firstRatioTitle}>Gender:</div>
+              <Radio.Group
+                onChange={(e: RadioChangeEvent) => setGender(e.target.value)}
+                className={styles.firstRatioContainer}
+              >
+                <Radio className={styles.ratio} value={"Male"}>
+                  Male
+                </Radio>
+                <Radio className={styles.ratio} value={"Female"}>
+                  Female
+                </Radio>
+              </Radio.Group>
+            </div>
+            <div>
+              <div className={styles.label}>Waist Circumference:</div>
+              <Input
+                value={waistCircumference}
+                placeholder="cm"
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  e.target.value = e.target.value.replace(/\D/g, "");
+                  setWaistCircumference(e.target.value);
+                }}
+                className={styles.input}
+              />
+            </div>
+            <div>
+              <div className={styles.label}>Triglyceride Level:</div>
+              <Input
+                value={triglycerideLevel}
+                placeholder="mg/dl"
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  e.target.value = e.target.value.replace(/\D/g, "");
+                  setTriglyceridesLevel(e.target.value);
+                }}
+                className={styles.input}
+              />
+            </div>
+          </div>
         </div>
-        <div className={styles.formContainer}>
-          <div className={styles.ratio}>
-            <div className={styles.firstRatioTitle}>Gender:</div>
-            <Radio.Group
-              onChange={(e: RadioChangeEvent) => setGender(e.target.value)}
-              className={styles.firstRatioContainer}
-            >
-              <Radio className={styles.ratio} value={"Male"}>
-                Male
-              </Radio>
-              <Radio className={styles.ratio} value={"Female"}>
-                Female
-              </Radio>
-            </Radio.Group>
-          </div>
-          <div>
-            <div className={styles.label}>Waist Circumference:</div>
-            <Input
-              value={waistCircumference}
-              placeholder="cm"
-              onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                e.target.value = e.target.value.replace(/\D/g, "");
-                setWaistCircumference(e.target.value);
-              }}
-              className={styles.input}
-            />
-          </div>
-          <div>
-            <div className={styles.label}>Triglyceride Level:</div>
-            <Input
-              value={triglycerideLevel}
-              placeholder="mg/dl"
-              onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                e.target.value = e.target.value.replace(/\D/g, "");
-                setTriglyceridesLevel(e.target.value);
-              }}
-              className={styles.input}
-            />
-          </div>
-          {errorMessage && (
-            <p className={styles.errorMessage}>{errorMessage}</p>
-          )}
-          {resultMessage && (
-            <p className={styles.resultMessage}>{resultMessage}</p>
-          )}
-          <div>
-            <Button
-              className={styles.submitButton}
-              onClick={() => handleSubmit()}
-            >
-              Apply
-            </Button>
-          </div>
+        {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
+        {resultMessage && (
+          <p className={styles.resultMessage}>{resultMessage}</p>
+        )}
+        <div>
+          <Button
+            className={styles.submitButton}
+            onClick={() => handleSubmit()}
+          >
+            Apply
+          </Button>
         </div>
       </div>
       <Footer />

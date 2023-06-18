@@ -52,7 +52,7 @@ const Home: FC = () => {
                 Adult Treatment Panel III
               </div>
               <div className={styles.definition}>
-                <b>ACED</b> - American Association of Clinical Endocrinologists
+                <b>AACED</b> - American Association of Clinical Endocrinologists
                 Definition
               </div>
             </div>
