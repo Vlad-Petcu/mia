@@ -50,11 +50,11 @@ const EGSIRDResults: FC<EGSIRDResultsI> = ({ userId }) => {
                 <p>{`Diastolic Tension: ${result.diastolic_tension}`}</p>
                 <p>{`Triglyceride Level: ${result.triglyceride_level}`}</p>
                 <p>{`Impaired Fasting Glucose: ${result.impaired_fasting_glucose}`}</p>
-                <p>
+                <strong>
                   {result.result === true
                     ? "Result: Positive"
                     : "Result: Negative"}
-                </p>
+                </strong>
               </Card>
             </div>
           );

@@ -58,11 +58,11 @@ const WHOResults: FC<WHOResultsI> = ({ userId }) => {
                 <p>{`Hip Circumference: ${result.hip_circumference}`}</p>
                 <p>{`Albumin: ${result.albumin}`}</p>
                 <p>{`Creatine: ${result.creatine}`}</p>
-                <p>
+                <strong>
                   {result.result === true
                     ? "Result: Positive"
                     : "Result: Negative"}
-                </p>
+                </strong>
               </Card>
             </div>
           );

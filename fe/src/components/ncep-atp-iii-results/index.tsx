@@ -52,11 +52,11 @@ const NCEPATPIIIResults: FC<NCEPATPIIIResultsI> = ({ userId }) => {
                 <p>{`Systolic Tension: ${result.systolic_tension}`}</p>
                 <p>{`Diastolic Tension: ${result.diastolic_tension}`}</p>
                 <p>{`Fasting Glucose: ${result.fasting_glucose}`}</p>
-                <p>
+                <strong>
                   {result.result === true
                     ? "Result: Positive"
                     : "Result: Negative"}
-                </p>
+                </strong>
               </Card>
             </div>
           );

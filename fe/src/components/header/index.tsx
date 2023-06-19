@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "../../App.css";
-import logo from "../../imgaes/logoMsd.png";
+import logo from "../../images/logoMsd.png";
 import styles from "./index.module.scss";
 
 const Header: FC = () => {

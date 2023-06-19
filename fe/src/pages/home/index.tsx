@@ -3,8 +3,7 @@ import "../../App.css";
 import Footer from "../../components/footer";
 import Header from "../../components/header";
 import Navbar from "../../components/navbar";
-import homeImage from "../../imgaes/homePage.avif";
-import homeMiaText from "../../imgaes/homePageHeader.png";
+import homeMiaText from "../../images/homePageHeader.png";
 import styles from "./index.module.scss";
 
 const Home: FC = () => {

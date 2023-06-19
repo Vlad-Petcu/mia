@@ -149,10 +149,10 @@ const IDFGDCDefinition: FC = () => {
                 onChange={(e: RadioChangeEvent) => setGender(e.target.value)}
                 className={styles.firstRatioContainer}
               >
-                <Radio className={styles.ratio} value={"1"}>
+                <Radio className={styles.ratio} value={"Male"}>
                   Male
                 </Radio>
-                <Radio className={styles.ratio} value={"2"}>
+                <Radio className={styles.ratio} value={"Female"}>
                   Female
                 </Radio>
               </Radio.Group>

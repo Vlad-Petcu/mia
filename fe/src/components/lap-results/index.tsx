@@ -44,11 +44,11 @@ const LAPResults: FC<LAPResultsI> = ({ userId }) => {
                 <p>{`Gender: ${result.gender}`}</p>
                 <p>{`Triglyceride Level: ${result.triglyceride_level}`}</p>
                 <p>{`Waist Circumference: ${result.waist_circumference}`}</p>
-                <p>
+                <strong>
                   {result.result === true
                     ? "Result: Positive"
                     : "Result: Negative"}
-                </p>
+                </strong>
               </Card>
             </div>
           );

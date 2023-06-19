@@ -52,11 +52,11 @@ const IDFGCDResults: FC<IDFGCDResultsI> = ({ userId }) => {
                 <p>{`Systolic Tension: ${result.systolic_tension}`}</p>
                 <p>{`Diastolic Tension: ${result.diastolic_tension}`}</p>
                 <p>{`FPG: ${result.fpg}`}</p>
-                <p>
+                <strong>
                   {result.result === true
                     ? "Result: Positive"
                     : "Result: Negative"}
-                </p>
+                </strong>
               </Card>
             </div>
           );

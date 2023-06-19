@@ -5,7 +5,7 @@ export const createLAPDefinition = (request, response) => {
     request.body;
 
   pool.query(
-    "INSERT INTO lap_definition (gender, triglyceride_level, waist_circumference, user_id, result, resultDate) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
+    "INSERT INTO lap_definition (gender, triglyceride_level, waist_circumference, user_id, result, result_date) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
     [gender, triglycerideLevel, waistCircumference, userId, result, resultDate],
     (error, results) => {
       if (error) {

@@ -52,11 +52,11 @@ const AACEDResults: FC<AACEDResultsI> = ({ userId }) => {
                 <p>{`Prothrombotic Factors: ${result.prothrombotic_factors}`}</p>
                 <p>{`Markers Of Inflammation: ${result.markers_of_inflammation}`}</p>
                 <p>{`Endothelial Dysfunction: ${result.endothelial_dysfunction}`}</p>
-                <p>
+                <strong>
                   {result.result === true
                     ? "Result: Positive"
                     : "Result: Negative"}
-                </p>
+                </strong>
               </Card>
             </div>
           );

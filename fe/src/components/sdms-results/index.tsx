@@ -18,14 +18,14 @@ interface SDMSResultsI {
 const SDMSResults: FC<SDMSResultsI> = ({ userId }) => {
   const [results, setResults] = useState<Array<SDMSResponseT>>();
 
-  const getLAPDefinitionResults = useCallback(async () => {
-    const response = await axios.get(`http://localhost:3000/lap/${userId}`);
+  const getSDMSDefinitionResults = useCallback(async () => {
+    const response = await axios.get(`http://localhost:3000/sdms/${userId}`);
     setResults(response.data);
   }, []);
 
   useEffect(() => {
-    getLAPDefinitionResults();
-  }, [getLAPDefinitionResults]);
+    getSDMSDefinitionResults();
+  }, [getSDMSDefinitionResults]);
 
   return (
     <>
@@ -42,11 +42,11 @@ const SDMSResults: FC<SDMSResultsI> = ({ userId }) => {
               >
                 <p>{`Height: ${result.height}`}</p>
                 <p>{`Waist Circumference: ${result.waist_circumference}`}</p>
-                <p>
+                <strong>
                   {result.result === true
                     ? "Result: Positive"
                     : "Result: Negative"}
-                </p>
+                </strong>
               </Card>
             </div>
           );

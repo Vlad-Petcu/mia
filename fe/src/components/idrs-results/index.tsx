@@ -50,11 +50,11 @@ const IDRSResults: FC<IDRSResultsI> = ({ userId }) => {
                 <p>{`HDLC: ${result.hdlc}`}</p>
                 <p>{`Physical Activity: ${result.physical_activity}`}</p>
                 <p>{`Family History: ${result.family_history}`}</p>
-                <p>
+                <strong>
                   {result.result === true
                     ? "Result: Positive"
                     : "Result: Negative"}
-                </p>
+                </strong>
               </Card>
             </div>
           );
