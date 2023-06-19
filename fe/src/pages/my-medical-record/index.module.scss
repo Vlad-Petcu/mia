@@ -1,12 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
 .contentContainer {
-  height: 70vh;
-  background: #f9f9f9;
+  height: 81vh;
+  background: #dbd3d8;
   text-align: center;
   font-family: "Poppins", sans-serif;
   padding-left: 20px;
   padding-right: 20px;
+  overflow-y: auto;
 }
 
 .pageTitle {
@@ -20,4 +21,3 @@
   margin-top: 40px;
   margin-bottom: 20px;
 }
-

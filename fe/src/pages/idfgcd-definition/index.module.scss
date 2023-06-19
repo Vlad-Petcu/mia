@@ -1,13 +1,25 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
 .contentContainer {
-  height: 75vh;
+  height: 81vh;
   width: 100%;
-  background: #f9f9f9;
+  background: #dbd3d8;
   font-family: "Poppins", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.sectionsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-left: 200px;
+  padding-right: 200px;
+}
+
+.description {
+  width: 30%;
 }
 
 .pageTitle {
@@ -16,20 +28,9 @@
   font-weight: 500;
 }
 
-.formContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .input {
   width: 13rem;
   margin-bottom: 1.3rem;
-}
-
-.errorMessage {
-  margin-bottom: 1.3rem;
-  color: red;
 }
 
 .ratio {
@@ -42,7 +43,6 @@
   flex-direction: row;
   margin-bottom: 1rem;
   margin-left: 1.2rem;
-  margin-right: -1.5rem;
 }
 
 .firstRatioTitle {
@@ -51,7 +51,7 @@
 
 .secondRatioContainer {
   @extend .firstRatioContainer;
-  margin-right: -8.5rem;
+  margin-left: -1px;
 }
 
 .label {
@@ -63,8 +63,8 @@
   color: green;
 }
 
-.description {
-  padding-left: 250px;
-  padding-right: 250px;
-  margin-bottom: 1rem;
+.errorMessage {
+  margin-bottom: 1.3rem;
+  color: red;
 }
+

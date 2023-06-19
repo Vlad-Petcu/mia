@@ -1,20 +1,31 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
 .contentContainer {
-  height: 75vh;
+  height: 81vh;
   width: 100%;
-  background: #f9f9f9;
+  background: #dbd3d8;
   font-family: "Poppins", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow-y: scroll;
 }
 
 .pageTitle {
   margin-top: 2rem;
   font-size: 2rem;
   font-weight: 500;
+}
+
+.sectionsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-left: 200px;
+  padding-right: 200px;
+}
+
+.description {
+  width: 30%;
 }
 
 .formContainer {
@@ -42,10 +53,9 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
-  margin-left: 3rem;
 }
 
-.secondRatioContainer {
+.secondRatioContainer { 
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
@@ -53,7 +63,6 @@
 }
 
 .firstRatioTitle {
-  margin-left: 3rem;
   margin-bottom: 0.2rem;
 }
 
@@ -68,7 +77,6 @@
   margin-left: 1.2rem;
 }
 
-
 .submitButton {
   margin-bottom: 1rem;
 }
@@ -81,10 +89,3 @@
   margin-bottom: 1.3rem;
   color: green;
 }
-
-.description {
-  padding-left: 250px;
-  padding-right: 250px;
-  margin-bottom: 1rem;
-}
-

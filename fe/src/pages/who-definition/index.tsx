@@ -147,149 +147,151 @@ const WHODefinition: FC = () => {
         <div className={styles.pageTitle}>
           <p>WHO Definition</p>
         </div>
-        <div className={styles.description}>
-          <p>
-            WHO, in 1999, suggested a working definition of metabolic syndrome
-            (MS), which was to be improved in due course of time. WHO defined MS
-            as glucose intolerence, impaired glucose tolerance (IGT) or diabetes
-            mellitus (DM), and/or insulin resistance, together with two or more
-            of the other components listed below.
-          </p>
+        <div className={styles.sectionsContainer}>
+          <div className={styles.description}>
+            <p>
+              WHO, in 1999, suggested a working definition of metabolic syndrome
+              (MS), which was to be improved in due course of time. WHO defined
+              MS as glucose intolerence, impaired glucose tolerance (IGT) or
+              diabetes mellitus (DM), and/or insulin resistance, together with
+              two or more of the other components listed below.
+            </p>
+          </div>
+          <div>
+            <div className={styles.ratio}>
+              <div className={styles.firstRatioTitle}>Gender:</div>
+              <Radio.Group
+                onChange={(e: RadioChangeEvent) => setGender(e.target.value)}
+                className={styles.firstRatioContainer}
+              >
+                <Radio className={styles.ratio} value={"Male"}>
+                  Male
+                </Radio>
+                <Radio className={styles.ratio} value={"Female"}>
+                  Female
+                </Radio>
+              </Radio.Group>
+            </div>
+            <div className={styles.glucoseIntoleranceContainer}>
+              <p>Glucose Intolerance:</p>
+              <Checkbox
+                onChange={() => setGlucoseIntolerance(!glucoseIntolerance)}
+                className={styles.checkbox}
+              ></Checkbox>
+            </div>
+            <div className={styles.diabetesMellitusContainer}>
+              <p>Diabetes Mellitus:</p>
+              <Checkbox
+                onChange={() => setDiabetesMellitus(!diabetesMellitus)}
+                className={styles.checkbox}
+              ></Checkbox>
+            </div>
+            <div className={styles.insulinResistanceContainer}>
+              <p>Insulin Resistance:</p>
+              <Checkbox
+                onChange={() => setInsulinResistance(!insulinResistance)}
+                className={styles.checkbox}
+              ></Checkbox>
+            </div>
+            <div>
+              <div className={styles.label}>Systolic Tension:</div>
+              <Input
+                value={systolicTension}
+                placeholder="mm of Hg"
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  e.target.value = e.target.value.replace(/\D/g, "");
+                  setSystolicTension(e.target.value);
+                }}
+                className={styles.input}
+              />
+            </div>
+            <div>
+              <div className={styles.label}>Diastolic Tension:</div>
+              <Input
+                value={diastolicTension}
+                placeholder="mm of Hg"
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  e.target.value = e.target.value.replace(/\D/g, "");
+                  setDiastolicTension(e.target.value);
+                }}
+                className={styles.input}
+              />
+            </div>
+          </div>
+          <div>
+            <div>
+              <div className={styles.label}>Triglyceride Level:</div>
+              <Input
+                value={triglycerideLevel}
+                placeholder="mm/dl"
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  e.target.value = e.target.value.replace(/\D/g, "");
+                  setTriglycerideLevel(e.target.value);
+                }}
+                className={styles.input}
+              />
+            </div>
+            <div>
+              <div className={styles.label}>Waist Circumference:</div>
+              <Input
+                value={waistCircumference}
+                placeholder="cm"
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  e.target.value = e.target.value.replace(/\D/g, "");
+                  setWaistCircumference(e.target.value);
+                }}
+                className={styles.input}
+              />
+            </div>
+            <div>
+              <div className={styles.label}>Hip Circumference:</div>
+              <Input
+                value={hipCircumference}
+                placeholder="cm"
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  e.target.value = e.target.value.replace(/\D/g, "");
+                  setHipCircumference(e.target.value);
+                }}
+                className={styles.input}
+              />
+            </div>
+            <div>
+              <div className={styles.label}>Albumin:</div>
+              <Input
+                value={albumin}
+                placeholder="μgm/minute"
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  e.target.value = e.target.value.replace(/\D/g, "");
+                  setAlbumin(e.target.value);
+                }}
+                className={styles.input}
+              />
+            </div>
+            <div>
+              <div className={styles.label}>Creatine:</div>
+              <Input
+                value={creatine}
+                placeholder="μgm/mg"
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  e.target.value = e.target.value.replace(/\D/g, "");
+                  setCreatine(e.target.value);
+                }}
+                className={styles.input}
+              />
+            </div>
+          </div>
         </div>
-        <div className={styles.formContainer}>
-          <div className={styles.ratio}>
-            <div className={styles.firstRatioTitle}>Gender:</div>
-            <Radio.Group
-              onChange={(e: RadioChangeEvent) => setGender(e.target.value)}
-              className={styles.firstRatioContainer}
-            >
-              <Radio className={styles.ratio} value={"Male"}>
-                Male
-              </Radio>
-              <Radio className={styles.ratio} value={"Female"}>
-                Female
-              </Radio>
-            </Radio.Group>
-          </div>
-          <div className={styles.glucoseIntoleranceContainer}>
-            <p>Glucose Intolerance:</p>
-            <Checkbox
-              onChange={() => setGlucoseIntolerance(!glucoseIntolerance)}
-              className={styles.checkbox}
-            ></Checkbox>
-          </div>
-          <div className={styles.diabetesMellitusContainer}>
-            <p>Diabetes Mellitus:</p>
-            <Checkbox
-              onChange={() => setDiabetesMellitus(!diabetesMellitus)}
-              className={styles.checkbox}
-            ></Checkbox>
-          </div>
-          <div className={styles.insulinResistanceContainer}>
-            <p>Insulin Resistance:</p>
-            <Checkbox
-              onChange={() => setInsulinResistance(!insulinResistance)}
-              className={styles.checkbox}
-            ></Checkbox>
-          </div>
-          <div>
-            <div className={styles.label}>Systolic Tension:</div>
-            <Input
-              value={systolicTension}
-              placeholder="mm of Hg"
-              onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                e.target.value = e.target.value.replace(/\D/g, "");
-                setSystolicTension(e.target.value);
-              }}
-              className={styles.input}
-            />
-          </div>
-          <div>
-            <div className={styles.label}>Diastolic Tension:</div>
-            <Input
-              value={diastolicTension}
-              placeholder="mm of Hg"
-              onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                e.target.value = e.target.value.replace(/\D/g, "");
-                setDiastolicTension(e.target.value);
-              }}
-              className={styles.input}
-            />
-          </div>
-          <div>
-            <div className={styles.label}>Triglyceride Level:</div>
-            <Input
-              value={triglycerideLevel}
-              placeholder="mm/dl"
-              onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                e.target.value = e.target.value.replace(/\D/g, "");
-                setTriglycerideLevel(e.target.value);
-              }}
-              className={styles.input}
-            />
-          </div>
-          <div>
-            <div className={styles.label}>Waist Circumference:</div>
-            <Input
-              value={waistCircumference}
-              placeholder="cm"
-              onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                e.target.value = e.target.value.replace(/\D/g, "");
-                setWaistCircumference(e.target.value);
-              }}
-              className={styles.input}
-            />
-          </div>
-          <div>
-            <div className={styles.label}>Hip Circumference:</div>
-            <Input
-              value={hipCircumference}
-              placeholder="cm"
-              onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                e.target.value = e.target.value.replace(/\D/g, "");
-                setHipCircumference(e.target.value);
-              }}
-              className={styles.input}
-            />
-          </div>
-          <div>
-            <div className={styles.label}>Albumin:</div>
-            <Input
-              value={albumin}
-              placeholder="μgm/minute"
-              onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                e.target.value = e.target.value.replace(/\D/g, "");
-                setAlbumin(e.target.value);
-              }}
-              className={styles.input}
-            />
-          </div>
-          <div>
-            <div className={styles.label}>Creatine:</div>
-            <Input
-              value={creatine}
-              placeholder="μgm/mg"
-              onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                e.target.value = e.target.value.replace(/\D/g, "");
-                setCreatine(e.target.value);
-              }}
-              className={styles.input}
-            />
-          </div>
-          {errorMessage && (
-            <p className={styles.errorMessage}>{errorMessage}</p>
-          )}
-          {resultMessage && (
-            <p className={styles.resultMessage}>{resultMessage}</p>
-          )}
-          <div>
-            <Button
-              className={styles.submitButton}
-              onClick={() => handleSubmit()}
-            >
-              Apply
-            </Button>
-          </div>
+        {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
+        {resultMessage && (
+          <p className={styles.resultMessage}>{resultMessage}</p>
+        )}
+        <div>
+          <Button
+            className={styles.submitButton}
+            onClick={() => handleSubmit()}
+          >
+            Apply
+          </Button>
         </div>
       </div>
       <Footer />

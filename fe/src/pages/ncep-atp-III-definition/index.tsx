@@ -134,129 +134,124 @@ const NCEPATPIIIDefinition: FC = () => {
         <div className={styles.pageTitle}>
           <p>NCEP ATP III Definition</p>
         </div>
-        <div className={styles.description}>
-          <p>
-            This definition differs from the WHO definition on several fronts.
-            The NCEP ATP III did not believe that insulin resistance is
-            mandatory for the development of MS and hence suggested the term MS
-            instead of the previously used term insulin resistance syndrome.
-            This definition recognizes central obesity as the culprit and hence
-            body mass index (BMI,) which is a parameter for generalized obesity,
-            has not been included in this definition. Central obesity has been
-            quantified using WC instead of the WHR used by WHO. This definition
-            considers low HDL and high triglycerides as separate components
-            (both of them being individually atherogenic) rather than viewing
-            dyslipidemia as a single component. The cutoff points used for BP
-            and HDL are stringent as compared to those suggested in the WHO
-            definition, but by avoiding the need for clamp techniques and
-            measurement of microalbuminuria, the NCEP ATP III definition is much
-            more practically applicable. The NCEP ATP III considers the
-            proinflamatory state and prothrombotic state as components of MS
-            though these have not been included among the criteria necessary to
-            define MS.
-          </p>
+        <div className={styles.sectionsContainer}>
+          <div className={styles.description}>
+            <p>
+              This definition differs from the WHO definition on several fronts.
+              The NCEP ATP III did not believe that insulin resistance is
+              mandatory for the development of MS and hence suggested the term
+              MS instead of the previously used term insulin resistance
+              syndrome. This definition recognizes central obesity as the
+              culprit and hence body mass index which is a parameter for
+              generalized obesity, has not been included in this definition.
+              Central obesity has been quantified using WC instead of the WHR
+              used by WHO. This definition considers low HDL and high
+              triglycerides as separate components rather than viewing
+              dyslipidemia as a single component.
+            </p>
+          </div>
+          <div>
+            <div className={styles.ratio}>
+              <div className={styles.firstRatioTitle}>Gender:</div>
+              <Radio.Group
+                onChange={(e: RadioChangeEvent) => setGender(e.target.value)}
+                className={styles.firstRatioContainer}
+              >
+                <Radio className={styles.ratio} value={"Male"}>
+                  Male
+                </Radio>
+                <Radio className={styles.ratio} value={"Female"}>
+                  Female
+                </Radio>
+              </Radio.Group>
+            </div>
+            <div>
+              <div>Waist Circumference:</div>
+              <Input
+                value={waistCircumference}
+                placeholder="cm"
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  e.target.value = e.target.value.replace(/\D/g, "");
+                  setWaistCircumference(e.target.value);
+                }}
+                className={styles.input}
+              />
+            </div>
+            <div>
+              <div>Hypertriglyceridemia:</div>
+              <Input
+                value={hypertriglyceridemia}
+                placeholder="mg/dl"
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  e.target.value = e.target.value.replace(/\D/g, "");
+                  setHypertriglyceridemia(e.target.value);
+                }}
+                className={styles.input}
+              />
+            </div>
+            <div>
+              <div>HDLC:</div>
+              <Input
+                value={HDLC}
+                placeholder="mg/dl"
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  e.target.value = e.target.value.replace(/\D/g, "");
+                  setHDLC(e.target.value);
+                }}
+                className={styles.input}
+              />
+            </div>
+          </div>
+          <div>
+            <div>
+              <div className={styles.label}>Systolic Tension:</div>
+              <Input
+                value={systolicTension}
+                placeholder="mm of Hg"
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  e.target.value = e.target.value.replace(/\D/g, "");
+                  setSystolicTension(e.target.value);
+                }}
+                className={styles.input}
+              />
+            </div>
+            <div>
+              <div className={styles.label}>Diastolic Tension:</div>
+              <Input
+                value={diastolicTension}
+                placeholder="mm of Hg"
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  e.target.value = e.target.value.replace(/\D/g, "");
+                  setDiastolicTension(e.target.value);
+                }}
+                className={styles.input}
+              />
+            </div>
+            <div>
+              <div>Fasting Glucose:</div>
+              <Input
+                value={fastingGlucose}
+                placeholder="mg/dl"
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  e.target.value = e.target.value.replace(/\D/g, "");
+                  setFastingGlucose(e.target.value);
+                }}
+                className={styles.input}
+              />
+            </div>
+          </div>
         </div>
-        <div className={styles.formContainer}>
-          <div className={styles.ratio}>
-            <div className={styles.firstRatioTitle}>Gender:</div>
-            <Radio.Group
-              onChange={(e: RadioChangeEvent) => setGender(e.target.value)}
-              className={styles.firstRatioContainer}
-            >
-              <Radio className={styles.ratio} value={"Male"}>
-                Male
-              </Radio>
-              <Radio className={styles.ratio} value={"Female"}>
-                Female
-              </Radio>
-            </Radio.Group>
-          </div>
-          <div>
-            <div>Waist Circumference:</div>
-            <Input
-              value={waistCircumference}
-              placeholder="cm"
-              onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                e.target.value = e.target.value.replace(/\D/g, "");
-                setWaistCircumference(e.target.value);
-              }}
-              className={styles.input}
-            />
-          </div>
-          <div>
-            <div>Hypertriglyceridemia:</div>
-            <Input
-              value={hypertriglyceridemia}
-              placeholder="mg/dl"
-              onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                e.target.value = e.target.value.replace(/\D/g, "");
-                setHypertriglyceridemia(e.target.value);
-              }}
-              className={styles.input}
-            />
-          </div>
-          <div>
-            <div>HDLC:</div>
-            <Input
-              value={HDLC}
-              placeholder="mg/dl"
-              onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                e.target.value = e.target.value.replace(/\D/g, "");
-                setHDLC(e.target.value);
-              }}
-              className={styles.input}
-            />
-          </div>
-          <div>
-            <div className={styles.label}>Systolic Tension:</div>
-            <Input
-              value={systolicTension}
-              placeholder="mm of Hg"
-              onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                e.target.value = e.target.value.replace(/\D/g, "");
-                setSystolicTension(e.target.value);
-              }}
-              className={styles.input}
-            />
-          </div>
-          <div>
-            <div className={styles.label}>Diastolic Tension:</div>
-            <Input
-              value={diastolicTension}
-              placeholder="mm of Hg"
-              onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                e.target.value = e.target.value.replace(/\D/g, "");
-                setDiastolicTension(e.target.value);
-              }}
-              className={styles.input}
-            />
-          </div>
-          <div>
-            <div>Fasting Glucose:</div>
-            <Input
-              value={fastingGlucose}
-              placeholder="mg/dl"
-              onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                e.target.value = e.target.value.replace(/\D/g, "");
-                setFastingGlucose(e.target.value);
-              }}
-              className={styles.input}
-            />
-          </div>
-          {errorMessage && (
-            <p className={styles.errorMessage}>{errorMessage}</p>
-          )}
-          {resultMessage && (
-            <p className={styles.resultMessage}>{resultMessage}</p>
-          )}
-          <div>
-            <Button
-              className={styles.submitButton}
-              onClick={() => handleSubmit()}
-            >
-              Apply
-            </Button>
-          </div>
+        {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
+        {resultMessage && (
+          <p className={styles.resultMessage}>{resultMessage}</p>
+        )}
+        <div>
+          <Button
+            className={styles.submitButton}
+            onClick={() => handleSubmit()}
+          >
+            Apply
+          </Button>
         </div>
       </div>
       <Footer />

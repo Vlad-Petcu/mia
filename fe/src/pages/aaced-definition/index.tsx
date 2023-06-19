@@ -92,86 +92,90 @@ const AACEDDefinition: FC = () => {
         <div className={styles.pageTitle}>
           <p>AACED Definition</p>
         </div>
-        <div className={styles.description}>
-          <p>
-            The American Association of Clinical Endocrinologists (AACE)
-            preferred using the term insulin resistance syndrome over MS. The
-            major criteria they considered were IGT, elevated triglycerides,
-            reduced HDL-C, elevated BP, and obesity. They did not specify any
-            particular number of criteria for diagnosis, rather they left it to
-            clinical judgment. They suggested that factors like family history
-            of atherosclerotic cardiovascular disease or type 2 DM, polycystic
-            ovary syndrome, and hyperuricemia be considered while exercising
-            clinical judgement. Patients with type 2 DM were excluded from the
-            definition of insulin resistance syndrome. The various components
-            suggested by the AACE are as follows:
-          </p>
+        <div className={styles.sectionsContainer}>
+          <div className={styles.description}>
+            <p>
+              The American Association of Clinical Endocrinologists (AACE)
+              preferred using the term insulin resistance syndrome over MS. The
+              major criteria they considered were IGT, elevated triglycerides,
+              reduced HDL-C, elevated BP, and obesity. They did not specify any
+              particular number of criteria for diagnosis, rather they left it
+              to clinical judgment. They suggested that factors like family
+              history of atherosclerotic cardiovascular disease or type 2 DM,
+              polycystic ovary syndrome, and hyperuricemia be considered while
+              exercising clinical judgement. Patients with type 2 DM were
+              excluded from the definition of insulin resistance syndrome. The
+              various components suggested by the AACE are as follows:
+            </p>
+          </div>
+          <div className={styles.formContainer}>
+            <div className={styles.checkboxContainer}>
+              <p>Glucose Intolerance:</p>
+              <Checkbox
+                onChange={() => setGlucoseIntolerance(!glucoseIntolerance)}
+                className={styles.checkbox}
+              ></Checkbox>
+            </div>
+            <div className={styles.checkboxContainer}>
+              <p>Abnormal Uric Acid Metabolism:</p>
+              <Checkbox
+                onChange={() =>
+                  setAbnormalUricAcidMetabolism(!abnormalUricAcidMetabolism)
+                }
+                className={styles.checkbox}
+              ></Checkbox>
+            </div>
+            <div className={styles.checkboxContainer}>
+              <p>Dyslipidemia:</p>
+              <Checkbox
+                onChange={() => setDyslipidemia(!dyslipidemia)}
+                className={styles.checkbox}
+              ></Checkbox>
+            </div>
+            <div className={styles.checkboxContainer}>
+              <p>Hemodynamic Changes:</p>
+              <Checkbox
+                onChange={() => setHemodynamicChanges(!hemodynamicChanges)}
+                className={styles.checkbox}
+              ></Checkbox>
+            </div>
+            <div className={styles.checkboxContainer}>
+              <p>Prothrombotic Factors:</p>
+              <Checkbox
+                onChange={() => setProthromboticFactors(!prothromboticFactors)}
+                className={styles.checkbox}
+              ></Checkbox>
+            </div>
+            <div className={styles.checkboxContainer}>
+              <p>Markers Of Inflammation:</p>
+              <Checkbox
+                onChange={() =>
+                  setMarkersOFInflammation(!markersOfInflammation)
+                }
+                className={styles.checkbox}
+              ></Checkbox>
+            </div>
+            <div className={styles.checkboxContainer}>
+              <p>Endothelial Dysfunction:</p>
+              <Checkbox
+                onChange={() =>
+                  setEndothelialDysfunction(!endothelialDysfunction)
+                }
+                className={styles.checkbox}
+              ></Checkbox>
+            </div>
+          </div>
         </div>
-        <div className={styles.formContainer}>
-          <div className={styles.checkboxContainer}>
-            <p>Glucose Intolerance:</p>
-            <Checkbox
-              onChange={() => setGlucoseIntolerance(!glucoseIntolerance)}
-              className={styles.checkbox}
-            ></Checkbox>
-          </div>
-          <div className={styles.checkboxContainer}>
-            <p>Abnormal Uric Acid Metabolism:</p>
-            <Checkbox
-              onChange={() =>
-                setAbnormalUricAcidMetabolism(!abnormalUricAcidMetabolism)
-              }
-              className={styles.checkbox}
-            ></Checkbox>
-          </div>
-          <div className={styles.checkboxContainer}>
-            <p>Dyslipidemia:</p>
-            <Checkbox
-              onChange={() => setDyslipidemia(!dyslipidemia)}
-              className={styles.checkbox}
-            ></Checkbox>
-          </div>
-          <div className={styles.checkboxContainer}>
-            <p>Hemodynamic Changes:</p>
-            <Checkbox
-              onChange={() => setHemodynamicChanges(!hemodynamicChanges)}
-              className={styles.checkbox}
-            ></Checkbox>
-          </div>
-          <div className={styles.checkboxContainer}>
-            <p>Prothrombotic Factors:</p>
-            <Checkbox
-              onChange={() => setProthromboticFactors(!prothromboticFactors)}
-              className={styles.checkbox}
-            ></Checkbox>
-          </div>
-          <div className={styles.checkboxContainer}>
-            <p>Markers Of Inflammation:</p>
-            <Checkbox
-              onChange={() => setMarkersOFInflammation(!markersOfInflammation)}
-              className={styles.checkbox}
-            ></Checkbox>
-          </div>
-          <div className={styles.checkboxContainer}>
-            <p>Endothelial Dysfunction:</p>
-            <Checkbox
-              onChange={() =>
-                setEndothelialDysfunction(!endothelialDysfunction)
-              }
-              className={styles.checkbox}
-            ></Checkbox>
-          </div>
-          {resultMessage && (
-            <p className={styles.resultMessage}>{resultMessage}</p>
-          )}
-          <div>
-            <Button
-              className={styles.submitButton}
-              onClick={() => handleSubmit()}
-            >
-              Apply
-            </Button>
-          </div>
+        {resultMessage && (
+          <p className={styles.resultMessage}>{resultMessage}</p>
+        )}
+        <div>
+          <Button
+            className={styles.submitButton}
+            onClick={() => handleSubmit()}
+          >
+            Apply
+          </Button>
         </div>
       </div>
       <Footer />

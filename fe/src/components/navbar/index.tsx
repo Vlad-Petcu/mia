@@ -14,12 +14,12 @@ const Navbar: FC = () => {
   const isDoctor = localStorage.getItem("isDoctor");
   const userId = localStorage.getItem("userId");
 
-  const handleLogOut = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("userId");
-    localStorage.removeItem("userEmail");
-    localStorage.removeItem("isDoctor");
-  };
+  // const handleLogOut = () => {
+  //   localStorage.removeItem("token");
+  //   localStorage.removeItem("userId");
+  //   localStorage.removeItem("userEmail");
+  //   localStorage.removeItem("isDoctor");
+  // };
 
   return (
     <nav className="navbar">
@@ -31,58 +31,58 @@ const Navbar: FC = () => {
         </div>
         <div className={`nav-elements  ${showNav && "active"}`}>
           <ul>
-            <li>
+            <li className="navBarElement">
               <NavLink to="/">Home</NavLink>
             </li>
-            <li>
+            <li className="navBarElement">
               <NavLink to="/all-definitions">All Definitions</NavLink>
             </li>
-            <li>
+            <li className="navBarElement">
               <NavLink to="/who-definition">WHO</NavLink>
             </li>
-            <li>
+            <li className="navBarElement">
               <NavLink to="/egsird-definition">EGSIRD</NavLink>
             </li>
-            <li>
+            <li className="navBarElement">
               <NavLink to="/aaced-definition">AACED</NavLink>
             </li>
-            <li>
+            <li className="navBarElement">
               <NavLink to="/ncep-atp-III-definition">NCEP ATP III</NavLink>
             </li>
-            <li>
+            <li className="navBarElement">
               <NavLink to="/idfgcd-definition">IDFGCD</NavLink>
             </li>
-            <li>
+            <li className="navBarElement">
               <NavLink to="/sdms-definition">SDMS</NavLink>
             </li>
-            <li>
+            <li className="navBarElement">
               <NavLink to="/idrs-definition">IDRS</NavLink>
             </li>
-            <li>
+            <li className="navBarElement">
               <NavLink to="/lap-definition">LAP</NavLink>
             </li>
             {userId && (
-              <li>
+              <li className="navBarElement">
                 <NavLink to="/my-medical-record">Medical Record</NavLink>
               </li>
             )}
             {isDoctor === "true" && (
-              <li>
+              <li className="navBarElement">
                 <NavLink to="/my-patients">Patients</NavLink>
               </li>
             )}
-            {userId ? (
-              <li onClick={() => handleLogOut()}>
+            {/* {userId ? (
+              <li className="navBarElement" onClick={() => handleLogOut()}>
                 <NavLink to="/log-in">Logout</NavLink>
               </li>
             ) : (
-              <li>
+              <li className="navBarElement">
                 <NavLink to="/log-in">Login</NavLink>
               </li>
             )}
-            <li>
+            <li className="navBarElement">
               <NavLink to="/sign-in">Register</NavLink>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>
