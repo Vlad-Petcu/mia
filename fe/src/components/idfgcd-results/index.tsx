@@ -1,4 +1,5 @@
-import { Card, Space } from "antd";
+import { DeleteOutlined } from "@ant-design/icons";
+import { Button, Card, Space } from "antd";
 import axios from "axios";
 import { FC, useCallback, useEffect, useState } from "react";
 
@@ -22,15 +23,23 @@ interface IDFGCDResultsI {
 
 const IDFGCDResults: FC<IDFGCDResultsI> = ({ userId }) => {
   const [results, setResults] = useState<Array<IDFGCDResponseT>>();
+  const [deletedResultId, setDeletedResultId] = useState<number>();
+
+  const handleDeleteClick = async (resultId: number) => {
+    const response = await axios.delete(
+      `http://localhost:3000/idfgcd/${resultId}`
+    );
+    setDeletedResultId(response.data);
+  };
 
   const getIDFGCDDefinitionResults = useCallback(async () => {
     const response = await axios.get(`http://localhost:3000/idfgcd/${userId}`);
     setResults(response.data);
-  }, []);
+  }, [deletedResultId]);
 
   useEffect(() => {
     getIDFGCDDefinitionResults();
-  }, [getIDFGCDDefinitionResults]);
+  }, [getIDFGCDDefinitionResults, deletedResultId]);
 
   return (
     <>
@@ -43,6 +52,12 @@ const IDFGCDResults: FC<IDFGCDResultsI> = ({ userId }) => {
                   hour: "2-digit",
                   minute: "2-digit",
                 })}
+                extra={
+                  <Button
+                    icon={<DeleteOutlined />}
+                    onClick={() => handleDeleteClick(result.id)}
+                  />
+                }
                 style={{ width: 300 }}
               >
                 <p>{`Gender: ${result.gender}`}</p>

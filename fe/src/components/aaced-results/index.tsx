@@ -1,4 +1,5 @@
-import { Card, Space } from "antd";
+import { DeleteOutlined } from "@ant-design/icons";
+import { Button, Card, Space } from "antd";
 import axios from "axios";
 import { FC, useCallback, useEffect, useState } from "react";
 
@@ -22,15 +23,23 @@ interface AACEDResultsI {
 
 const AACEDResults: FC<AACEDResultsI> = ({ userId }) => {
   const [results, setResults] = useState<Array<AACEDResponseT>>();
+  const [deletedResultId, setDeletedResultId] = useState<number>();
+
+  const handleDeleteClick = async (resultId: number) => {
+    const response = await axios.delete(
+      `http://localhost:3000/aaced/${resultId}`
+    );
+    setDeletedResultId(response.data);
+  };
 
   const getAACEDDefinitionResults = useCallback(async () => {
     const response = await axios.get(`http://localhost:3000/aaced/${userId}`);
     setResults(response.data);
-  }, []);
+  }, [deletedResultId]);
 
   useEffect(() => {
     getAACEDDefinitionResults();
-  }, [getAACEDDefinitionResults]);
+  }, [getAACEDDefinitionResults, deletedResultId]);
 
   return (
     <>
@@ -44,6 +53,12 @@ const AACEDResults: FC<AACEDResultsI> = ({ userId }) => {
                   minute: "2-digit",
                 })}
                 style={{ width: 300 }}
+                extra={
+                  <Button
+                    icon={<DeleteOutlined />}
+                    onClick={() => handleDeleteClick(result.id)}
+                  />
+                }
               >
                 <p>{`Glucose Intolerance: ${result.glucose_intolerance}`}</p>
                 <p>{`Abnormal Uric Acid Metabolism: ${result.abnormal_uric_acid_metabolism}`}</p>

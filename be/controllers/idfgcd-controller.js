@@ -59,7 +59,7 @@ export const deleteIDFGCDById = (request, response) => {
     if (error) {
       throw error
     }
-    response.status(200).send(`Definition deleted with ID: ${id}`)
+    response.status(200).json(id)
   })
 };
 

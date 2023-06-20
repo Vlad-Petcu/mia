@@ -1,4 +1,5 @@
-import { Card, Space } from "antd";
+import { DeleteOutlined } from "@ant-design/icons";
+import { Button, Card, Space } from "antd";
 import axios from "axios";
 import { FC, useCallback, useEffect, useState } from "react";
 
@@ -17,15 +18,23 @@ interface SDMSResultsI {
 
 const SDMSResults: FC<SDMSResultsI> = ({ userId }) => {
   const [results, setResults] = useState<Array<SDMSResponseT>>();
+  const [deletedResultId, setDeletedResultId] = useState<number>();
+
+  const handleDeleteClick = async (resultId: number) => {
+    const response = await axios.delete(
+      `http://localhost:3000/sdms/${resultId}`
+    );
+    setDeletedResultId(response.data);
+  };
 
   const getSDMSDefinitionResults = useCallback(async () => {
     const response = await axios.get(`http://localhost:3000/sdms/${userId}`);
     setResults(response.data);
-  }, []);
+  }, [deletedResultId]);
 
   useEffect(() => {
     getSDMSDefinitionResults();
-  }, [getSDMSDefinitionResults]);
+  }, [getSDMSDefinitionResults, deletedResultId]);
 
   return (
     <>
@@ -38,6 +47,12 @@ const SDMSResults: FC<SDMSResultsI> = ({ userId }) => {
                   hour: "2-digit",
                   minute: "2-digit",
                 })}
+                extra={
+                  <Button
+                    icon={<DeleteOutlined />}
+                    onClick={() => handleDeleteClick(result.id)}
+                  />
+                }
                 style={{ width: 300 }}
               >
                 <p>{`Height: ${result.height}`}</p>

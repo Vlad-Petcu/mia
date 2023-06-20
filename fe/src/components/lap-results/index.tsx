@@ -1,4 +1,5 @@
-import { Card, Space } from "antd";
+import { DeleteOutlined } from "@ant-design/icons";
+import { Button, Card, Space } from "antd";
 import axios from "axios";
 import { FC, useCallback, useEffect, useState } from "react";
 
@@ -18,15 +19,23 @@ interface LAPResultsI {
 
 const LAPResults: FC<LAPResultsI> = ({ userId }) => {
   const [results, setResults] = useState<Array<LAPResponseT>>();
+  const [deletedResultId, setDeletedResultId] = useState<number>();
+
+  const handleDeleteClick = async (resultId: number) => {
+    const response = await axios.delete(
+      `http://localhost:3000/lap/${resultId}`
+    );
+    setDeletedResultId(response.data);
+  };
 
   const getLAPDefinitionResults = useCallback(async () => {
     const response = await axios.get(`http://localhost:3000/lap/${userId}`);
     setResults(response.data);
-  }, []);
+  }, [deletedResultId]);
 
   useEffect(() => {
     getLAPDefinitionResults();
-  }, [getLAPDefinitionResults]);
+  }, [getLAPDefinitionResults, deletedResultId]);
 
   return (
     <>
@@ -39,6 +48,12 @@ const LAPResults: FC<LAPResultsI> = ({ userId }) => {
                   hour: "2-digit",
                   minute: "2-digit",
                 })}
+                extra={
+                  <Button
+                    icon={<DeleteOutlined />}
+                    onClick={() => handleDeleteClick(result.id)}
+                  />
+                }
                 style={{ width: 300 }}
               >
                 <p>{`Gender: ${result.gender}`}</p>

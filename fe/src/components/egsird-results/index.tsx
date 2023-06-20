@@ -1,4 +1,5 @@
-import { Card, Space } from "antd";
+import { DeleteOutlined } from "@ant-design/icons";
+import { Button, Card, Space } from "antd";
 import axios from "axios";
 import { FC, useCallback, useEffect, useState } from "react";
 
@@ -21,15 +22,23 @@ interface EGSIRDResultsI {
 
 const EGSIRDResults: FC<EGSIRDResultsI> = ({ userId }) => {
   const [results, setResults] = useState<Array<EGSIRDResponseT>>();
+  const [deletedResultId, setDeletedResultId] = useState<number>();
+
+  const handleDeleteClick = async (resultId: number) => {
+    const response = await axios.delete(
+      `http://localhost:3000/egsird/${resultId}`
+    );
+    setDeletedResultId(response.data);
+  };
 
   const getEGSIRDDefinitionResults = useCallback(async () => {
     const response = await axios.get(`http://localhost:3000/egsird/${userId}`);
     setResults(response.data);
-  }, []);
+  }, [deletedResultId]);
 
   useEffect(() => {
     getEGSIRDDefinitionResults();
-  }, [getEGSIRDDefinitionResults]);
+  }, [getEGSIRDDefinitionResults, deletedResultId]);
 
   return (
     <>
@@ -42,6 +51,12 @@ const EGSIRDResults: FC<EGSIRDResultsI> = ({ userId }) => {
                   hour: "2-digit",
                   minute: "2-digit",
                 })}
+                extra={
+                  <Button
+                    icon={<DeleteOutlined />}
+                    onClick={() => handleDeleteClick(result.id)}
+                  />
+                }
                 style={{ width: 300 }}
               >
                 <p>{`Plasma Insulin: ${result.plasma_insulin}`}</p>

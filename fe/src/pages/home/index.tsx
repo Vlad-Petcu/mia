@@ -33,7 +33,8 @@ const Home: FC = () => {
           <div className={styles.secondLine}>
             Also apart from the checking itself which can be done without
             creating an account, if you chose to create an account you will gain
-            the possibility to save your results or to send them to your doctor.
+            the possibility to save your results, see them later and also give
+            your doctor the possibility to see them.
           </div>
         </div>
         <div className={styles.definitionsContainer}>
