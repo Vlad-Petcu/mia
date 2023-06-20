@@ -124,14 +124,14 @@ const WHODefinition: FC = () => {
     }
     if (isPatientDiagnosed()) {
       setResultMessage(
-        'According to the "WHO Definition" your results suggests that you may be diagnosed with metabolic syndrome.'
+        'According to the "WHO Definition" your results suggests that YOU MAY BE diagnosed with metabolic syndrome.'
       );
       if (userId) {
         createWHODefinition(true);
       }
     } else {
       setResultMessage(
-        'According to the "WHO Definition" your results suggests that you are not in danger to be diagnosed with metabolic syndrome.'
+        'According to the "WHO Definition" your results suggests that YOU ARE NOT IN DANGER to be diagnosed with metabolic syndrome.'
       );
       if (userId) {
         createWHODefinition(false);
