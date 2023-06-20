@@ -1,6 +1,7 @@
 import { DeleteOutlined } from "@ant-design/icons";
-import { Button, Card, Space } from "antd";
+import { Button, Card, Radio, RadioChangeEvent, Space } from "antd";
 import axios from "axios";
+import styles from "./index.module.scss";
 import { FC, useCallback, useEffect, useState } from "react";
 
 type IDFGCDResponseT = {
@@ -22,8 +23,30 @@ interface IDFGCDResultsI {
 }
 
 const IDFGCDResults: FC<IDFGCDResultsI> = ({ userId }) => {
+  const [initialResults, setInitialResults] =
+    useState<Array<IDFGCDResponseT>>();
   const [results, setResults] = useState<Array<IDFGCDResponseT>>();
   const [deletedResultId, setDeletedResultId] = useState<number>();
+
+  const positiveResults = initialResults?.filter(
+    (resultData: IDFGCDResponseT) => resultData.result === true
+  );
+  const negativeResults = initialResults?.filter(
+    (resultData: IDFGCDResponseT) => resultData.result === false
+  );
+
+  const oldestSort = results
+    ?.slice()
+    .sort(
+      (a, b) =>
+        new Date(a.result_date).getTime() - new Date(b.result_date).getTime()
+    );
+  const newestSort = results
+    ?.slice()
+    .sort(
+      (a, b) =>
+        new Date(b.result_date).getTime() - new Date(a.result_date).getTime()
+    );
 
   const handleDeleteClick = async (resultId: number) => {
     const response = await axios.delete(
@@ -34,6 +57,7 @@ const IDFGCDResults: FC<IDFGCDResultsI> = ({ userId }) => {
 
   const getIDFGCDDefinitionResults = useCallback(async () => {
     const response = await axios.get(`http://localhost:3000/idfgcd/${userId}`);
+    setInitialResults(response.data);
     setResults(response.data);
   }, [deletedResultId]);
 
@@ -43,6 +67,37 @@ const IDFGCDResults: FC<IDFGCDResultsI> = ({ userId }) => {
 
   return (
     <>
+      <div className={styles.radio}>
+        <div>Select the type of result:</div>
+        <Radio.Group
+          onChange={(e: RadioChangeEvent) =>
+            setResults(
+              e.target.value === "Positive"
+                ? positiveResults
+                : e.target.value === "Negative"
+                ? negativeResults
+                : initialResults
+            )
+          }
+          className={styles.radioContainer}
+        >
+          <Radio value={"All"}>All</Radio>
+          <Radio value={"Positive"}>Positive</Radio>
+          <Radio value={"Negative"}>Negative</Radio>
+        </Radio.Group>
+      </div>
+      <div className={styles.radio}>
+        <div>Sort result base on date:</div>
+        <Radio.Group
+          onChange={(e: RadioChangeEvent) =>
+            setResults(e.target.value === "Oldest" ? oldestSort : newestSort)
+          }
+          className={styles.radioContainer}
+        >
+          <Radio value={"Oldest"}>Oldest</Radio>
+          <Radio value={"Newest"}>Newest</Radio>
+        </Radio.Group>
+      </div>
       <Space direction="horizontal" size={16}>
         {results?.map((result) => {
           return (
