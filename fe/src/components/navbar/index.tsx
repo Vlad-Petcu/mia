@@ -35,31 +35,31 @@ const Navbar: FC = () => {
               <NavLink to="/">Home</NavLink>
             </li>
             <li className="navBarElement">
-              <NavLink to="/all-definitions">All Definitions</NavLink>
-            </li>
-            <li className="navBarElement">
-              <NavLink to="/who-definition">WHO</NavLink>
+              <NavLink to="/aaced-definition">AACED</NavLink>
             </li>
             <li className="navBarElement">
               <NavLink to="/egsird-definition">EGSIRD</NavLink>
             </li>
             <li className="navBarElement">
-              <NavLink to="/aaced-definition">AACED</NavLink>
-            </li>
-            <li className="navBarElement">
-              <NavLink to="/ncep-atp-III-definition">NCEP ATP III</NavLink>
-            </li>
-            <li className="navBarElement">
               <NavLink to="/idfgcd-definition">IDFGCD</NavLink>
-            </li>
-            <li className="navBarElement">
-              <NavLink to="/sdms-definition">SDMS</NavLink>
             </li>
             <li className="navBarElement">
               <NavLink to="/idrs-definition">IDRS</NavLink>
             </li>
             <li className="navBarElement">
               <NavLink to="/lap-definition">LAP</NavLink>
+            </li>
+            <li className="navBarElement">
+              <NavLink to="/ncep-atp-III-definition">NCEP ATP III</NavLink>
+            </li>
+            <li className="navBarElement">
+              <NavLink to="/sdms-definition">SDMS</NavLink>
+            </li>
+            <li className="navBarElement">
+              <NavLink to="/who-definition">WHO</NavLink>
+            </li>
+            <li className="navBarElement">
+              <NavLink to="/all-definitions">All Definitions</NavLink>
             </li>
             {userId && (
               <li className="navBarElement">
