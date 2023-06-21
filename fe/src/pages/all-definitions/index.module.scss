@@ -3,12 +3,44 @@
 .contentContainer {
   height: 81vh;
   width: 100%;
-  background: #DBD3D8;
+  background: #dbd3d8;
   font-family: "Poppins", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow-y: scroll;
+  overflow-y: auto;
+}
+
+.sectionsContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.rowRadioContainer {
+  margin-bottom: 0.5rem;
+}
+
+.checkboxContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 0.2rem;
+}
+
+.columnCheckboxContainer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.resultContainer {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .pageTitle {
@@ -17,10 +49,21 @@
   font-weight: 500;
 }
 
-.formContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.radioTitle {
+  margin-bottom: 0.5rem;
+}
+
+.checkbox {
+  margin-left: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.submitButton {
+  margin-bottom: 1rem;
+}
+
+.label {
+  margin-bottom: 0.2rem;
 }
 
 .input {
@@ -33,81 +76,8 @@
   color: red;
 }
 
-.label {
-  margin-bottom: 0.2rem;
+.resultMessage {
+  margin-bottom: 0.5rem;
+  color: green;
 }
 
-.submitButton {
-  margin-bottom: 1rem;
-}
-
-.ratio {
-  display: flex;
-  flex-direction: row;
-}
-
-.firstRatioContainer {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 1rem;
-  margin-left: 1.2rem;
-  margin-right: -1.5rem;
-}
-
-.firstRatioTitle {
-  margin-bottom: 0.2rem;
-}
-
-.checkboxContainer {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-bottom: 0.2rem;
-}
-
-.glucoseIntoleranceContainer {
-  @extend .checkboxContainer;
-  margin-right: 1rem;
-}
-
-.diabetesMellitusContainer {
-  @extend .checkboxContainer;
-  margin-right: 2.5rem;
-}
-
-.insulinResistanceContainer {
-  @extend .checkboxContainer;
-  margin-right: 2rem;
-}
-
-.checkbox {
-  margin-left: 1rem;
-  margin-bottom: 1.2rem;
-}
-
-.allCheckboxesContainer{
-  margin-left: 5rem;
-}
-
-.physicalActivityContainer {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1rem;
-  margin-left: 3rem;
-}
-
-.familyHistoryContainer {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1rem;
-  margin-right: 3.5rem;
-}
-
-.physicalActivityTitle {
-  margin-left: 3rem;
-  margin-bottom: 0.2rem;
-}
-
-.familyHistoryTitle {
-  margin-bottom: 0.2rem;
-}

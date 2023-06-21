@@ -51,7 +51,7 @@ const AACEDDefinition: FC = () => {
     }
   };
 
-  const createAAACEDDefinition = async (result: boolean) => {
+  const createAACEDDefinition = async (result: boolean) => {
     await axios.post("http://localhost:3000/aaced", {
       glucoseIntolerance,
       abnormalUricAcidMetabolism,
@@ -72,14 +72,14 @@ const AACEDDefinition: FC = () => {
         'According to the "AACED Definition" your results suggests that YOU MAY BE diagnosed with metabolic syndrome.'
       );
       if (userId) {
-        createAAACEDDefinition(true);
+        createAACEDDefinition(true);
       }
     } else {
       setResultMessage(
         'According to the "AACED Definition" your results suggests that YOU ARE NOT IN DANGER to be diagnosed with metabolic syndrome.'
       );
       if (userId) {
-        createAAACEDDefinition(false);
+        createAACEDDefinition(false);
       }
     }
   };
