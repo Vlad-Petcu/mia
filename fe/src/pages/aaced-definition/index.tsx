@@ -108,7 +108,7 @@ const AACEDDefinition: FC = () => {
               various components suggested by the AACE are as follows:
             </p>
           </div>
-          <div className={styles.formContainer}>
+          <div>
             <div className={styles.checkboxContainer}>
               <p>Glucose Intolerance:</p>
               <Checkbox

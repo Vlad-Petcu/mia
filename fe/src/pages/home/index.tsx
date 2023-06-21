@@ -39,7 +39,7 @@ const Home: FC = () => {
         </div>
         <div className={styles.definitionsContainer}>
           <div className={styles.groupContainer}>
-            <div className={styles.groupOne}>
+            <div className={styles.group}>
               <div className={styles.definition}>
                 <b>WHO </b>- World Health Organization
               </div>
@@ -58,7 +58,7 @@ const Home: FC = () => {
             </div>
           </div>
           <div className={styles.groupContainer}>
-            <div className={styles.groupTwo}>
+            <div className={styles.group}>
               <div className={styles.definition}>
                 <b>IDFGCD</b> - International Diabetes Federation Global
                 Consensus Definition

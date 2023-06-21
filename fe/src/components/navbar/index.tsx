@@ -14,20 +14,13 @@ const Navbar: FC = () => {
   const isDoctor = localStorage.getItem("isDoctor");
   const userId = localStorage.getItem("userId");
 
-  // const handleLogOut = () => {
-  //   localStorage.removeItem("token");
-  //   localStorage.removeItem("userId");
-  //   localStorage.removeItem("userEmail");
-  //   localStorage.removeItem("isDoctor");
-  // };
-
   return (
     <nav className="navbar">
       <div className="container">
         <div className="menu-icon" onClick={handleShowNavbar}>
-          <h1>
+          <div>
             <Button aria-label={"Open Menu"} icon={<MenuOutlined />} />
-          </h1>
+          </div>
         </div>
         <div className={`nav-elements  ${showNav && "active"}`}>
           <ul>
@@ -71,18 +64,6 @@ const Navbar: FC = () => {
                 <NavLink to="/my-patients">Patients</NavLink>
               </li>
             )}
-            {/* {userId ? (
-              <li className="navBarElement" onClick={() => handleLogOut()}>
-                <NavLink to="/log-in">Logout</NavLink>
-              </li>
-            ) : (
-              <li className="navBarElement">
-                <NavLink to="/log-in">Login</NavLink>
-              </li>
-            )}
-            <li className="navBarElement">
-              <NavLink to="/sign-in">Register</NavLink>
-            </li> */}
           </ul>
         </div>
       </div>

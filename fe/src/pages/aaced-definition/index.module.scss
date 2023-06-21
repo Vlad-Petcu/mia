@@ -28,12 +28,6 @@
   font-weight: 500;
 }
 
-.formContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .input {
   width: 13rem;
   margin-bottom: 1.3rem;
@@ -59,5 +53,27 @@
 .resultMessage {
   margin-bottom: 1.3rem;
   color: green;
+}
+
+@media (max-width: 768px) {
+  .contentContainer {
+    width: 100%;
+    height: 950px;
+  }
+  .sectionsContainer {
+    display: initial;
+    padding-left: 35px;
+    padding-right: 35px;
+  }
+  .description {
+    width: 100%;
+  }
+  .checkboxContainer {
+    margin-bottom: 5px;
+  }
+  .resultMessage {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }
 

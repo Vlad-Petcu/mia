@@ -24,12 +24,6 @@
   border: 5px solid white;
 }
 
-.firstLine {
-}
-
-.secondLine {
-}
-
 .homeTextImage {
   width: 500px;
   height: 150px;
@@ -60,19 +54,7 @@
   padding: 10px;
 }
 
-.groupOne {
-  text-align: left;
-  background-color: #2e5e4e;
-  color: white;
-  height: 200px;
-  width: 600px;
-  padding: 10px;
-  font-size: 18px;
-  border-radius: 20px;
-  border: 5px solid white;
-}
-
-.groupTwo {
+.group {
   text-align: left;
   background-color: #2e5e4e;
   color: white;
@@ -86,4 +68,35 @@
 
 .definition {
   margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .contentContainer {
+    height: 1030px;
+    width: 100%;
+  }
+  .homePageHeader {
+    display: initial;
+  }
+  .homeDescription {
+    width: 100%;
+    margin: 0;
+  }
+  .pageTitle {
+    width: 100%;
+    margin: 0;
+  }
+  .homeTextImage {
+    display: none;
+  }
+  .definitionsContainer {
+    display: initial;
+  }
+  .groupContainer {
+    margin-bottom: 15px;
+  }
+  .group {
+    width: 100%;
+    font-size: 15px;
+  }
 }

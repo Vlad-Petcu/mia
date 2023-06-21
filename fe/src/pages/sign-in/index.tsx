@@ -70,7 +70,7 @@ const SignIn: FC = () => {
       password,
     });
     if (response.status === 201) {
-        navigate("/log-in");
+      navigate("/log-in");
     }
   };
 
@@ -112,93 +112,97 @@ const SignIn: FC = () => {
         <div className={styles.pageTitle}>
           <p>Register</p>
         </div>
-        <div className={styles.formContainer}>
-          <div className={styles.ratio}>
-            <div>Type of account:</div>
-            <Radio.Group
-              onChange={(e: RadioChangeEvent) => setIsDoctor(e.target.value)}
-              className={styles.firstRatioContainer}
-              defaultValue={false}
-            >
-              <Radio className={styles.ratio} value={false}>
-                Patient
-              </Radio>
-              <Radio className={styles.ratio} value={true}>
-                Doctor
-              </Radio>
-            </Radio.Group>
+        <div className={styles.sectionsContainer}>
+          <div>
+            <div className={styles.ratio}>
+              <div>Account:</div>
+              <Radio.Group
+                onChange={(e: RadioChangeEvent) => setIsDoctor(e.target.value)}
+                className={styles.firstRatioContainer}
+                defaultValue={false}
+              >
+                <Radio className={styles.ratio} value={false}>
+                  Patient
+                </Radio>
+                <Radio className={styles.ratio} value={true}>
+                  Doctor
+                </Radio>
+              </Radio.Group>
+            </div>
+            <div className={styles.ratio}>
+              <div>Gender:</div>
+              <Radio.Group
+                onChange={(e: RadioChangeEvent) => setGender(e.target.value)}
+                className={styles.secondRatioContainer}
+              >
+                <Radio className={styles.ratio} value={"Male"}>
+                  Male
+                </Radio>
+                <Radio className={styles.ratio} value={"Female"}>
+                  Female
+                </Radio>
+              </Radio.Group>
+            </div>
+            {!isDoctor && (
+              <div className={styles.select}>
+                <p>Select doctor:</p>
+                <Select
+                  placeholder="Doctor Name"
+                  onChange={handleSelectDoctorUserChange}
+                  className={styles.input}
+                  options={doctorUsersOptions}
+                />
+              </div>
+            )}
           </div>
-          <div className={styles.ratio}>
-            <div>Gender:</div>
-            <Radio.Group
-              onChange={(e: RadioChangeEvent) => setGender(e.target.value)}
-              className={styles.secondRatioContainer}
-            >
-              <Radio className={styles.ratio} value={"Male"}>
-                Male
-              </Radio>
-              <Radio className={styles.ratio} value={"Female"}>
-                Female
-              </Radio>
-            </Radio.Group>
-          </div>
-          {!isDoctor && (
-            <div className={styles.select}>
-              <p>Select doctor:</p>
-              <Select
-                placeholder="Doctor Name"
-                onChange={handleSelectDoctorUserChange}
+          <div>
+            <div>
+              <p>First Name:</p>
+              <Input
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setFirstName(e.target.value)
+                }
                 className={styles.input}
-                options={doctorUsersOptions}
               />
             </div>
-          )}
-          <div>
-            <p>First Name:</p>
-            <Input
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setFirstName(e.target.value)
-              }
-              className={styles.input}
-            />
+            <div>
+              <p>Last Name:</p>
+              <Input
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setLastName(e.target.value)
+                }
+                className={styles.input}
+              />
+            </div>
+            <div>
+              <p>Email:</p>
+              <Input
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setEmail(e.target.value)
+                }
+                className={styles.input}
+              />
+            </div>
+            <div>
+              <p>Password:</p>
+              <Input
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setPassword(e.target.value)
+                }
+                className={styles.input}
+                type={"password"}
+              />
+            </div>
           </div>
-          <div>
-            <p>Last Name:</p>
-            <Input
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setLastName(e.target.value)
-              }
-              className={styles.input}
-            />
-          </div>
-          <div>
-            <p>Email:</p>
-            <Input
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setEmail(e.target.value)
-              }
-              className={styles.input}
-            />
-          </div>
-          <div>
-            <p>Password:</p>
-            <Input
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setPassword(e.target.value)
-              }
-              className={styles.input}
-              type={"password"}
-            />
-          </div>
-          <div>
-            <p className={styles.errorMessage}>{errorMessage}</p>
-            <Button
-              className={styles.submitButton}
-              onClick={() => handleSubmit()}
-            >
-              Submit
-            </Button>
-          </div>
+        </div>
+        <div>
+          <p className={styles.errorMessage}>{errorMessage}</p>
+          <Button
+            className={styles.submitButton}
+            onClick={() => handleSubmit()}
+          >
+            Submit
+          </Button>
         </div>
       </div>
       <Footer />

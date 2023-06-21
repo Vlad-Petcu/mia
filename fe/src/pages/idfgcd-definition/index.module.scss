@@ -68,3 +68,25 @@
   color: red;
 }
 
+@media (max-width: 768px) {
+  .contentContainer {
+    width: 100%;
+    height: 1070px;
+  }
+  .sectionsContainer {
+    display: initial;
+    padding-left: 35px;
+    padding-right: 35px;
+  }
+  .description {
+    width: 100%;
+  }
+  .checkboxContainer {
+    margin-bottom: 5px;
+  }
+  .resultMessage {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+

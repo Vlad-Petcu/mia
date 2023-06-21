@@ -27,9 +27,6 @@ body {
   min-width: fit-content;
 }
 
-.logo {
-}
-
 .menu-icon {
   display: none;
 }
@@ -71,13 +68,8 @@ body {
   text-decoration: none;
 }
 
-@media (max-width: 768px) {
-  .nav-elements ul li:not(:last-child) {
-    margin-right: 30px;
-  }
-}
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .menu-icon {
     display: block;
     cursor: pointer;
@@ -87,7 +79,7 @@ body {
     position: absolute;
     right: 0;
     top: 60px;
-    background-color: #bee3f8;
+    background-color: #a7b5b9;
     width: 0px;
     height: calc(100vh - 60px);
     transition: all 0.3s ease-in;
