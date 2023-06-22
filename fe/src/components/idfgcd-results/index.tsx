@@ -98,10 +98,10 @@ const IDFGCDResults: FC<IDFGCDResultsI> = ({ userId }) => {
           <Radio value={"Newest"}>Newest</Radio>
         </Radio.Group>
       </div>
-      <Space direction="horizontal" size={16}>
+      <div className={styles.resultsContainer}>
         {results?.map((result) => {
           return (
-            <div key={result.id}>
+            <div className={styles.card} key={result.id}>
               <Card
                 title={new Date(result.result_date).toLocaleDateString([], {
                   hour: "2-digit",
@@ -131,7 +131,7 @@ const IDFGCDResults: FC<IDFGCDResultsI> = ({ userId }) => {
             </div>
           );
         })}
-      </Space>
+      </div>
     </>
   );
 };

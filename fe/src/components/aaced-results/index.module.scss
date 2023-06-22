@@ -9,3 +9,28 @@
   margin-bottom: 1rem;
   margin-left: 1.2rem;
 }
+
+.resultsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.card {
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .resultsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .radioContainer {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    margin-left: 1.2rem;
+  }
+}

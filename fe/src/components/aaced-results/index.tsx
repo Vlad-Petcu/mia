@@ -1,5 +1,5 @@
 import { DeleteOutlined } from "@ant-design/icons";
-import { Button, Card, Radio, RadioChangeEvent, Space } from "antd";
+import { Button, Card, Radio, RadioChangeEvent } from "antd";
 import styles from "./index.module.scss";
 import axios from "axios";
 import { FC, useCallback, useEffect, useState } from "react";
@@ -96,10 +96,10 @@ const AACEDResults: FC<AACEDResultsI> = ({ userId }) => {
           <Radio value={"Newest"}>Newest</Radio>
         </Radio.Group>
       </div>
-      <Space direction="horizontal" size={16}>
+      <div className={styles.resultsContainer}>
         {results?.map((result) => {
           return (
-            <div key={result.id}>
+            <div className={styles.card} key={result.id}>
               <Card
                 title={new Date(result.result_date).toLocaleDateString([], {
                   hour: "2-digit",
@@ -129,7 +129,7 @@ const AACEDResults: FC<AACEDResultsI> = ({ userId }) => {
             </div>
           );
         })}
-      </Space>
+      </div>
     </>
   );
 };
