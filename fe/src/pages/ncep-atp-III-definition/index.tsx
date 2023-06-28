@@ -16,6 +16,7 @@ const NCEPATPIIIDefinition: FC = () => {
   const [fastingGlucose, setFastingGlucose] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [resultMessage, setResultMessage] = useState<string>("");
+  const [isResultPositive, setIsResultPositive] = useState<boolean>();
   const userId = localStorage.getItem("userId");
 
   const isFormValid = () => {
@@ -113,6 +114,7 @@ const NCEPATPIIIDefinition: FC = () => {
       setResultMessage(
         'According to the "WHO Definition" your results suggests that YOU MAY BE diagnosed with metabolic syndrome.'
       );
+      setIsResultPositive(true);
       if (userId) {
         createNCEPATPIIIDefinition(true);
       }
@@ -120,6 +122,7 @@ const NCEPATPIIIDefinition: FC = () => {
       setResultMessage(
         'According to the "WHO Definition" your results suggests that YOU ARE NOT IN DANGER to be diagnosed with metabolic syndrome.'
       );
+      setIsResultPositive(false);
       if (userId) {
         createNCEPATPIIIDefinition(false);
       }
@@ -136,19 +139,25 @@ const NCEPATPIIIDefinition: FC = () => {
         </div>
         <div className={styles.sectionsContainer}>
           <div className={styles.description}>
-            <p>
+            <li className={styles.line}>
               This definition differs from the WHO definition on several fronts.
+            </li>
+            <li className={styles.line}>
               The NCEP ATP III did not believe that insulin resistance is
               mandatory for the development of MS and hence suggested the term
               MS instead of the previously used term insulin resistance
-              syndrome. This definition recognizes central obesity as the
-              culprit and hence body mass index which is a parameter for
-              generalized obesity, has not been included in this definition.
-              Central obesity has been quantified using WC instead of the WHR
-              used by WHO. This definition considers low HDL and high
-              triglycerides as separate components rather than viewing
-              dyslipidemia as a single component.
-            </p>
+              syndrome.
+            </li>
+            <li className={styles.line}>
+              This definition recognizes central obesity as the culprit and
+              hence body mass index which is a parameter for generalized
+              obesity, has not been included in this definition.
+            </li>
+            <li className={styles.line}>
+              This definition considers low HDL and high triglycerides as
+              separate components rather than viewing dyslipidemia as a single
+              component.
+            </li>
           </div>
           <div>
             <div className={styles.ratio}>
@@ -243,7 +252,7 @@ const NCEPATPIIIDefinition: FC = () => {
         </div>
         {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
         {resultMessage && (
-          <p className={styles.resultMessage}>{resultMessage}</p>
+          <p className={isResultPositive ? styles.errorMessage : styles.resultMessage}>{resultMessage}</p>
         )}
         <div>
           <Button

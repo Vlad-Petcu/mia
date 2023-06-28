@@ -20,6 +20,7 @@ const WHODefinition: FC = () => {
   const [creatine, setCreatine] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [resultMessage, setResultMessage] = useState<string>("");
+  const [isResultPositive, setIsResultPositive] = useState<boolean>();
   const userId = localStorage.getItem("userId");
 
   const isFormValid = () => {
@@ -126,6 +127,7 @@ const WHODefinition: FC = () => {
       setResultMessage(
         'According to the "WHO Definition" your results suggests that YOU MAY BE diagnosed with metabolic syndrome.'
       );
+      setIsResultPositive(true);
       if (userId) {
         createWHODefinition(true);
       }
@@ -133,6 +135,7 @@ const WHODefinition: FC = () => {
       setResultMessage(
         'According to the "WHO Definition" your results suggests that YOU ARE NOT IN DANGER to be diagnosed with metabolic syndrome.'
       );
+      setIsResultPositive(false);
       if (userId) {
         createWHODefinition(false);
       }
@@ -149,13 +152,15 @@ const WHODefinition: FC = () => {
         </div>
         <div className={styles.sectionsContainer}>
           <div className={styles.description}>
-            <p>
+            <li className={styles.line}>
               WHO, in 1999, suggested a working definition of metabolic syndrome
-              (MS), which was to be improved in due course of time. WHO defined
-              MS as glucose intolerence, impaired glucose tolerance (IGT) or
-              diabetes mellitus (DM), and/or insulin resistance, together with
-              two or more of the other components listed below.
-            </p>
+              (MS), which was to be improved in due course of time.
+            </li>
+            <li className={styles.line}>
+              WHO defined MS as glucose intolerence, impaired glucose tolerance
+              (IGT) or diabetes mellitus (DM), and/or insulin resistance,
+              together with two or more of the other components listed below.
+            </li>
           </div>
           <div>
             <div className={styles.ratio}>
@@ -283,7 +288,7 @@ const WHODefinition: FC = () => {
         </div>
         {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
         {resultMessage && (
-          <p className={styles.resultMessage}>{resultMessage}</p>
+          <p className={isResultPositive ? styles.errorMessage : styles.resultMessage}>{resultMessage}</p>
         )}
         <div>
           <Button

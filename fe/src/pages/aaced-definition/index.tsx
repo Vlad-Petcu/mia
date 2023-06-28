@@ -19,6 +19,7 @@ const AACEDDefinition: FC = () => {
   const [endothelialDysfunction, setEndothelialDysfunction] =
     useState<boolean>(false);
   const [resultMessage, setResultMessage] = useState<string>("");
+  const [isResultPositive, setIsResultPositive] = useState<boolean>();
   const userId = localStorage.getItem("userId");
 
   const isPatientDiagnosed = () => {
@@ -71,6 +72,7 @@ const AACEDDefinition: FC = () => {
       setResultMessage(
         'According to the "AACED Definition" your results suggests that YOU MAY BE diagnosed with metabolic syndrome.'
       );
+      setIsResultPositive(true);
       if (userId) {
         createAACEDDefinition(true);
       }
@@ -78,6 +80,7 @@ const AACEDDefinition: FC = () => {
       setResultMessage(
         'According to the "AACED Definition" your results suggests that YOU ARE NOT IN DANGER to be diagnosed with metabolic syndrome.'
       );
+      setIsResultPositive(false);
       if (userId) {
         createAACEDDefinition(false);
       }
@@ -94,19 +97,27 @@ const AACEDDefinition: FC = () => {
         </div>
         <div className={styles.sectionsContainer}>
           <div className={styles.description}>
-            <p>
+            <li className={styles.line}>
               The American Association of Clinical Endocrinologists (AACE)
-              preferred using the term insulin resistance syndrome over MS. The
-              major criteria they considered were IGT, elevated triglycerides,
-              reduced HDL-C, elevated BP, and obesity. They did not specify any
-              particular number of criteria for diagnosis, rather they left it
-              to clinical judgment. They suggested that factors like family
-              history of atherosclerotic cardiovascular disease or type 2 DM,
-              polycystic ovary syndrome, and hyperuricemia be considered while
-              exercising clinical judgement. Patients with type 2 DM were
-              excluded from the definition of insulin resistance syndrome. The
-              various components suggested by the AACE are as follows:
-            </p>
+              preferred using the term insulin resistance syndrome over MS.
+            </li>
+            The major criteria they considered were IGT, elevated triglycerides,
+            reduced HDL-C, elevated BP, and obesity.
+            <li className={styles.line}>
+              They did not specify any particular number of criteria for
+              diagnosis, rather they left it to clinical judgment.
+            </li>
+            <li className={styles.line}>
+              They suggested that factors like family history of atherosclerotic
+              cardiovascular disease or type 2 DM, polycystic ovary syndrome,
+              and hyperuricemia be considered while exercising clinical
+              judgement.
+            </li>
+            <li className={styles.line}>
+              Patients with type 2 DM wereexcluded from the definition of
+              insulin resistance syndrome.
+            </li>
+            <li className={styles.line}>The various components suggested by the AACE are as follows:</li>
           </div>
           <div>
             <div className={styles.checkboxContainer}>
@@ -167,7 +178,7 @@ const AACEDDefinition: FC = () => {
           </div>
         </div>
         {resultMessage && (
-          <p className={styles.resultMessage}>{resultMessage}</p>
+          <p className={isResultPositive ? styles.errorMessage : styles.resultMessage}>{resultMessage}</p>
         )}
         <div>
           <Button

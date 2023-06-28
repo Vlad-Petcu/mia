@@ -12,6 +12,7 @@ const LAPDefinition: FC = () => {
   const [waistCircumference, setWaistCircumference] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [resultMessage, setResultMessage] = useState<string>("");
+  const [isResultPositive, setIsResultPositive] = useState<boolean>();
   const userId = localStorage.getItem("userId");
 
   const isFormValid = () => {
@@ -67,6 +68,7 @@ const LAPDefinition: FC = () => {
       setResultMessage(
         'According to the "LAP Definition" your results suggests that YOU MAY BE diagnosed with metabolic syndrome.'
       );
+      setIsResultPositive(true);
       if (userId) {
         createLAPDefinition(true);
       }
@@ -74,6 +76,7 @@ const LAPDefinition: FC = () => {
       setResultMessage(
         'According to the "LAP Definition" your results suggests that YOU ARE NOT IN DANGER to be diagnosed with metabolic syndrome.'
       );
+      setIsResultPositive(false);
       if (userId) {
         createLAPDefinition(false);
       }
@@ -90,18 +93,26 @@ const LAPDefinition: FC = () => {
         </div>
         <div className={styles.sectionsContainer}>
           <div className={styles.description}>
-            <p>
+            <li className={styles.line}>
               In view of the role of central obesity and dyslipidemia in
               atherosclerotic process, an alternative continuous index of lipid
               overaccumulation, the lipid accumulation product (LAP), has been
-              proposed. LAP is computed using WC and fasting triglycerides level
-              (in mmol/l): (WC - 65) x TG (men) and (WC - 58) x TG (women).[46]
+              proposed.
+            </li>
+            <li className={styles.line}>
+              LAP is computed using WC and fasting triglycerides level (in
+              mmol/l): (WC - 65) x TG (men) and (WC - 58) x TG (women).
+            </li>
+            <li className={styles.line}>
               This parameter has been found to be better than BMI for predicting
               diabetes and has also been suggested for use in the identification
-              MS. It has been shown to be a good predictor of cardiovascular
-              disease though one study has shown that it may not be better than
-              ICO or WHR for predicting cardiovascular disease.
-            </p>
+              MS.
+            </li>
+            <li className={styles.line}>
+              It has been shown to be a good predictor of cardiovascular disease
+              though one study has shown that it may not be better than ICO or
+              WHR for predicting cardiovascular disease.
+            </li>
           </div>
           <div className={styles.formContainer}>
             <div className={styles.ratio}>
@@ -146,7 +157,7 @@ const LAPDefinition: FC = () => {
         </div>
         {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
         {resultMessage && (
-          <p className={styles.resultMessage}>{resultMessage}</p>
+          <p className={isResultPositive ? styles.errorMessage : styles.resultMessage}>{resultMessage}</p>
         )}
         <div>
           <Button

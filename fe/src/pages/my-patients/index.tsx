@@ -56,7 +56,7 @@ const MyPatients: FC = () => {
       <Header />
       <Navbar />
       <div className={styles.contentContainer}>
-        <h1 className={styles.pageTitle}>My Patients</h1>
+        <h1 className={styles.pageTitle}>Patients</h1>
         <div className={styles.selectDefinition}>
           <Select
             placeholder="Select Patient"

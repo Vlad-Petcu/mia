@@ -17,6 +17,7 @@ const EGSIRDDefinition: FC = () => {
     useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [resultMessage, setResultMessage] = useState<string>("");
+  const [isResultPositive, setIsResultPositive] = useState<boolean>();
   const userId = localStorage.getItem("userId");
 
   const isFormValid = () => {
@@ -104,6 +105,7 @@ const EGSIRDDefinition: FC = () => {
       setResultMessage(
         'According to the "EGSIRD Definition" your results suggests that YOU MAY BE diagnosed with metabolic syndrome'
       );
+      setIsResultPositive(true);
       if (userId) {
         createEGSIRDDefinition(true);
       }
@@ -111,6 +113,7 @@ const EGSIRDDefinition: FC = () => {
       setResultMessage(
         'According to the "EGSIRD Definition" your results suggests that YOU ARE NOT IN DANGER to be diagnosed with metabolic syndrome'
       );
+      setIsResultPositive(false);
       if (userId) {
         createEGSIRDDefinition(false);
       }
@@ -127,14 +130,16 @@ const EGSIRDDefinition: FC = () => {
         </div>
         <div className={styles.sectionsContainer}>
           <div className={styles.description}>
-            <p>
+            <li className={styles.line}>
               The European Group for Study of Insulin Resistance (EGIR) proposed
               a modification of the WHO definition, using the term insulin
-              resistance syndrome rather than MS. According to the EIGR
-              definition the diagnostic criteria included elevated plasma
-              insulin (bigger then 75th percentile) plus two other factors from
-              among the following:
-            </p>
+              resistance syndrome rather than MS.
+            </li>
+            <li className={styles.line}>
+              According to the EIGR definition the diagnostic criteria included
+              elevated plasma insulin (bigger then 75th percentile) plus two
+              other factors from among the following:
+            </li>
           </div>
           <div>
             <div className={styles.ratio}>
@@ -226,7 +231,7 @@ const EGSIRDDefinition: FC = () => {
         </div>
         {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
         {resultMessage && (
-          <p className={styles.resultMessage}>{resultMessage}</p>
+          <p className={isResultPositive ? styles.errorMessage : styles.resultMessage}>{resultMessage}</p>
         )}
         <div>
           <Button

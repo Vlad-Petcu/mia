@@ -14,6 +14,7 @@ const IDRSDefinition: FC = () => {
   const [familyHistory, setFamilyHistory] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [resultMessage, setResultMessage] = useState<string>("");
+  const [isResultPositive, setIsResultPositive] = useState<boolean>();
   const userId = localStorage.getItem("userId");
 
   const isFormValid = () => {
@@ -109,6 +110,7 @@ const IDRSDefinition: FC = () => {
       setResultMessage(
         'According to the "IDRS Definition" your results suggests that YOU MAY BE diagnosed with metabolic syndrome.'
       );
+      setIsResultPositive(true);
       if (userId) {
         createIDRSDefinition(true);
       }
@@ -116,6 +118,7 @@ const IDRSDefinition: FC = () => {
       setResultMessage(
         'According to the "IDRS Definition" your results suggests that YOU ARE NOT IN DANGER to be diagnosed with metabolic syndrome.'
       );
+      setIsResultPositive(false);
       if (userId) {
         createIDRSDefinition(false);
       }
@@ -132,15 +135,20 @@ const IDRSDefinition: FC = () => {
         </div>
         <div className={styles.sectionsContainer}>
           <div className={styles.description}>
-            <p>
+            <li className={styles.line}>
               Identification of MS can be made more clinical by including
               clinical parameters like age, family history, personal history,
-              etc., as parameters to define MS. Indian diabetes risk score
-              (IDRS) is one such parameter comprising simple clinical
-              information like age, WC, family history of diabetes, and physical
-              activity. IDRS ≥ 60 been found to be useful In predicting MS and
+              etc., as parameters to define MS.
+            </li>
+            <li className={styles.line}>
+              Indian diabetes risk score (IDRS) is one such parameter comprising
+              simple clinical information like age, WC, family history of
+              diabetes, and physical activity.
+            </li>
+            <li className={styles.line}>
+              IDRS ≥ 60 been found to be useful In predicting MS and
               cardiovascular disease.
-            </p>
+            </li>
           </div>
           <div>
             <div className={styles.ratio}>
@@ -225,7 +233,7 @@ const IDRSDefinition: FC = () => {
         </div>
         {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
         {resultMessage && (
-          <p className={styles.resultMessage}>{resultMessage}</p>
+          <p className={isResultPositive ? styles.errorMessage : styles.resultMessage}>{resultMessage}</p>
         )}
         <div>
           <Button

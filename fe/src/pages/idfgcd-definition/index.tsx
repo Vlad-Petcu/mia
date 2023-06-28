@@ -17,6 +17,7 @@ const IDFGDCDefinition: FC = () => {
   const [FPG, setFPG] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [resultMessage, setResultMessage] = useState<string>("");
+  const [isResultPositive, setIsResultPositive] = useState<boolean>();
   const userId = localStorage.getItem("userId");
 
   const isFormValid = () => {
@@ -108,6 +109,7 @@ const IDFGDCDefinition: FC = () => {
       setResultMessage(
         'According to the "IDFGCD Definition" your results suggests that YOU MAY BE diagnosed with metabolic syndrome.'
       );
+      setIsResultPositive(true);
       if (userId) {
         createIDFGCDDefinition(true);
       }
@@ -115,6 +117,7 @@ const IDFGDCDefinition: FC = () => {
       setResultMessage(
         'According to the "IDFGCD Definition" your results suggests that YOU ARE NOT IN DANGER to be diagnosed with metabolic syndrome.'
       );
+      setIsResultPositive(false);
       if (userId) {
         createIDFGCDDefinition(false);
       }
@@ -131,16 +134,19 @@ const IDFGDCDefinition: FC = () => {
         </div>
         <div className={styles.sectionsContainer}>
           <div className={styles.description}>
-            <p>
+            <li className={styles.line}>
               Against the backdrop of all these controversies related to
               diagnostic criteria and the lack of consensus regarding WC
               cutoffs, the International Diabetes Federation (IDF) released a
               global consensus definition for MS, along with race- and
-              gender-specific WC cutoffs. This definition identified central
-              obesity as an essential component of MS and defined MS as central
-              obesity (based on race- and gender-specific WC cutoffs) plus any
-              two of the following four parameters:
-            </p>
+              gender-specific WC cutoffs.
+            </li>
+            <li className={styles.line}>
+              This definition identified central obesity as an essential
+              component of MS and defined MS as central obesity (based on race-
+              and gender-specific WC cutoffs) plus any two of the following four
+              parameters:
+            </li>
           </div>
           <div className={styles.formContainer}>
             <div className={styles.ratio}>
@@ -249,7 +255,7 @@ const IDFGDCDefinition: FC = () => {
         </div>
         {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
         {resultMessage && (
-          <p className={styles.resultMessage}>{resultMessage}</p>
+          <p className={isResultPositive ? styles.errorMessage : styles.resultMessage}>{resultMessage}</p>
         )}
         <div>
           <Button

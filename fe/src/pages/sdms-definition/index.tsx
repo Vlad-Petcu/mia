@@ -11,6 +11,7 @@ const SDMSDefinition: FC = () => {
   const [waistCircumference, setWaistCircumference] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [resultMessage, setResultMessage] = useState<string>("");
+  const [isResultPositive, setIsResultPositive] = useState<boolean>();
   const userId = localStorage.getItem("userId");
 
   const isFormValid = () => {
@@ -52,6 +53,7 @@ const SDMSDefinition: FC = () => {
       setResultMessage(
         'According to the "SDMS Definition" your results suggests that YOU MAY BE diagnosed with metabolic syndrome.'
       );
+      setIsResultPositive(true);
       if (userId) {
         createSDMSDefinition(true);
       }
@@ -59,6 +61,7 @@ const SDMSDefinition: FC = () => {
       setResultMessage(
         'According to the "SDMS Definition" your results suggests that YOU ARE NOT IN DANGER to be diagnosed with metabolic syndrome.'
       );
+      setIsResultPositive(false);
       if (userId) {
         createSDMSDefinition(false);
       }
@@ -75,14 +78,17 @@ const SDMSDefinition: FC = () => {
         </div>
         <div className={styles.sectionsContainer}>
           <div className={styles.description}>
-            <p>
+            <li className={styles.line}>
               In view of all the above evidence, we have proposed that WC be
-              replaced by ICO in all definitions of MS. With the use of ICO, the
+              replaced by ICO in all definitions of MS.
+            </li>
+            <li className={styles.line}> 
+              With the use of ICO, the
               need for various race- and gender-specific cutoffs for WC can be
               obviated. Although a number of studies have proposed ICO cutoffs
               ranging between 0.45 and 0.55, we propose the use of a simple
               cutoff of 0.5 across both genders and all races.
-            </p>
+            </li>
           </div>
           <div className={styles.formContainer}>
             <div>
@@ -113,7 +119,7 @@ const SDMSDefinition: FC = () => {
         </div>
         {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
         {resultMessage && (
-          <p className={styles.resultMessage}>{resultMessage}</p>
+          <p className={isResultPositive ? styles.errorMessage : styles.resultMessage}>{resultMessage}</p>
         )}
         <div>
           <Button

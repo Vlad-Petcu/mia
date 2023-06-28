@@ -14,7 +14,7 @@ const Home: FC = () => {
       <div className={styles.contentContainer}>
         <div className={styles.homePageHeader}>
           <p className={styles.pageTitle}>
-            Welcome to Mia - a healthcare application meant to help people who
+            Welcome to MSD(Metabolic Syndrome Diagnosis) - a healthcare application meant to help people who
             decide to check if they have a possible diagnosis of metabolic
             syndrome.
           </p>
@@ -26,7 +26,7 @@ const Home: FC = () => {
         </div>
         <div className={styles.homeDescription}>
           <div className={styles.firstLine}>
-            Mia offers 8 definitions of the metabolic syndrome which you can
+            MSD offers eight definitions of the metabolic syndrome which you can
             check by adding your own data and see if you are diagnosed with the
             metabolic syndrome.
           </div>
