@@ -50,6 +50,14 @@ const AllDefinitions: FC = () => {
     useState<string>("");
   const [resultMessageSDMS, setResultMessageSDMS] = useState<string>("");
   const [resultMessageWHO, setResultMessageWHO] = useState<string>("");
+  const [isResultPositiveAACED, setIsResultPositiveAACED] = useState<boolean>();
+  const [isResultPositiveEGSIRD, setIsResultPositiveEGSIRD] = useState<boolean>();
+  const [isResultPositiveIDFGCD, setIsResultPositiveIDFGCD] = useState<boolean>();
+  const [isResultPositiveIDRS, setIsResultPositiveIDRS] = useState<boolean>();
+  const [isResultPositiveLAP, setIsResultPositiveLAP] = useState<boolean>();
+  const [isResultPositiveNCEPATPIII, setIsResultPositiveNCEPATPIII] = useState<boolean>();
+  const [isResultPositiveSDMS, setIsResultPositiveSDMS] = useState<boolean>();
+  const [isResultPositiveWHO, setIsResultPositiveWHO] = useState<boolean>();
 
   const userId = localStorage.getItem("userId");
 
@@ -495,88 +503,104 @@ const AllDefinitions: FC = () => {
     }
     if (isPatientDiagnosedForAACED()) {
       setResultMessageAACED("AACED Definition - Positive.");
+      setIsResultPositiveAACED(true);
       if (userId) {
         createAACEDDefinition(true);
       }
     } else {
       setResultMessageAACED("AACED Definition - Negative");
+      setIsResultPositiveAACED(false);
       if (userId) {
         createAACEDDefinition(false);
       }
     }
     if (isPatientDiagnosedForEGSIRD()) {
       setResultMessageEGSIRD("EGSIRD Definition - Positive");
+      setIsResultPositiveEGSIRD(true);
       if (userId) {
         createEGSIRDDefinition(true);
       }
     } else {
       setResultMessageEGSIRD("EGSIRD Definition - Negative");
+      setIsResultPositiveEGSIRD(false);
       if (userId) {
         createEGSIRDDefinition(false);
       }
     }
     if (isPatientDiagnosedForIDFGCD()) {
       setResultMessageIDFGCD("IDFGCD Definition - Positive");
+      setIsResultPositiveIDFGCD(true);
       if (userId) {
         createIDFGCDDefinition(true);
       }
     } else {
       setResultMessageIDFGCD("IDFGCD Definition - Negative");
+      setIsResultPositiveIDFGCD(false);
       if (userId) {
         createIDFGCDDefinition(false);
       }
     }
     if (isPatientDiagnosedForIDRS()) {
       setResultMessageIDRS("IDRS Definition - Positive");
+      setIsResultPositiveIDRS(true);
       if (userId) {
         createIDRSDefinition(true);
       }
     } else {
       setResultMessageIDRS("IDRS Definition - Negative");
+      setIsResultPositiveIDRS(false);
       if (userId) {
         createIDRSDefinition(false);
       }
     }
     if (isPatientDiagnosedForLAP()) {
       setResultMessageLAP("LAP Definition - Positive");
+      setIsResultPositiveLAP(true);
       if (userId) {
         createLAPDefinition(true);
       }
     } else {
       setResultMessageLAP("LAP Definition - Negative");
+      setIsResultPositiveLAP(false);
       if (userId) {
         createLAPDefinition(false);
       }
     }
     if (isPatientDiagnosedForNCEPATPIII()) {
       setResultMessageNCEPATPIII("NCEPATPIII Definition - Positive");
+      setIsResultPositiveNCEPATPIII(true);
       if (userId) {
         createNCEPATPIIIDefinition(true);
       }
     } else {
       setResultMessageNCEPATPIII("NCEPATPIII Definition - Negative");
+      setIsResultPositiveNCEPATPIII(false);
       if (userId) {
         createNCEPATPIIIDefinition(false);
       }
     }
     if (isPatientDiagnosedForSDMS()) {
       setResultMessageSDMS("SDMS Definition - Positive");
+      setIsResultPositiveSDMS(true);
       if (userId) {
         createSDMSDefinition(true);
       }
     } else {
       setResultMessageSDMS("SDMS Definition - Negative");
+      setIsResultPositiveSDMS(false);
       if (userId) {
         createSDMSDefinition(false);
       }
     }
     if (isPatientDiagnosedForWHO()) {
       setResultMessageWHO("WHO Definition - Positive");
+      setIsResultPositiveWHO(true);
       if (userId) {
         createWHODefinition(true);
       }
     } else {
       setResultMessageWHO("WHO Definition - Negative");
+      setIsResultPositiveWHO(false);
       if (userId) {
         createWHODefinition(false);
       }
@@ -901,32 +925,32 @@ const AllDefinitions: FC = () => {
         <div className={styles.resultContainer}>
           <div>
             {resultMessageAACED && (
-              <div className={styles.resultMessage}>{resultMessageAACED}</div>
+              <div className={isResultPositiveAACED ? styles.errorMessage : styles.resultMessage}>{resultMessageAACED}</div>
             )}
             {resultMessageEGSIRD && (
-              <div className={styles.resultMessage}>{resultMessageEGSIRD}</div>
+              <div className={isResultPositiveEGSIRD ? styles.errorMessage : styles.resultMessage}>{resultMessageEGSIRD}</div>
             )}
             {resultMessageIDFGCD && (
-              <div className={styles.resultMessage}>{resultMessageIDFGCD}</div>
+              <div className={isResultPositiveIDFGCD ? styles.errorMessage : styles.resultMessage}>{resultMessageIDFGCD}</div>
             )}
             {resultMessageIDRS && (
-              <div className={styles.resultMessage}>{resultMessageIDRS}</div>
+              <div className={isResultPositiveIDRS ? styles.errorMessage : styles.resultMessage}>{resultMessageIDRS}</div>
             )}
           </div>
           <div>
             {resultMessageLAP && (
-              <div className={styles.resultMessage}>{resultMessageLAP}</div>
+              <div className={isResultPositiveLAP ? styles.errorMessage : styles.resultMessage}>{resultMessageLAP}</div>
             )}
             {resultMessageNCEPATPIII && (
-              <div className={styles.resultMessage}>
+              <div className={isResultPositiveNCEPATPIII ? styles.errorMessage : styles.resultMessage}>
                 {resultMessageNCEPATPIII}
               </div>
             )}
             {resultMessageSDMS && (
-              <div className={styles.resultMessage}>{resultMessageSDMS}</div>
+              <div className={isResultPositiveSDMS ? styles.errorMessage : styles.resultMessage}>{resultMessageSDMS}</div>
             )}
             {resultMessageWHO && (
-              <div className={styles.resultMessage}>{resultMessageWHO}</div>
+              <div className={isResultPositiveWHO ? styles.errorMessage : styles.resultMessage}>{resultMessageWHO}</div>
             )}
           </div>
         </div>
